@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.4.4",
     "element-ui": "^2.4.5",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "xhr2": "^0.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
