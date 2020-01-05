@@ -1,36 +1,171 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
-    </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-container v-show="!currentPageName">
+      <el-aside>
+        <el-container>
+          <img class="brand-logo" src="./assets/logo.png">
+          <el-button type="text" class="brand-text">PyArmor</el-button>
+          <el-badge v-bind:value="versionInfo.tag" type="warning">
+          </el-badge>
+        </el-container>
+        <el-menu default-active="HomeTabIndex"
+                 v-on:select="onSelectMenuItem">
+          <el-menu-item index="HomeTabIndex">
+            <i class="el-icon-s-home"></i>
+            <span slot="title">Home</span>
+          </el-menu-item>
+          <el-menu-item index="HomeTabProject">
+            <i class="el-icon-files"></i>
+            <span slot="title">My Projects</span>
+          </el-menu-item>
+          <el-menu-item index="HomeTabLicense">
+            <i class="el-icon-key"></i>
+            <span slot="title">My Licenses</span>
+          </el-menu-item>
+          <el-menu-item index="HomeTabAbout">
+            <i class="el-icon-info"></i>
+            <span slot="title">About</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-container>
+        <el-header style="text-align: right">
+          <el-dropdown v-on:command="changeLanguage">
+            <span class="el-dropdown-link">
+              English <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="en">English</el-dropdown-item>
+              <el-dropdown-item command="zh-cn">简体中文</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-header>
+        <el-main style="padding-top: 0">
+          <keep-alive>
+            <component v-on:change-current-page="onChangeCurrentPage"
+                       v-bind:version-info="versionInfo"
+                       v-bind:is="currentTabComponent"></component>
+          </keep-alive>
+        </el-main>
+      </el-container>
+    </el-container>
+    <el-container v-show="currentPageName">
+      <component v-on:close-current-page="onCloseCurrentPage"
+                 v-bind="currentPageProps"
+                 v-bind:is="currentPageComponent"></component>
+    </el-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HomeTabIndex from './components/HomeTabIndex.vue'
+import HomeTabProject from './components/HomeTabProject.vue'
+import HomeTabLicense from './components/HomeTabLicense.vue'
+import HomeTabAbout from './components/HomeTabAbout.vue'
+  
+import ObfuscateWizardDefault from './pages/ObfuscateWizardDefault.vue'
+import PackWizardDefault from './pages/PackWizardDefault.vue'
+import LicenseWizardDefault from './pages/LicenseWizardDefault.vue'
+
+import ProjectPageNew from './pages/ProjectPageNew.vue'
+import LicensePageNew from './pages/LicensePageNew.vue'
+
+import locale from 'element-ui/lib/locale'
+import connector from './connector.js'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    name: 'app',
+    components: {
+        HomeTabIndex,
+        HomeTabProject,
+        HomeTabLicense,
+        HomeTabAbout,
+        ObfuscateWizardDefault,
+        PackWizardDefault,
+        LicenseWizardDefault,
+        ProjectPageNew,
+        LicensePageNew,
+    },
+    data: function () {
+        return {
+            currentTabName: 'HomeTabIndex',
+            currentPageName: '',
+            currentPageProps: {},
+            connected: false,
+            versionInfo: {
+                tag: 'Off',
+                version: '',
+                regcode: '',
+                reginfo: '',
+                server: '',
+                python: '',
+            }
+        }
+    },
+    mounted: function () {
+        connector.$on('query-version', this.onConnectSuccess)
+        connector.$on('query-version-fail', this.onConnectFailed)
+        connector.queryVersion()
+    },
+    computed: {
+        currentTabComponent: function () {
+            return this.currentTabName
+        },
+        currentPageComponent: function () {
+            return this.currentPageName
+        }
+    },
+    methods: {
+        onChangeCurrentPage: function (name, props) {
+            this.currentPageProps = props
+            this.currentPageName = name
+        },
+        onCloseCurrentPage: function () {
+            this.currentPageProps = {}
+            this.currentPageName = ''
+        },
+        onSelectMenuItem: function (index) {
+            this.currentTabName = index
+        },
+        onConnectSuccess: function (data) {
+            this.connected = true
+            this.versionInfo.tag = data.rcode ? '' : 'Trial'
+            this.versionInfo.version = data.version
+            this.versionInfo.regcode = data.rcode
+            this.versionInfo.reginfo = data.info
+            this.versionInfo.server = data.server
+            this.versionInfo.python = data.python
+        },
+        onConnectFailed: function () {
+            this.connected = false
+            this.versionInfo.tag = 'Off'
+            this.currentTabName = 'HomeTabAbout'
+
+            this.$message({
+                showClose: true,
+                message: 'Could not connect PyArmor server',
+                type: 'error'
+            })
+        },
+        changeLanguage: function (lang) {
+            locale.use(lang)
+        }
+    },
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    margin-top: 6px;
+}
+.brand-text {
+    font-size: 32px;
 }
 </style>
