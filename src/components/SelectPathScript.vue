@@ -97,13 +97,17 @@ export default {
       }
     },
     mounted() {
-        connector.$on('list-directory', this.onListDirectory)
-        connector.$on('list-directory-failed', this.onListDirectoryFailed)
+        this.$watch('loading', loading => {
+            if ( loading ) {
+                connector.$on('list-directory', this.onListDirectory)
+                connector.$on('list-directory-failed', this.onListDirectoryFailed)
+            }
+            else {
+                connector.$off('list-directory', this.onListDirectory)
+                connector.$off('list-directory-failed', this.onListDirectoryFailed)
+            }
+        } )
         this.restoreInitValue()
-    },
-    beforeDestroy() {
-        connector.$off('list-directory', this.onListDirectory)
-        connector.$off('list-directory-failed', this.onListDirectoryFailed)
     },
     methods: {
         splitPath( p ) {

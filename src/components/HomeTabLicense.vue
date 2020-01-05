@@ -6,10 +6,42 @@
       v-bind:data="tableData"
       stripe
       class="license-table">
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-width="180px"
+                   label-position="left"
+                   class="demo-table-expand"
+                   size="mini">
+            <el-form-item label="expired">
+              <span>{{ props.row.expired }}</span>
+            </el-form-item>
+            <el-form-item label="Harddisk">
+              <span>{{ props.row.harddisk }}</span>
+            </el-form-item>
+            <el-form-item label="IPv4">
+              <span>{{ props.row.ipv4 }}</span>
+            </el-form-item>
+            <el-form-item label="Mac Address">
+              <span>{{ props.row.mac }}</span>
+            </el-form-item>
+            <el-form-item label="Disable Restrict Mode">
+              <span>{{ props.row.disable_restrict_mode }}</span>
+            </el-form-item>
+            <el-form-item label="Extra Data">
+              <span>{{ props.row.extra_data }}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
       <el-table-column
         sortable
         prop="rcode"
         label="Code">
+      </el-table-column>
+      <el-table-column
+        prop="title"
+        show-overflow-tooltip
+        label="Title">
       </el-table-column>
       <el-table-column
         align="right">
@@ -38,7 +70,7 @@ export default {
         this.refreshData()
     },
     methods: {
-        refreshData: function () {            
+        refreshData: function () {
             connector.listLicense()
         },
         newLicense: function () {
@@ -51,7 +83,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 connector.removeLicense(data)
-            })         
+            })
         },
         onListLicense: function (data) {
             this.tableData = data
