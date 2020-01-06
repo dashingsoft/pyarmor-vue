@@ -63,12 +63,8 @@ import HomeTabProject from './components/HomeTabProject.vue'
 import HomeTabLicense from './components/HomeTabLicense.vue'
 import HomeTabAbout from './components/HomeTabAbout.vue'
   
-import ObfuscateWizardDefault from './pages/ObfuscateWizardDefault.vue'
-import PackWizardDefault from './pages/PackWizardDefault.vue'
-import LicenseWizardDefault from './pages/LicenseWizardDefault.vue'
-
 import ProjectPageNew from './pages/ProjectPageNew.vue'
-import LicensePageNew from './pages/LicensePageNew.vue'
+import LicensePageEdit from './pages/LicensePageEdit.vue'
 
 import locale from 'element-ui/lib/locale'
 import connector from './connector.js'
@@ -80,11 +76,8 @@ export default {
         HomeTabProject,
         HomeTabLicense,
         HomeTabAbout,
-        ObfuscateWizardDefault,
-        PackWizardDefault,
-        LicenseWizardDefault,
         ProjectPageNew,
-        LicensePageNew,
+        LicensePageEdit,
     },
     data: function () {
         return {

@@ -76,6 +76,10 @@ export default new Vue({
             let url = this.serverUrl + 'license/new';
             this.sendRequest(url, data, 'new-license');
         },
+        updateLicense: function (data) {
+            let url = this.serverUrl + 'license/update';
+            this.sendRequest(url, data, 'update-license');
+        },
         removeLicense: function (data) {
             let url = this.serverUrl + 'license/remove';
             this.sendRequest(url, data, 'remove-license');

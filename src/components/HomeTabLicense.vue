@@ -1,7 +1,9 @@
 <template>
   <div class="license-tab">
-    <el-button size="small" v-on:click="newLicense">New</el-button>
-    <el-button size="small" v-on:click="refreshData">Refresh</el-button>
+    <el-button v-on:click="newLicense"
+               size="small">New</el-button>
+    <el-button v-on:click="refreshData"
+               size="small">Refresh</el-button>
     <el-table
       v-bind:data="tableData"
       stripe
@@ -30,23 +32,38 @@
             <el-form-item label="Extra Data">
               <span>{{ props.row.extra_data }}</span>
             </el-form-item>
+            <el-form-item label="Filename">
+              <span>{{ props.row.filename }}</span>
+            </el-form-item>
           </el-form>
         </template>
       </el-table-column>
       <el-table-column
         sortable
         prop="rcode"
-        label="Code">
+        label="Name">
       </el-table-column>
       <el-table-column
-        prop="title"
+        prop="summary"
         show-overflow-tooltip
-        label="Title">
+        label="Summary">
       </el-table-column>
       <el-table-column
         align="right">
         <template slot-scope="scope">
-          <el-button @click="removeLicense(scope.row)" type="text" size="small">Remove</el-button>
+          <el-button @click="editLicense(scope.row)"
+                     type="text"
+                     icon="el-icon-edit"
+                     size="medium"></el-button>
+          <el-button @click="cloneLicense(scope.row)"
+                     type="text"
+                     v-if="0"
+                     icon="el-icon-document-copy"
+                     size="medium"></el-button>
+          <el-button @click="removeLicense(scope.row)"
+                     type="text"
+                     icon="el-icon-delete"
+                     size="medium"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -74,7 +91,7 @@ export default {
             connector.listLicense()
         },
         newLicense: function () {
-            this.$emit('change-current-page', 'LicensePageNew')
+            this.$emit('change-current-page', 'LicensePageEdit')
         },
         removeLicense: function (data) {
             this.$confirm('Are you sure remove this license: ' + data.rcode + '?', 'Confirm', {

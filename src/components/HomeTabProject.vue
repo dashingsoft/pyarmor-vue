@@ -1,11 +1,9 @@
 <template>
   <div class="project-tab">
-    <el-button size="small"
-               v-on:click="newProject">New</el-button>
-    <el-button size="small"
-               v-on:click="refreshData">
-      Refresh
-    </el-button>
+    <el-button v-on:click="newProject"
+               size="small">New</el-button>
+    <el-button v-on:click="refreshData"
+               size="small">Refresh</el-button>
     <el-table
       v-bind:data="tableData"
       stripe
@@ -38,9 +36,18 @@
       <el-table-column
         align="right">
         <template slot-scope="scope">
-          <el-button v-on:click="buildProject(scope.row)" type="text" size="small">Build</el-button>
-          <el-button v-on:click="editProject(scope.row)" type="text" size="small">Edit</el-button>
-          <el-button v-on:click="removeProject(scope.row)" type="text" size="small">Remove</el-button>
+          <el-button v-on:click="buildProject(scope.row)"
+                     type="text"
+                     icon="el-icon-s-tools"
+                     size="medium"></el-button>
+          <el-button v-on:click="editProject(scope.row)"
+                     type="text"
+                     icon="el-icon-edit"
+                     size="medium"></el-button>
+          <el-button v-on:click="removeProject(scope.row)"
+                     type="text"
+                     icon="el-icon-delete"
+                     size="medium"></el-button>
         </template>
       </el-table-column>
     </el-table>
