@@ -63,7 +63,7 @@ import HomeTabProject from './components/HomeTabProject.vue'
 import HomeTabLicense from './components/HomeTabLicense.vue'
 import HomeTabAbout from './components/HomeTabAbout.vue'
   
-import ProjectPageNew from './pages/ProjectPageNew.vue'
+import ProjectPageEdit from './pages/ProjectPageEdit.vue'
 import LicensePageEdit from './pages/LicensePageEdit.vue'
 
 import locale from 'element-ui/lib/locale'
@@ -76,7 +76,7 @@ export default {
         HomeTabProject,
         HomeTabLicense,
         HomeTabAbout,
-        ProjectPageNew,
+        ProjectPageEdit,
         LicensePageEdit,
     },
     data: function () {

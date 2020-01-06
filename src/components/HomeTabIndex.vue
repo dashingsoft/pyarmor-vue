@@ -67,22 +67,38 @@
           <el-row :gutter="12">
             <el-col :span="6">
               <el-card shadow="hover">
-                Expired License
+                <el-button
+                  type="text"
+                  @click="openLicenseWizard('expired')">
+                  Expired License
+                </el-button>
               </el-card>
             </el-col>
             <el-col :span="6">
               <el-card shadow="hover">
-                Fixed Machine License
+                <el-button
+                  type="text"
+                  @click="openLicenseWizard('machine')">
+                  Fixed Machine License
+                </el-button>
               </el-card>
             </el-col>
             <el-col :span="6">
               <el-card shadow="hover">
-                Disable Restrict Mode License
+                <el-button
+                  type="text"
+                  @click="openLicenseWizard('extra')">
+                  Custom Data License
+                </el-button>
               </el-card>
             </el-col>
             <el-col :span="6">
               <el-card shadow="hover">
-                Full Features License
+                <el-button
+                  type="text"
+                  @click="openLicenseWizard('')">
+                  Full Features License
+                </el-button>
               </el-card>
             </el-col>
           </el-row>
@@ -94,11 +110,16 @@
 
 <script>
 export default {
-name: 'HomeTabIndex',
-data() {
-      return {
-        activeName: ''
-      };
+    name: 'HomeTabIndex',
+    data() {
+        return {
+            activeName: ''
+        }
+    },
+    methods: {
+        openLicenseWizard(name) {
+            this.$emit('change-current-page', 'LicensePageEdit', { features: name })
+        },
     },
 }
 </script>

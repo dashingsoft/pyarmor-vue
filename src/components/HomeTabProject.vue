@@ -76,7 +76,7 @@ export default {
             connector.listProject()
         },
         newProject: function () {
-            this.$emit('change-current-page', 'ProjectPageNew')
+            this.$emit('change-current-page', 'ProjectPageEdit')
         },
         buildProject: function (data) {
             this.$emit('change-current-page', 'ProjectPageBuild', data)

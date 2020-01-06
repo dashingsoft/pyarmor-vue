@@ -1,5 +1,7 @@
 <template>
   <el-select
+    ref="select"
+    style="width: 100%"
     v-model="value"
     filterable
     remote
@@ -8,7 +10,7 @@
     v-bind:remote-method="listRemoteDirectory"
     v-bind:loading="loading"
     v-on:visible-change="v => { prefixVisible = v }"
-    placeholder="Select script">
+    v-bind:placeholder="placeholder">
     <el-breadcrumb v-if="prefixVisible"
                    slot="prefix"
                    separator="/">
@@ -24,18 +26,21 @@
     </el-breadcrumb>
     <el-option disabled value="">
       <el-button size="mini"
+                 icon="el-icon-arrow-up"
+                 v-on:click.stop="selectUpPath"></el-button>
+      <el-button size="mini"
                  icon="el-icon-refresh-left"
                  v-on:click.stop="restoreInitValue"></el-button>
       <el-button size="mini"
-                 icon="el-icon-house"
+                 icon="el-icon-link"
                  v-on:click.stop="selectRootPath"></el-button>
-      <el-button size="mini"
-                 icon="el-icon-arrow-up"
-                 v-on:click.stop="selectUpPath"></el-button>
       <el-button size="mini"
                  icon="el-icon-folder"
                  v-bind:class="{ selected: folderVisible }"
                  v-on:click.stop="onFilterFolder"></el-button>
+      <el-button size="mini"
+                 icon="el-icon-check"
+                 v-on:click.stop="$refs['select'].blur"></el-button>
     </el-option>
     <el-option
       v-for="item in options"
@@ -81,13 +86,17 @@ export default {
         allowCreate: {
             type: Boolean,
             default: false
-        }
+        },
+        placeholder: {
+            type: String,
+            default: ''
+        },
     },
     data() {
       return {
           options: [],
-          value: [],
           source: [],
+          value: [],
           loading: false,
           prefix: [],
           path: [],
@@ -149,7 +158,6 @@ export default {
                 this.loading = true
                 connector.listDirectory( {
                     path: this.joinPath( query === '' ? this.path : this.path.concat( [ query ] ) ),
-                    pattern: this.onlyScript ? '*.py' : '*',
                 } )
             } else {
                 this.source = [
@@ -196,7 +204,8 @@ export default {
         },
         onFilterOption() {
             this.options = this.source.filter( item => {
-                return this.folderVisible ? true : item.isfile
+                return ( this.folderVisible ? true : item.isfile ) &&
+                    ( ( this.onlyScript && item.isfile ) ? item.value.slice(-3) === '.py' : true )
             } )
         }
     }

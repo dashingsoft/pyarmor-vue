@@ -93,6 +93,9 @@ export default {
         newLicense: function () {
             this.$emit('change-current-page', 'LicensePageEdit')
         },
+        editLicense: function (data) {
+            this.$emit('change-current-page', 'LicensePageEdit', { licenseInfo: data })
+        },
         removeLicense: function (data) {
             this.$confirm('Are you sure remove this license: ' + data.rcode + '?', 'Confirm', {
                 confirmButtonText: 'Yes',

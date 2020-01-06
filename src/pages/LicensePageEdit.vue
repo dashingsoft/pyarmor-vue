@@ -102,7 +102,7 @@ export default {
     },
     mounted: function () {
         connector.$once('new-license', this.onLicenseCreated)
-        connector.$once('update-license', this.goBack)
+        connector.$once('update-license', this.onLicenseCreated)
     },
     methods: {
         hasFeature(name) {
@@ -110,7 +110,7 @@ export default {
         },
         goBack() {
             connector.$off('new-license', this.onLicenseCreated)
-            connector.$off('update-license', this.goBack)
+            connector.$off('update-license', this.onLicenseCreated)
             this.$emit('close-current-page')
         },
         onSubmit() {
@@ -132,7 +132,10 @@ export default {
                 if (this.licenseInfo.disable_restrict_mode)
                     v.push('Disable restrict mode')
                 this.licenseInfo.summary = v.join(',')
-                connector.newLicense(this.licenseInfo)
+
+                this.licenseInfo.id
+                    ? connector.updateLicense(this.licenseInfo)
+                    : connector.newLicense(this.licenseInfo)
             })
         },
         onLicenseCreated(data) {
