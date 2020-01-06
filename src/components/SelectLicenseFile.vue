@@ -4,18 +4,11 @@
     style="width: 100%"
     v-model="value"
     filterable
+    clearable
     remote
     v-bind:remote-method="listRemoteLicenses"
     v-bind:loading="loading"
     placeholder="Select one license file">
-    <el-option disabled value="">
-      <el-button size="mini"
-                 icon="el-icon-refresh-left"
-                 v-on:click.stop="refreshData"></el-button>
-      <el-button size="mini"
-                 icon="el-icon-check"
-                 v-on:click.stop="$refs['select'].blur"></el-button>
-    </el-option>
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -78,7 +71,7 @@ export default {
         },
         filterLicenses( query ) {
             this.options = this.source.filter( item => {
-                return item.lable.indexOf( query ) > -1
+                return item.label.indexOf( query ) > -1
             } )
         }
     }
