@@ -126,10 +126,7 @@ export default {
         listRemoteDirectory( query ) {
             if ( query === '' && this.prefix.length === 0 ) {
                 this.source = connector.getFavorPath( localStorage.getItem( 'recent.directory' ) )
-                    .map( x => {
-                        label: x,
-                        value: x,
-                    } )
+                    .map( x => { return { label: x, value: x } } )
                 this.options = this.source.slice()
             }
             else if ( query === '' || query.slice(-1) === '/' ) {

@@ -113,10 +113,17 @@ export default {
         onListDirectory( node, resolve, data ) {
             localStorage.setItem( 'recent.directory', data.path )
             const nodes = ( this.onlyFolder ? [] : data.files ).map( x => {
-                label: x,
-                value: x,
-                leaf: true
-            } ).concat( data.dirs.map( x => { label: x, value: x } ) )
+                return {
+                    label: x,
+                    value: x,
+                    leaf: true
+                }
+            } ).concat( data.dirs.map( x => {
+                return {
+                    label: x,
+                    value: x,
+                }
+            } ) )
             resolve( nodes.length ? nodes : undefined )
         },
     }

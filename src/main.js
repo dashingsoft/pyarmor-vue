@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import NotFound from './pages/NotFound.vue'
+import SelectFolder from './components/SelectFolder.vue'
 import SelectPathScript from './components/SelectPathScript.vue'
 import SelectLicenseFile from './components/SelectLicenseFile.vue'
 
@@ -11,6 +12,7 @@ const routes = {
 }
 
 Vue.config.productionTip = false
+Vue.component('select-folder', SelectFolder)
 Vue.component('select-path-script', SelectPathScript)
 Vue.component('select-license-file', SelectLicenseFile)
 
