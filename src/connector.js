@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import reqwest from './reqwest.js'
 
+var favorPath = []
+
 const send_request = function (url, data, success, error) {
     let paras = {
         url: url,
@@ -20,6 +22,12 @@ const send_request = function (url, data, success, error) {
 export default new Vue({
     data: {
         serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
+    },
+    created() {
+        send_request(this.serverUrl + 'listdir', { path: '@' }, resp => {
+            if (resp.err === 0)
+                favorPath = resp.data.dirs
+        })
     },
     methods: {
         sendRequest: function (url, data, event, success, error) {
@@ -92,5 +100,10 @@ export default new Vue({
             let url = this.serverUrl + 'license/list'
             this.sendRequest(url, data, 'list-license', success, error)
         },
+        getFavorPath( path ) {
+            if (typeof path === 'undefined' || favorPath.indexOf( path ) === -1)
+                return favorPath.slice()
+            return favorPath.concat( path )
+        }
     }
 })

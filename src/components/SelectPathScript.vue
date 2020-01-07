@@ -5,6 +5,7 @@
     v-model="value"
     filterable
     clearable
+    @change="onValueChanged"
     @expand-change="onExpandChanged"
     :multiple="multiple"
     :placeholder="placeholder"
@@ -15,23 +16,22 @@
 <script>
 import connector from '../connector.js'
 
-const rootNodes = [
-    {
-        label: 'User Home',
-        value: '$HOME',
-    },
-    {
-        label: 'This Computer',
-        value: '/',
-    }
-]
-
 export default {
     name: 'SelectPathScript',
+    model: {
+        prop: 'value2',
+        event: 'change2',
+    },
     props: {
+        value2: {
+            type: [ String, Array ]
+        },
         rootPath: {
             type: String,
-            default: ''
+            required: true,
+            validator ( value ) {
+                return value.length > 0
+            }
         },
         selectPattern: {
             type: String,
@@ -49,36 +49,28 @@ export default {
             type: Boolean,
             default: true
         },
-        allowCreate: {
-            type: Boolean,
-            default: false
-        },
         placeholder: {
             type: String,
             default: ''
         },
-        recommendPath: {
-            type: String,
-            default: ''
-        }
     },
     data() {
         return {
-            path: [],
             value: [],
+            path: [],
             panelProps: {
-                multiple: false,
+                multiple: this.multiple,
                 lazy: true,
-                checkStrictly: true,
+                checkStrictly: ! this.onlyScript,
                 lazyLoad: this.listRemoteDirectory
             },
+            recentPath: []
         }
     },
     mounted() {
-        this.panelProps.multiple = this.multiple
-        this.panelProps.checkStrictly = ! this.onlyScript
-        this.value = this.multiple ? [] : ''
-        // let p = localStorage.getItem( 'recent.directory' )
+        this.value = this.multiple
+            ? this.value2.map( x => this.splitPath( x ) )
+            : this.splitPath( this.value2 )
     },
     methods: {
         splitPath( p ) {
@@ -87,6 +79,16 @@ export default {
         joinPath( a ) {
             return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
         },
+        onValueChanged() {
+            this.$emit( 'change', this.multiple
+                        ? this.value.map( x => this.joinPath( x ) )
+                        : this.joinPath( this.value ) )
+            // 变通解决 ElementUI 的 bug: multiple === false && lazyLoad
+            //     点击选项的单选按钮不会关闭菜单，而是弹出没有数据的下一级菜单
+            // if ( ! this.multiple ) {
+            //     this.$refs['cascader'].toggleDropDownVisible( false )
+            // }
+        },
         onExpandChanged( nodes ) {
             this.path = nodes.map( x => x.toString() )
             if ( this.path[ 0 ] === '/' )
@@ -94,41 +96,28 @@ export default {
         },
         listRemoteDirectory(node, resolve) {
             const { level } = node
-            if ( level === 0 && this.rootPath === '' ) {
-                resolve( rootNodes )
-            }
-            else {
-                let path = this.path.slice( 0, level - 1 ).concat( [ node.value ] )
-                connector.listDirectory(
-                    {
-                        path: this.rootPath + path.join( '/' ),
-                        pattern: this.selectPattern,
-                    },
-                    data => {
-                        this.onListDirectory( node, resolve, data )
-                    },
-                    () => resolve()
-                )
-            }
+            let path = level === 0
+                ? this.rootPath
+                : this.path.slice( 0, level - 1 ).concat( node.value )
+            connector.listDirectory(
+                {
+                    path: this.splitPath( this.rootPath ).concat( path ).join( '/' ),
+                    pattern: this.selectPattern,
+                },
+                data => {
+                    this.onListDirectory( node, resolve, data )
+                },
+                () => resolve()
+            )
         },
         onListDirectory( node, resolve, data ) {
-            let path = data.path
-            localStorage.setItem( 'recent.directory', path )
-            if ( node.level === 1 && node.value.indexOf( '$' ) !== -1 )
-                node.value = path
-            const nodes = data.dirs.map( item => {
-                return {
-                    label: item,
-                    value: item,
-                }
-            } ).concat( ( this.onlyFolder ? [] : data.files ).map( item => {
-                return {
-                    label: item,
-                    value: item,
-                    leaf: true
-                }
-            } ) )
-            resolve( nodes )
+            localStorage.setItem( 'recent.directory', data.path )
+            const nodes = ( this.onlyFolder ? [] : data.files ).map( x => {
+                label: x,
+                value: x,
+                leaf: true
+            } ).concat( data.dirs.map( x => { label: x, value: x } ) )
+            resolve( nodes.length ? nodes : undefined )
         },
     }
 }
