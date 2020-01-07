@@ -24,7 +24,7 @@ const rootNodes = [
         label: 'This Computer',
         value: '/',
     }
-]                
+]
 
 export default {
     name: 'SelectPathScript',
@@ -66,7 +66,6 @@ export default {
         return {
             path: [],
             value: [],
-            loading: false,
             panelProps: {
                 multiple: false,
                 lazy: true,
@@ -99,20 +98,20 @@ export default {
                 resolve( rootNodes )
             }
             else {
-                this.loading = true
-                connector.$once( 'list-directory', data => {
-                    this.onListDirectory( node, resolve, data )
-                } )
-                connector.$once( 'list-directory-fail', () => resolve() )
                 let path = this.path.slice( 0, level - 1 ).concat( [ node.value ] )
-                connector.listDirectory( {
-                    path: this.rootPath + path.join( '/' ),
-                    pattern: this.selectPattern,
-                } )
+                connector.listDirectory(
+                    {
+                        path: this.rootPath + path.join( '/' ),
+                        pattern: this.selectPattern,
+                    },
+                    data => {
+                        this.onListDirectory( node, resolve, data )
+                    },
+                    () => resolve()
+                )
             }
         },
         onListDirectory( node, resolve, data ) {
-            this.loading = false
             let path = data.path
             localStorage.setItem( 'recent.directory', path )
             if ( node.level === 1 && node.value.indexOf( '$' ) !== -1 )
@@ -130,9 +129,6 @@ export default {
                 }
             } ) )
             resolve( nodes )
-        },
-        onListDirectoryFailed() {
-            this.loading = false
         },
     }
 }
