@@ -32,16 +32,6 @@ export default {
       }
     },
     mounted() {
-        this.$watch('loading', loading => {
-            if ( loading ) {
-                connector.$on('list-license', this.onListLicense)
-                connector.$on('list-license-failed', this.onListLicenseFailed)
-            }
-            else {
-                connector.$off('list-license', this.onListLicense)
-                connector.$off('list-license-failed', this.onListLicenseFailed)
-            }
-        } )
         this.refreshData()
     },
     methods: {
@@ -51,7 +41,7 @@ export default {
         listRemoteLicenses( query ) {
             if ( query === '' ) {
                 this.loading = true
-                connector.listLicense()
+                connector.listLicense({}, this.onListLicense, this.onListLicenseFailed)
             }
             else
                 this.filterLicenses( query )
