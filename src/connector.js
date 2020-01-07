@@ -5,7 +5,7 @@ const send_request = function (url, data, success, error) {
     let paras = {
         url: url,
         method: 'post',
-        type: 'json',        
+        type: 'json',
         crossOrigin: true,
         success: success,
         error: error
@@ -22,71 +22,75 @@ export default new Vue({
         serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
     },
     methods: {
-        sendRequest: function (url, data, event) {
-            let error = function (err) {
+        sendRequest: function (url, data, event, success, error) {
+            let onerror = function (err) {
                 Vue.prototype.$message({
                     type: 'error',
                     message: err,
                     showClose: true
                 })
                 this.$emit(event + '-fail')
+                if (typeof error === 'function')
+                    error(err)
             }
-            let success = function (resp) {
-                if (resp.err === 0)
+            let onsuccess = function (resp) {
+                if (resp.err === 0) {
                     this.$emit(event, resp.data)
+                    if (typeof success === 'function')
+                        success(resp.data)
+                }
                 else
-                    error(resp.data)
+                    onerror.call(this, resp.data)
             }
-            send_request(url, data, success.bind(this), error.bind(this))
+            send_request(url, data, onsuccess.bind(this), onerror.bind(this))
         },
-        queryVersion: function (data) {
-            let url = this.serverUrl + 'version';
-            // send_request(url, data, success, error)
-            this.sendRequest(url, data, 'query-version');
+        queryVersion: function (data, success, error) {
+            let url = this.serverUrl + 'version'
+            this.sendRequest(url, data, 'query-version', success, error)
         },
-        listDirectory: function (data) {
-            let url = this.serverUrl + 'listdir';
-            this.sendRequest(url, data, 'list-directory');
+        listDirectory: function (data, success, error) {
+            let url = this.serverUrl + 'listdir'
+            this.sendRequest(url, data, 'list-directory', success, error)
         },
-        newProject: function (data) {
-            let url = this.serverUrl + 'project/new';
-            this.sendRequest(url, data, 'new-project');
+        newProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/new'
+            this.sendRequest(url, data, 'new-project', success, error)
         },
-        updateProject: function (data) {
-            let url = this.serverUrl + 'project/update';
-            this.sendRequest(url, data, 'update-project');
+        updateProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/update'
+            this.sendRequest(url, data, 'update-project', success, error)
         },
-        buildProject: function (data) {
-            let url = this.serverUrl + 'project/build';
-            this.sendRequest(url, data, 'build-project');
+        buildProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/build'
+            this.sendRequest(url, data, 'build-project', success, error)
         },
-        removeProject: function (data) {
-            let url = this.serverUrl + 'project/remove';
-            this.sendRequest(url, data, 'remove-project');
+        removeProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/remove'
+            this.sendRequest(url, data, 'remove-project', success, error)
         },
-        buildTempProject: function (data) {
-            let url = this.serverUrl + 'project/build_temp';
-            this.sendRequest(url, data, 'build-temp-project');
+        buildTempProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/build_temp'
+            this.sendRequest(url, data, 'build-temp-project', success, error)
         },
-        listProject: function (data) {
-            let url = this.serverUrl + 'project/list';
-            this.sendRequest(url, data, 'list-project');
+        listProject: function (data, success, error) {
+            let url = this.serverUrl + 'project/list'
+            this.sendRequest(url, data, 'list-project', success, error)
         },
-        newLicense: function (data) {
-            let url = this.serverUrl + 'license/new';
-            this.sendRequest(url, data, 'new-license');
+        newLicense: function (data, success, error) {
+            let url = this.serverUrl + 'license/new'
+            this.sendRequest(url, data, 'new-license', success, error)
         },
-        updateLicense: function (data) {
-            let url = this.serverUrl + 'license/update';
-            this.sendRequest(url, data, 'update-license');
+        updateLicense: function (data, success, error) {
+            let url = this.serverUrl + 'license/update'
+            this.sendRequest(url, data, 'update-license', success, error)
         },
-        removeLicense: function (data) {
-            let url = this.serverUrl + 'license/remove';
-            this.sendRequest(url, data, 'remove-license');
+        removeLicense: function (data, success, error) {
+            let url = this.serverUrl + 'license/remove'
+            this.sendRequest(url, data, 'remove-license', success, error)
         },
-        listLicense: function (data) {
-            let url = this.serverUrl + 'license/list';
-            this.sendRequest(url, data, 'list-license');
+        listLicense: function (data, success, error) {
+            let url = this.serverUrl + 'license/list'
+            this.sendRequest(url, data, 'list-license', success, error)
         },
     }
 })
