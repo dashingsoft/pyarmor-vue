@@ -29,9 +29,9 @@ export default {
         rootPath: {
             type: String,
             required: true,
-            validator ( value ) {
-                return value.length > 0
-            }
+            // validator ( value ) {
+            //     return value.length > 0
+            // }
         },
         selectPattern: {
             type: String,
@@ -71,6 +71,7 @@ export default {
         this.value = this.multiple
             ? this.value2.map( x => this.splitPath( x ) )
             : this.splitPath( this.value2 )
+        this.$watch( 'rootPath', this.resetRootPath )
     },
     methods: {
         splitPath( p ) {
@@ -78,6 +79,9 @@ export default {
         },
         joinPath( a ) {
             return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
+        },
+        resetRootPath() {
+            this.$refs['cascader'].$refs['panel'].initStore()
         },
         onValueChanged() {
             this.$emit( 'change', this.multiple
