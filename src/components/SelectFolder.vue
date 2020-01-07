@@ -9,9 +9,10 @@
     :remote-method="listRemoteDirectory"
     :loading="loading"
     :placeholder="placeholder"
-    @change="onValueChanged">
+    @change="onValueChanged"
+    @visible-change="v => prefixVisible = v">
     <el-breadcrumb
-      v-if="visible"
+      v-if="prefixVisible"
       slot="prefix"
       separator="/">
       <el-breadcrumb-item
@@ -88,6 +89,7 @@ export default {
           options: [],
           source: [],
           prefix: [],
+          prefixVisible: false,
       }
     },
     mounted() {
@@ -106,8 +108,8 @@ export default {
             this.listRemoteDirectory( '' )
         },
         selectUpPath() {
-            if ( this.path.length ) {
-                this.path.pop()
+            if ( this.prefix.length ) {
+                this.prefix.pop()
                 this.listRemoteDirectory( '' )
             }
             else
@@ -128,10 +130,11 @@ export default {
                 this.source = connector.getFavorPath( localStorage.getItem( 'recent.directory' ) )
                     .map( x => { return { label: x, value: x } } )
                 this.options = this.source.slice()
+                this.prefix = []
             }
             else if ( query === '' || query.slice(-1) === '/' ) {
                 this.loading = true
-                let path = query === '' ? this.prefix : this.prefix.concat( [ query ] )
+                let path = query === '' ? this.prefix : this.prefix.concat( query.slice(0, -1) )
                 connector.listDirectory(
                     {
                         path: this.joinPath( path ),
@@ -164,7 +167,7 @@ export default {
         },
         onFilterOptions( query ) {
             this.options = this.source.filter( item => {
-                return ( this.onlyFolder ? item.isdir : true ) && item.indexOf( query ) > -1
+                return ( this.onlyFolder ? item.isdir : true ) && item.value.indexOf( query ) > -1
             } )
         },
         onValueChanged( value ) {

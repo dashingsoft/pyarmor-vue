@@ -101,7 +101,7 @@ export default new Vue({
             this.sendRequest(url, data, 'list-license', success, error)
         },
         getFavorPath( path ) {
-            if (typeof path === 'undefined' || favorPath.indexOf( path ) === -1)
+            if ((typeof path === 'undefined') || (favorPath.indexOf( path ) > -1))
                 return favorPath.slice()
             return favorPath.concat( path )
         }
