@@ -2,24 +2,36 @@
   <el-select
     ref="select"
     v-model="value"
-    style="width: 100%"
+    class="select-remote-folder"
     filterable
     remote
+    default-first-option
     :allow-create="allowCreate"
     :remote-method="listRemoteDirectory"
     :loading="loading"
     :placeholder="placeholder"
     @change="onValueChanged"
-    @visible-change="v => prefixVisible = v">
+    @visible-change="onVisibleChanged">
     <el-breadcrumb
       v-if="prefixVisible"
       slot="prefix"
+      ref="prefix"
       separator="/">
       <el-breadcrumb-item
         v-for="(item, index) in prefix"
-        :key="index"
-        @click="onEnterPrefix(index)">
-        {{ item }}
+        :key="index">
+        <el-button
+          type="text"
+          size="mini"
+          @click="onEnterPrefix(index)">
+          {{ index ? item : "@" }}
+        </el-button>
+      </el-breadcrumb-item>
+      <el-breadcrumb-item :key="-1">
+        <el-button
+          type="text"
+          size="mini">
+        </el-button>
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-option disabled value="">
@@ -28,14 +40,14 @@
                  v-on:click.stop="selectUpPath"></el-button>
       <el-button size="mini"
                  icon="el-icon-refresh-left"
-                 v-on:click.stop="restoreInitValue"></el-button>
+                 v-on:click.stop="restoreInitPath"></el-button>
       <el-button size="mini"
                  icon="el-icon-link"
                  v-on:click.stop="selectRootPath"></el-button>
       <el-button size="mini"
                  icon="el-icon-folder"
                  v-if="! onlyFolder"
-                 v-on:click.stop=""></el-button>
+                 v-on:click.stop="onFilterOptions('')"></el-button>
       <el-button size="mini"
                  icon="el-icon-close"
                  v-on:click.stop="$refs['select'].blur"></el-button>
@@ -45,13 +57,16 @@
       :key="item.value"
       :label="item.label"
       :value="item.value">
-      <span style="margin-right: 16px">
-        <i v-if="item.isfile"
-           class="el-icon-document"></i>
-        <i v-else
-           style="cursor: default"
-           class="el-icon-arrow-down"
-           v-on:click.stop="onEnterPath(item.value)"></i>
+      <el-button
+        v-if="item.isdir"
+        style="margin-right: 16px"
+        size="mini"
+        icon="el-icon-arrow-down"
+        v-on:click.stop="onEnterPath(item.value)"></el-button>
+      <span
+        v-else
+        style="margin-right: 16px">
+        <i class="el-icon-document"></i>
       </span>
       <span>{{ item.label }}</span>
     </el-option>
@@ -85,15 +100,18 @@ export default {
     data() {
       return {
           value: '',
+          initValue: '',
           loading: false,
           options: [],
           source: [],
           prefix: [],
-          prefixVisible: false,
+          prefixVisible: true,
       }
     },
     mounted() {
-        this.restoreInitValue()
+        this.initValue = this.value2
+        this.restoreInitPath()
+        this.resetInputPadding()
     },
     methods: {
         splitPath( p ) {
@@ -102,9 +120,14 @@ export default {
         joinPath( a ) {
             return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
         },
-        restoreInitValue() {
+        resetInputPadding() {
+            this.$el.querySelector( 'input.el-input__inner' ).style.paddingLeft =
+                this.$refs.prefix.$el.clientWidth + 'px'
+        },
+        restoreInitPath() {
             this.loading = false
-            this.prefix = this.splitPath( this.value2 )
+            this.prefix = this.splitPath( this.initValue )
+            this.value = ''
             this.listRemoteDirectory( '' )
         },
         selectUpPath() {
@@ -123,14 +146,15 @@ export default {
             this.listRemoteDirectory( path + '/' )
         },
         onEnterPrefix( index ) {
-            this.$message( 'The prefix is ' + this.joinPath( this.prefix.slice(0, index + 1) ))
+            this.prefix.splice( index + 1 )
+            this.listRemoteDirectory( '' )
         },
         listRemoteDirectory( query ) {
+            this.$refs.select.focus()
             if ( query === '' && this.prefix.length === 0 ) {
                 this.source = connector.getFavorPath( localStorage.getItem( 'recent.directory' ) )
-                    .map( x => { return { label: x, value: x } } )
+                    .map( x => { return { label: x, value: x, isdir: true } } )
                 this.options = this.source.slice()
-                this.prefix = []
             }
             else if ( query === '' || query.slice(-1) === '/' ) {
                 this.loading = true
@@ -170,9 +194,20 @@ export default {
                 return ( this.onlyFolder ? item.isdir : true ) && item.value.indexOf( query ) > -1
             } )
         },
+        onVisibleChanged ( visible ) {
+            if ( ! this.onlyFolder )
+                this.prefixVisible = visible
+        },
         onValueChanged( value ) {
+            this.resetInputPadding()
             this.$emit( 'change2', this.joinPath( this.prefix.concat( value ) ) )
         }
     }
 }
 </script>
+
+<style scoped>
+.select-remote-folder {
+  width: 100%;
+}
+</style>
