@@ -10,8 +10,7 @@
     :remote-method="listRemoteDirectory"
     :loading="loading"
     :placeholder="placeholder"
-    @change="onValueChanged"
-    @visible-change="onVisibleChanged">
+    @change="onValueChanged">
     <el-breadcrumb
       v-if="prefixVisible"
       slot="prefix"
@@ -45,12 +44,11 @@
                  icon="el-icon-link"
                  v-on:click.stop="selectRootPath"></el-button>
       <el-button size="mini"
-                 icon="el-icon-folder"
-                 v-if="! onlyFolder"
-                 v-on:click.stop="onFilterOptions('')"></el-button>
+                 icon="el-icon-plus"
+                 v-on:click.stop="onCreatePath"></el-button>
       <el-button size="mini"
-                 icon="el-icon-close"
-                 v-on:click.stop="$refs['select'].blur"></el-button>
+                 icon="el-icon-delete"
+                 v-on:click.stop="onDeletePath"></el-button>
     </el-option>
     <el-option
       v-for="item in options"
@@ -62,7 +60,7 @@
         style="margin-right: 16px"
         size="mini"
         icon="el-icon-arrow-down"
-        v-on:click.stop="onEnterPath(item.value)"></el-button>
+        v-on:click.stop="enterPath(item.value)"></el-button>
       <span
         v-else
         style="margin-right: 16px">
@@ -100,6 +98,7 @@ export default {
     data() {
       return {
           value: '',
+          path: '',
           initValue: '',
           loading: false,
           options: [],
@@ -111,7 +110,6 @@ export default {
     mounted() {
         this.initValue = this.value2
         this.restoreInitPath()
-        this.$nextTick( this.resetInputPadding )
     },
     methods: {
         splitPath( p ) {
@@ -120,6 +118,18 @@ export default {
         joinPath( a ) {
             return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
         },
+        enterPath( path ) {
+            if ( path.slice(0, 1) === '/' )
+                this.prefix = this.splitPath( path )
+            else
+                this.prefix = this.prefix.concat( this.splitPath( path ) )
+            this.$nextTick( () => {
+                this.path = path
+                this.value = ''
+                this.resetInputPadding()
+            } )
+            this.listRemoteDirectory( '' )
+        },
         resetInputPadding() {
             let width = this.$refs.prefix.$el.clientWidth
             this.$el.querySelector( 'input.el-input__inner' ).style.paddingLeft =
@@ -127,43 +137,58 @@ export default {
         },
         restoreInitPath() {
             this.loading = false
+            this.path = this.initValue
             this.prefix = this.splitPath( this.initValue )
-            this.value = ''
+            this.value = this.prefix.length ? this.prefix.pop() : ''
+            this.$nextTick( this.resetInputPadding )
             this.listRemoteDirectory( '' )
         },
         selectUpPath() {
             if ( this.prefix.length ) {
                 this.prefix.pop()
-                this.listRemoteDirectory( '' )
+                this.enterPath( this.joinPath( this.prefix ) )
             }
             else
                 this.$message.warning( 'This is top path' )
         },
         selectRootPath() {
             this.prefix = []
-            this.listRemoteDirectory( '' )
+            this.enterPath( '' )
         },
-        onEnterPath( path ) {
-            let index = path.lastIndexOf( '/' )
-            this.listRemoteDirectory( ( index === -1 ? path : path.slice( index + 1 ) ) + '/' )
+        onCreatePath() {
+            this.$prompt( 'Please input new path', 'Input', {
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+            } ).then( ( { value } ) => {
+                connector.makedir( {
+                    path: this.path,
+                    name: value
+                } )
+            } )
+        },
+        onDeletePath() {
+            this.$confirm( 'Are you sure to remove this path: ' + this.path, 'Confirm', {
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+            } ).then( () => {
+                if ( this.path.length > 2 )
+                    connector.removedir( this.path )
+            } )
         },
         onEnterPrefix( index ) {
-            this.prefix.splice( index + 1 )
-            this.listRemoteDirectory( '' )
+            this.enterPath( this.joinPath( this.prefix.splice( 0, index + 1 ) ) )
         },
         listRemoteDirectory( query ) {
-            this.$refs.select.focus()
             if ( query === '' && this.prefix.length === 0 ) {
                 this.source = connector.getFavorPath( localStorage.getItem( 'recent.directory' ) )
                     .map( x => { return { label: x, value: x, isdir: true } } )
                 this.options = this.source.slice()
             }
-            else if ( query === '' || query.slice(-1) === '/' ) {
+            else if ( query === '' ) {
                 this.loading = true
-                let path = query === '' ? this.prefix : this.prefix.concat( query.slice(0, -1) )
                 connector.listDirectory(
                     {
-                        path: this.joinPath( path ),
+                        path: this.joinPath( this.prefix ),
                         pattern: this.selectPattern,
                     },
                     this.onListDirectory,
@@ -175,7 +200,6 @@ export default {
         },
         onListDirectory( data ) {
             this.loading = false
-            this.prefix = this.splitPath( data.path )
             this.source = data.dirs.map( item => {
                 return {
                     label: item,
@@ -195,22 +219,19 @@ export default {
                 return ( this.onlyFolder ? item.isdir : true ) && item.value.indexOf( query ) > -1
             } )
         },
-        onVisibleChanged ( visible ) {
-            if ( ! this.onlyFolder )
-                this.prefixVisible = visible
-        },
         onValueChanged( value ) {
-            let path = this.joinPath( this.prefix.concat( value ) );
-            this.$emit( 'change2', path )
-            if ( path.length > 1 )
-                localStorage.setItem( 'recent.directory', path )
+            this.path = value.slice(0, 1) === '/'
+                ? value
+                : this.joinPath( value === '' ? this.prefix : this.prefix.concat( value ) )
+            if ( this.path.length > 1 )
+                localStorage.setItem( 'recent.directory', this.path )
+            this.$emit( 'change2', this.path )
+
             if ( value.indexOf( '/' ) > -1 ) {
-                this.prefix = this.splitPath( value )
-                this.value = this.prefix.pop()
+                this.prefix = this.splitPath( this.path )
+                this.value = this.prefix.length ? this.prefix.pop() : ''
                 this.$nextTick( this.resetInputPadding )
             }
-            else
-                this.resetInputPadding()
         }
     }
 }
