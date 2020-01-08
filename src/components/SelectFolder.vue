@@ -121,8 +121,9 @@ export default {
             return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
         },
         resetInputPadding() {
+            let width = this.$refs.prefix.$el.clientWidth
             this.$el.querySelector( 'input.el-input__inner' ).style.paddingLeft =
-                this.$refs.prefix.$el.clientWidth + 'px'
+                ( this.prefixVisible && width > 10 ) ? width + 'px' : ''
         },
         restoreInitPath() {
             this.loading = false
