@@ -200,8 +200,13 @@ export default {
                 this.prefixVisible = visible
         },
         onValueChanged( value ) {
-            this.resetInputPadding()
             this.$emit( 'change2', this.joinPath( this.prefix.concat( value ) ) )
+            if ( value.indexOf( '/' ) > -1 ) {
+                this.prefix = this.splitPath( value )
+                this.value = this.prefix.pop()
+                this.$nextTick( this.resetInputPadding )
+            }
+            this.resetInputPadding()
         }
     }
 }
