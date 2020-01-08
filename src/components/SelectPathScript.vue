@@ -64,7 +64,6 @@ export default {
                 checkStrictly: ! this.onlyScript,
                 lazyLoad: this.listRemoteDirectory
             },
-            recentPath: []
         }
     },
     mounted() {
@@ -117,7 +116,6 @@ export default {
             )
         },
         onListDirectory( node, resolve, data ) {
-            localStorage.setItem( 'recent.directory', data.path )
             const nodes = ( this.onlyFolder ? [] : data.files ).map( x => {
                 return {
                     label: x,
