@@ -144,7 +144,8 @@ export default {
             this.listRemoteDirectory( '' )
         },
         onEnterPath( path ) {
-            this.listRemoteDirectory( path + '/' )
+            let index = path.lastIndexOf( '/' )
+            this.listRemoteDirectory( ( index === -1 ? path : path.slice( index + 1 ) ) + '/' )
         },
         onEnterPrefix( index ) {
             this.prefix.splice( index + 1 )
@@ -175,7 +176,6 @@ export default {
         onListDirectory( data ) {
             this.loading = false
             this.prefix = this.splitPath( data.path )
-            localStorage.setItem( 'recent.directory', data.path )
             this.source = data.dirs.map( item => {
                 return {
                     label: item,
@@ -200,13 +200,17 @@ export default {
                 this.prefixVisible = visible
         },
         onValueChanged( value ) {
-            this.$emit( 'change2', this.joinPath( this.prefix.concat( value ) ) )
+            let path = this.joinPath( this.prefix.concat( value ) );
+            this.$emit( 'change2', path )
+            if ( path.length > 1 )
+                localStorage.setItem( 'recent.directory', path )
             if ( value.indexOf( '/' ) > -1 ) {
                 this.prefix = this.splitPath( value )
                 this.value = this.prefix.pop()
                 this.$nextTick( this.resetInputPadding )
             }
-            this.resetInputPadding()
+            else
+                this.resetInputPadding()
         }
     }
 }

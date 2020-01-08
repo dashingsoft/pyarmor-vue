@@ -106,8 +106,7 @@ export default {
             })
         },
         onListLicense: function (data) {
-            if ( ! (this.tableData && this.tableData.length
-                    && this.tableData.slice(-1)[0].id === data.id) )
+            if (this.tableData.length === 0 || this.tableData.slice(-1)[0].id !== data.id)
                 this.tableData.push(data)
         },
         onLicenseCreated: function (data) {

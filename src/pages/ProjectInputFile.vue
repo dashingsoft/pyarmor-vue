@@ -40,12 +40,11 @@
     </el-form-item>
     <el-divider></el-divider>
     <el-form-item
-      :rules="rules.output"
-      prop="output"
       label="Output">
       <select-folder
         placeholder="Select path to save obfuscated files or bundle file"
         :root-path="projectInfo.src"
+        :allow-create="true"
         v-model="projectInfo.output">
       </select-folder>
     </el-form-item>
@@ -73,19 +72,11 @@ export default {
                 },
             ],
             rules: {
-                output: [
-                    { required: true }
-                ],
                 src: [
                     { required: true }
                 ]
             }
         }
-    },
-    methods: {
-        onSubmit() {
-            this.$message('Submit')
-        },
     }
 }
 </script>
