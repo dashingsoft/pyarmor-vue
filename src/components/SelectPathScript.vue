@@ -67,9 +67,6 @@ export default {
         }
     },
     mounted() {
-        this.value = this.multiple
-            ? this.value2.map( x => this.splitPath( x ) )
-            : this.splitPath( this.value2 )
         this.$watch( 'rootPath', this.resetRootPath )
     },
     methods: {
@@ -116,6 +113,7 @@ export default {
             )
         },
         onListDirectory( node, resolve, data ) {
+            const { level } = node
             const nodes = ( this.onlyFolder ? [] : data.files ).map( x => {
                 return {
                     label: x,
@@ -128,6 +126,18 @@ export default {
                     value: x,
                 }
             } ) )
+            if ( level === 0 && this.value2.length > 0 ) {
+                this.value = this.multiple ? this.value2.map( x => [ x ] ) : [ this.value2 ]
+                this.value.map( item => {
+                        let s = this.multiple ? item[0] : item
+                        if ( s.indexOf( '/' ) > -1 )
+                            nodes.push( {
+                                label: s,
+                                value: s,
+                                leaf: true
+                            } )
+                    } )
+            }
             resolve( nodes.length ? nodes : undefined )
         },
     }

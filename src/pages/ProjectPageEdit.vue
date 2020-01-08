@@ -115,7 +115,8 @@ export default {
             } )
         },
         onProjectUpdated(data) {
-            this.$message('The project has been created: ' + data.name)
+            this.$message('The project "' + data.name + '" has been ' +
+                          (this.isEdit ? 'updated' : 'created'))
             this.goBack()
         },
         changeProjectTitle() {
