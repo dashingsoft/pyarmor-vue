@@ -83,7 +83,7 @@ export default {
             this.$refs['cascader'].$refs['panel'].initStore()
         },
         onValueChanged() {
-            this.$emit( 'change', this.multiple
+            this.$emit( 'change2', this.multiple
                         ? this.value.map( x => this.joinPath( x ) )
                         : this.joinPath( this.value ) )
             // 变通解决 ElementUI 的 bug: multiple === false && lazyLoad

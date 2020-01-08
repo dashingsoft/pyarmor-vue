@@ -25,17 +25,19 @@
         <el-tab-pane label="Basic">
           <project-input-file v-bind:project-info="projectInfo"></project-input-file>
         </el-tab-pane>
-        <el-tab-pane label="Target Options">
+        <el-tab-pane label="Build Options">
             <project-input-target v-bind:project-info="projectInfo"></project-input-target>
         </el-tab-pane>
         <el-tab-pane label="Obfuscate Mode">
           <project-input-mode v-bind:project-info="projectInfo"></project-input-mode>
         </el-tab-pane>
-        <el-tab-pane label="Other Options">
+        <el-tab-pane label="Advanced Options">
           <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
         </el-tab-pane>
         <el-form-item style="margin-top: 30px">
-          <el-button type="primary" v-on:click="onSubmit">Create</el-button>
+          <el-button type="primary" v-on:click="onSubmit">
+            {{ isEdit ? "Update" : "Create" }}
+          </el-button>
           <el-button v-on:click="goBack">Cancel</el-button>
         </el-form-item>
       </el-tabs>
@@ -73,10 +75,15 @@ export default {
                     entry: [],
                     include: 'recursive',
                     exclude: [],
-                    target: 'obf',
+                    buildTarget: 'obf',
                     output: '',
+                    enableSuffix: false,
+                    packageRuntime: 1,
+                    crossProtection: true,
+                    bootstrapCode: true,
+                    runtimePath: '',
                     platform: [],
-                    pack: [],
+                    pack: '',
                     restrictMode: 2,
                     entryMode: [],
                     obfMod: true,

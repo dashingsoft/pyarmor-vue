@@ -106,7 +106,9 @@ export default {
             })
         },
         onListLicense: function (data) {
-            this.tableData = data
+            if ( ! (this.tableData && this.tableData.length
+                    && this.tableData.slice(-1)[0].id === data.id) )
+                this.tableData.push(data)
         },
         onLicenseCreated: function (data) {
             this.tableData.push(data)

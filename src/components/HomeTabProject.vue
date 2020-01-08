@@ -15,10 +15,13 @@
             <span>{{ props.row.src }}</span>
           </el-form-item>
           <el-form-item label="Entry">
-            <span>{{ props.row.shop }}</span>
+            <span>{{ props.row.entry }}</span>
           </el-form-item>
           <el-form-item label="Output">
             <span>{{ props.row.output }}</span>
+          </el-form-item>
+          <el-form-item label="Target">
+            <span>{{ getTargetName( props.row.buildTarget ) }}</span>
           </el-form-item>
         </el-form>
       </template>
@@ -72,17 +75,23 @@ export default {
         this.refreshData()
     },
     methods: {
-        refreshData: function () {            
+        getTargetName( target ) {
+            if (target === 'pack')
+                return 'Pack'
+            else
+                return 'Obfuscate'
+        },
+        refreshData: function () {
             connector.listProject()
         },
         newProject: function () {
             this.$emit('change-current-page', 'ProjectPageEdit')
         },
         buildProject: function (data) {
-            this.$emit('change-current-page', 'ProjectPageBuild', data)
+            this.$emit('change-current-page', 'ProjectPageBuild', { projectInfo: data } )
         },
         editProject: function (data) {
-            this.$emit('change-current-page', 'ProjectPageEdit', data)
+            this.$emit('change-current-page', 'ProjectPageEdit', { projectInfo: data } )
         },
         removeProject: function (data) {
             this.$confirm('Are you sure remove this project: ' + data.name + '?', 'Confirm', {
@@ -91,13 +100,15 @@ export default {
                 type: 'warning'
             }).then(() => {
                 connector.removeProject(data)
-            })         
+            })
         },
         onListProject: function (data) {
             this.tableData = data
         },
         onProjectCreated: function (data) {
-            this.tableData.push(data)
+            if ( ! (this.tableData && this.tableData.length
+                    && this.tableData.slice(-1)[0].id === data.id) )
+                this.tableData.push(data)
         },
         onProjectUpdated: function (data) {
             for (var i = 0; i < this.tableData.length; i ++) {

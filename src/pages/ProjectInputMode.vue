@@ -1,20 +1,5 @@
 <template>
   <div class="project-file">
-    <el-form-item label="Entry Mode">
-      <el-select
-        style="width: 100%"
-        multiple
-        clearable
-        v-model="projectInfo.entryMode"
-        placeholder="Select entry mode">
-        <el-option
-          v-for="item in entryModes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </el-form-item>
     <el-form-item label="Restrict Mode">
       <el-select
         v-model="projectInfo.restrictMode"
@@ -52,16 +37,6 @@ export default {
     props: ['projectInfo'],
     data() {
         return {
-            entryModes: [
-                {
-                    label: 'No bootstrap mode',
-                    value: 'no-bootstrap',
-                },
-                {
-                    label: 'No cross protection code',
-                    value: 'noo-cross-protection',
-                },
-            ],
             restrictModes: [
                 {
                     label: 'Disable restrict mode',

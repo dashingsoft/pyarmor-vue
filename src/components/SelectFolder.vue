@@ -111,7 +111,7 @@ export default {
     mounted() {
         this.initValue = this.value2
         this.restoreInitPath()
-        this.resetInputPadding()
+        this.$nextTick( this.resetInputPadding )
     },
     methods: {
         splitPath( p ) {

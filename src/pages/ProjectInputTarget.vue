@@ -2,14 +2,34 @@
   <div class="project-target">
     <el-form-item label="Build Type">
         <el-radio
-          v-model="projectInfo.target"
+          v-model="projectInfo.buildTarget"
           label="obf">Obfuscate</el-radio>
         <el-radio
-          v-model="projectInfo.target"
+          v-model="projectInfo.buildTarget"
           label="pack">Pack</el-radio>
     </el-form-item>
     <el-form-item
-      v-if="projectInfo.target === 'obf'"
+      v-if="! isPackProject"
+      label="Runtime Files">
+      <el-select
+        style="width: 50%"
+        v-model="projectInfo.packageRuntime">
+        <el-option
+          v-for="item in runtimeModes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item
+      v-if="! isPackProject"
+      label="Enable Suffix">
+      <el-switch v-model="projectInfo.enableSuffix">
+      </el-switch>
+    </el-form-item>
+    <el-form-item
+      v-if="! isPackProject"
       label="Platforms">
       <el-cascader
         style="width: 100%"
@@ -21,13 +41,13 @@
         placeholder="Please select one or more platforms"></el-cascader>
     </el-form-item>
     <el-form-item
-      v-if="projectInfo.target === 'pack'"
+      v-if="isPackProject"
       label="Pack Options">
       <el-input
         type="textarea"
         placeholder="Please input any pyinstaller option"
         style="width: 100%"
-        :autosize="{ minRows: 2, maxRows: 10}"
+        :autosize="{ minRows: 6, maxRows: 10}"
         v-model="projectInfo.pack">
       </el-input>
     </el-form-item>
@@ -39,6 +59,11 @@
 export default {
     name: 'ProjectInputTarget',
     props: ['projectInfo'],
+    computed: {
+        isPackProject() {
+            return this.projectInfo.buildTarget === 'pack'
+        }
+    },
     data() {
         return {
             platforms: [
@@ -82,10 +107,23 @@ export default {
                         { value: 'android.aarch64.0' },
                         { value: 'linux.ppc64.0' },
                         { value: 'freebsd.x86_64.0' },
-                        { value: 'alpine.x86_64.0' },
                         { value: 'poky.x86.0' },
                     ] }
                 ] }
+            ],
+            runtimeModes: [
+                {
+                    label: 'Generate runtime files as a package',
+                    value: 1,
+                },
+                {
+                    label: 'Generate runtime files, but not as a package',
+                    value: 0,
+                },
+                {
+                    label: 'Do not generate runtime files',
+                    value: -1,
+                },
             ],
         }
     }
