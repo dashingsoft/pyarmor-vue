@@ -24,7 +24,7 @@ export default new Vue({
         serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
     },
     created() {
-        send_request(this.serverUrl + 'listdir', { path: '@' }, resp => {
+        send_request(this.serverUrl + 'directory/list', { path: '@' }, resp => {
             if (resp.err === 0)
                 favorPath = resp.data.dirs
         })

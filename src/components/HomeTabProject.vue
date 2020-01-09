@@ -7,10 +7,14 @@
     <el-table
       v-bind:data="tableData"
       stripe
-      class="project-table">
+      class="home-table">
       <el-table-column type="expand">
         <template slot-scope="props">
-          <el-form label-width="100px" label-position="left" class="demo-table-expand" size="mini">
+          <el-form
+            label-width="100px"
+            label-position="left"
+            class="home-table-expand"
+            size="mini">
             <el-form-item label="Src">
             <span>{{ props.row.src }}</span>
           </el-form-item>
@@ -22,6 +26,9 @@
           </el-form-item>
           <el-form-item label="Target">
             <span>{{ getTargetName( props.row.buildTarget ) }}</span>
+          </el-form-item>
+          <el-form-item label="Path">
+            <span>{{ props.row.path }}</span>
           </el-form-item>
         </el-form>
       </template>
@@ -150,21 +157,19 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.project-table {
+<style>
+.home-table {
     width: 100%;
     margin-top: 1.8em;
 }
-  .demo-table-expand {
+.home-table-expand {
     font-size: 0;
-  }
-    .demo-table-expand label {
-        margin-right: auto;
+}
+.home-table-expand label {
     color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
+}
+.home-table-expand .el-form-item {
     margin-right: 0;
     margin-bottom: 0;
-  }
+}
 </style>

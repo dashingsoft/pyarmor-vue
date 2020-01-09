@@ -116,6 +116,7 @@ export default {
             this.currentPageProps = props
         },
         onCloseCurrentPage: function () {
+            this.pageStack.pop()
             if ( this.pageStack.length ) {
                 let page = this.pageStack.pop()
                 this.currentPageName = page[0]

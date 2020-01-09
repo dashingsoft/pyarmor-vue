@@ -146,9 +146,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .box-card {
+.box-card {
     width: 100%;
-  }
+}
 </style>

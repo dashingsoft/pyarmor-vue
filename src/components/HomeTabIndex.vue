@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <h1 style="text-align: center">Welcome, PyArmor</h1>
+    <h1 style="text-align: center">Navigation</h1>
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="Obfuscate Scripts" name="obfuscate">
+        <h3 slot="title" class="item-header">
+          <i :class="activeName == 'obfuscate' ? 'el-icon-folder-opened' : 'el-icon-folder'"></i>
+          <span>Obfuscate Scripts</span>
+        </h3>
         <el-row :gutter="12">
           <el-col :span="6">
             <el-card shadow="hover">
@@ -79,6 +83,10 @@
         </el-row>
       </el-collapse-item>
       <el-collapse-item title="Pack Scripts" name="pack">
+        <h3 slot="title" class="item-header">
+          <i :class="activeName == 'pack' ? 'el-icon-folder-opened' : 'el-icon-folder'"></i>
+          <span>Pack Scripts</span>
+        </h3>
         <el-row :gutter="12">
           <el-col :span="6">
             <el-card shadow="hover">
@@ -119,6 +127,10 @@
         </el-row>
       </el-collapse-item>
       <el-collapse-item title="Generate Licenses" name="license">
+        <h3 slot="title" class="item-header">
+          <i :class="activeName == 'license' ? 'el-icon-folder-opened' : 'el-icon-folder'"></i>
+          <span>Generate Licenses</span>
+        </h3>
         <el-row :gutter="12">
           <el-col :span="6">
             <el-card shadow="hover">
@@ -159,6 +171,10 @@
         </el-row>
       </el-collapse-item>
       <el-collapse-item title="Tools" name="tools">
+        <h3 slot="title" class="item-header">
+          <i :class="activeName == 'tools' ? 'el-icon-folder-opened' : 'el-icon-folder'"></i>
+          <span>Tools</span>
+        </h3>
         <el-row :gutter="12">
           <el-col :span="6">
             <el-card shadow="hover">
@@ -215,5 +231,11 @@ export default {
 <style scoped>
 .el-col {
     margin-bottom: 16px;
+}
+.item-header {
+    width: 100%;
+}
+.item-header span {
+    margin-left: 16px;
 }
 </style>

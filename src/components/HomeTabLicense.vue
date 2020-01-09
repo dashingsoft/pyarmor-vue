@@ -7,14 +7,14 @@
     <el-table
       v-bind:data="tableData"
       stripe
-      class="license-table">
+      class="home-table">
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-width="180px"
                    label-position="left"
-                   class="demo-table-expand"
+                   class="home-table-expand"
                    size="mini">
-            <el-form-item label="expired">
+            <el-form-item label="Expired">
               <span>{{ props.row.expired }}</span>
             </el-form-item>
             <el-form-item label="Harddisk">
@@ -123,11 +123,3 @@ export default {
     }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.license-table {
-    width: 100%;
-    margin-top: 1.8em;
-}
-</style>

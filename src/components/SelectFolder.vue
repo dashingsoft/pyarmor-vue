@@ -280,7 +280,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .select-remote-folder {
   width: 100%;
 }

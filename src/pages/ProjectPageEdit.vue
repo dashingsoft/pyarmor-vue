@@ -134,7 +134,7 @@ export default {
 </script>
 
 <style scoped>
-  .project-main {
+.project-main {
     width: 100%;
-  }
+}
 </style>
