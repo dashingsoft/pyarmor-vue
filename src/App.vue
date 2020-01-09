@@ -62,7 +62,7 @@ import HomeTabIndex from './components/HomeTabIndex.vue'
 import HomeTabProject from './components/HomeTabProject.vue'
 import HomeTabLicense from './components/HomeTabLicense.vue'
 import HomeTabAbout from './components/HomeTabAbout.vue'
-  
+
 import ProjectPageEdit from './pages/ProjectPageEdit.vue'
 import LicensePageEdit from './pages/LicensePageEdit.vue'
 
@@ -84,6 +84,7 @@ export default {
             currentTabName: 'HomeTabIndex',
             currentPageName: '',
             currentPageProps: {},
+            pageStack: [],
             connected: false,
             versionInfo: {
                 tag: 'Off',
@@ -110,12 +111,20 @@ export default {
     },
     methods: {
         onChangeCurrentPage: function (name, props) {
-            this.currentPageProps = props
+            this.pageStack.push([name, props])
             this.currentPageName = name
+            this.currentPageProps = props
         },
         onCloseCurrentPage: function () {
-            this.currentPageProps = {}
-            this.currentPageName = ''
+            if ( this.pageStack.length ) {
+                let page = this.pageStack.pop()
+                this.currentPageName = page[0]
+                this.currentPageProps = page[1]
+            }
+            else {
+                this.currentPageName = ''
+                this.currentPageProps = {}
+            }
         },
         onSelectMenuItem: function (index) {
             this.currentTabName = index
