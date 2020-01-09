@@ -57,8 +57,16 @@ export default new Vue({
             this.sendRequest(url, data, 'query-version', success, error)
         },
         listDirectory: function (data, success, error) {
-            let url = this.serverUrl + 'listdir'
+            let url = this.serverUrl + 'directory/list'
             this.sendRequest(url, data, 'list-directory', success, error)
+        },
+        newDirectory: function (data, success, error) {
+            let url = this.serverUrl + 'directory/new'
+            this.sendRequest(url, data, 'new-directory', success, error)
+        },
+        removeDirectory: function (data, success, error) {
+            let url = this.serverUrl + 'directory/remove'
+            this.sendRequest(url, data, 'remove-directory', success, error)
         },
         newProject: function (data, success, error) {
             let url = this.serverUrl + 'project/new'

@@ -170,12 +170,17 @@ export default {
             } )
         },
         onCreatePath() {
-            this.$prompt( 'Please input new path', 'Input', {
+            this.$prompt( 'Please type path to create in ' + this.path, 'Input', {
                 confirmButtonText: 'OK',
                 cancelButtonText: 'Cancel',
                 inputValidator: ( value ) => value.length > 0
             } ).then( ( { value } ) => {
-                connector.newDirectory( [ this.path, value ].join( '/' ) )
+                connector.newDirectory(
+                    [ this.path, value ].join( '/' ),
+                    ret => {
+                        this.$message( 'This path has been created: ' + ret )
+                    }
+                )
             } )
         },
         onDeletePath() {
@@ -210,6 +215,7 @@ export default {
             else if ( query === '<' || query === '^' ) {
                 if ( this.prefix.length > 0 )
                     this.$nextTick( () => {
+                        this.$el.querySelector( 'input.el-input__inner' ).value = ''
                         setTimeout( () => {
                             this.enterPath( this.joinPath( this.prefix.slice( 0, -1 ) ) )
                         }, 500 )
@@ -219,6 +225,7 @@ export default {
                 this.onFilterOptions( query.slice(0, -1) )
                 if ( this.options.length === 1 )
                     this.$nextTick( () => {
+                        this.$el.querySelector( 'input.el-input__inner' ).value = ''
                         setTimeout( () => {
                             this.enterPath( this.options[ 0 ].value )
                         }, 500 )
@@ -259,6 +266,8 @@ export default {
                 } )
                 this.listRemoteDirectory( '' )
             }
+            else
+                this.path = this.joinPath( value === '' ? this.prefix : this.prefix.concat( value ) )
             if ( this.path.length > 1 )
                 localStorage.setItem( 'recent.directory', this.path )
             this.$emit( 'change2', this.path )
