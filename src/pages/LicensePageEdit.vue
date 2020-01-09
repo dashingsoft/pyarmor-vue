@@ -100,24 +100,18 @@ export default {
             }
         }
     },
-    mounted: function () {
-        connector.$once('new-license', this.onLicenseCreated)
-        connector.$once('update-license', this.onLicenseCreated)
-    },
     methods: {
         hasFeature(name) {
             return this.features === '' || this.features.indexOf(name) !== -1
         },
         goBack() {
-            connector.$off('new-license', this.onLicenseCreated)
-            connector.$off('update-license', this.onLicenseCreated)
             this.$emit('close-current-page')
         },
         onSubmit() {
             this.$refs['form'].validate((valid) => {
                 if (!valid)
                     return false
-                
+
                 let v = []
                 if (this.licenseInfo.expired)
                     v.push(this.licenseInfo.expired)
@@ -134,8 +128,8 @@ export default {
                 this.licenseInfo.summary = v.join(',')
 
                 this.licenseInfo.id
-                    ? connector.updateLicense(this.licenseInfo)
-                    : connector.newLicense(this.licenseInfo)
+                    ? connector.updateLicense(this.licenseInfo, this.onLicenseCreated)
+                    : connector.newLicense(this.licenseInfo, this.onLicenseCreated)
             })
         },
         onLicenseCreated(data) {

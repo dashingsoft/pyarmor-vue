@@ -66,6 +66,8 @@ import HomeTabAbout from './components/HomeTabAbout.vue'
 import ProjectPageEdit from './pages/ProjectPageEdit.vue'
 import LicensePageEdit from './pages/LicensePageEdit.vue'
 
+import PackWizardBasic from './pages/PackWizardBasic.vue'
+
 import locale from 'element-ui/lib/locale'
 import connector from './connector.js'
 
@@ -78,6 +80,7 @@ export default {
         HomeTabAbout,
         ProjectPageEdit,
         LicensePageEdit,
+        PackWizardBasic,
     },
     data: function () {
         return {
@@ -118,7 +121,7 @@ export default {
         onCloseCurrentPage: function () {
             this.pageStack.pop()
             if ( this.pageStack.length ) {
-                let page = this.pageStack.pop()
+                let page = this.pageStack.slice(-1)[0]
                 this.currentPageName = page[0]
                 this.currentPageProps = page[1]
             }

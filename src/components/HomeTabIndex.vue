@@ -210,10 +210,10 @@ export default {
     },
     methods: {
         openObfuscateWizard(name) {
-            this.$emit('change-current-page', 'ObfuscateWizardPage', { features: name })
+            this.$emit('change-current-page', 'ObfuscateWizardBasic', { features: name })
         },
         openPackWizard(name) {
-            this.$emit('change-current-page', 'PackWizardPage', { features: name })
+            this.$emit('change-current-page', 'PackWizardBasic', { features: name })
         },
         openLicenseWizard(name) {
             this.$emit('change-current-page', 'LicensePageEdit', { features: name })
