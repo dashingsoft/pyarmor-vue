@@ -5,13 +5,13 @@
       prop="src"
       label="Src">
       <select-folder
-        placeholder="Select base path to find .py files"
+        placeholder="Base path to find .py files"
         v-model="projectInfo.src">
       </select-folder>
     </el-form-item>
     <el-form-item label="Scripts">
       <select-path-script
-        placeholder="Select entry scripts"
+        placeholder="Select one or more entry scripts"
         select-pattern="*.py"
         :only-script="true"
         :root-path="projectInfo.src"
@@ -21,8 +21,7 @@
     <el-form-item label="Include">
       <el-select
         style="width: 100%"
-        v-model="projectInfo.include"
-        placeholder="Select include mode">
+        v-model="projectInfo.include">
         <el-option
           v-for="item in includeOptions"
           :key="item.value"
@@ -42,11 +41,24 @@
     <el-form-item
       label="Output">
       <select-folder
-        placeholder="Select path to save obfuscated files or bundle file"
+        placeholder="The default output path is $src/dist"
         :root-path="projectInfo.src"
         :allow-create="true"
         v-model="projectInfo.output">
       </select-folder>
+    </el-form-item>
+    <el-form-item
+      label="Package Name">
+      <el-input
+        :disabled="projectInfo.src === ''"
+        :readonly="autoOutputSuffix"
+        placeholder="Append this name to output path"
+        v-model="projectInfo.packageName">
+        <el-switch
+          slot="prepend"
+          :disabled="projectInfo.src === ''"
+          v-model="autoOutputSuffix"></el-switch>
+      </el-input>
     </el-form-item>
   </div>
 </template>
@@ -55,8 +67,20 @@
 export default {
     name: 'ProjectInputFile',
     props: ['projectInfo'],
+    computed: {
+        autoOutputSuffix: {
+            get() {
+                return this.outputSuffixMode
+            },
+            set( value ) {
+                this.outputSuffixMode = value
+                this.projectInfo.packageName = value ? this.projectInfo.src.split( '/' ).pop() : ''
+            }
+        }
+    },
     data() {
         return {
+            outputSuffixMode: false,
             includeOptions: [
                 {
                     label: 'Only the scripts in the list',

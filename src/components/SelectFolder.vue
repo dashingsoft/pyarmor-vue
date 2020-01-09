@@ -159,11 +159,9 @@ export default {
             this.$prompt( 'Please input new path', 'Input', {
                 confirmButtonText: 'OK',
                 cancelButtonText: 'Cancel',
+                inputValidator: ( value ) => value.length > 0
             } ).then( ( { value } ) => {
-                connector.makedir( {
-                    path: this.path,
-                    name: value
-                } )
+                connector.newDirectory( [ this.path, value ].join( '/' ) )
             } )
         },
         onDeletePath() {
@@ -172,7 +170,7 @@ export default {
                 cancelButtonText: 'Cancel',
             } ).then( () => {
                 if ( this.path.length > 2 )
-                    connector.removedir( this.path )
+                    connector.removeDirectory( this.path )
             } )
         },
         onEnterPrefix( index ) {
