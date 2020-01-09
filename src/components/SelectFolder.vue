@@ -10,6 +10,7 @@
     :remote-method="listRemoteDirectory"
     :loading="loading"
     :placeholder="placeholder"
+    @visible-change="onVisibleChanged"
     @change="onValueChanged">
     <el-breadcrumb
       v-if="prefixVisible"
@@ -108,10 +109,12 @@ export default {
           source: [],
           prefix: [],
           prefixVisible: true,
+          inputElement: null,
       }
     },
     mounted() {
-        this.initValue = this.value2
+        this.inputElement = this.$el.querySelector( 'input.el-input__inner' )
+        // this.initValue = this.value2
         this.restoreInitPath()
     },
     methods: {
@@ -128,10 +131,7 @@ export default {
                 this.prefix = this.prefix.concat( this.splitPath( path ) )
             this.path = this.joinPath( this.prefix )
             this.value = ''
-            this.$el.querySelector( 'input.el-input__inner' ).setAttribute(
-                'placeholder',
-                this.$refs.select.cachedPlaceHolder
-            )
+            this.inputElement.setAttribute( 'placeholder', this.$refs.select.cachedPlaceHolder )
             this.$nextTick( () => {
                 this.resetInputPadding()
             } )
@@ -139,13 +139,13 @@ export default {
         },
         resetInputPadding() {
             let width = this.$refs.prefix.$el.clientWidth
-            this.$el.querySelector( 'input.el-input__inner' ).style.paddingLeft =
+            this.inputElement.style.paddingLeft =
                 ( this.prefixVisible && width > 10 ) ? width + 'px' : ''
         },
         restoreInitPath() {
             this.loading = false
-            this.path = this.initValue
-            this.prefix = this.splitPath( this.initValue )
+            this.path = this.value2
+            this.prefix = this.splitPath( this.value2 )
             this.value = this.prefix.length ? this.prefix.pop() : ''
             this.$nextTick( this.resetInputPadding )
             this.listRemoteDirectory( '' )
@@ -215,7 +215,7 @@ export default {
             else if ( query === '<' || query === '^' ) {
                 if ( this.prefix.length > 0 )
                     this.$nextTick( () => {
-                        this.$el.querySelector( 'input.el-input__inner' ).value = ''
+                        this.inputElement.value = ''
                         setTimeout( () => {
                             this.enterPath( this.joinPath( this.prefix.slice( 0, -1 ) ) )
                         }, 500 )
@@ -225,7 +225,7 @@ export default {
                 this.onFilterOptions( query.slice(0, -1) )
                 if ( this.options.length === 1 )
                     this.$nextTick( () => {
-                        this.$el.querySelector( 'input.el-input__inner' ).value = ''
+                        this.inputElement.value = ''
                         setTimeout( () => {
                             this.enterPath( this.options[ 0 ].value )
                         }, 500 )
@@ -255,6 +255,10 @@ export default {
             this.options = this.source.filter( item => {
                 return ( this.onlyFolder ? item.isdir : true ) && item.value.indexOf( query ) > -1
             } )
+        },
+        onVisibleChanged( visible ) {
+            if ( ! visible )
+                this.$emit( 'change2', this.path )
         },
         onValueChanged( value ) {
             if ( value.slice(0, 1) === '/' ) {
