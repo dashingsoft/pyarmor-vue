@@ -106,11 +106,11 @@ export default {
             })
         },
         onListLicense: function (data) {
-            if (this.tableData.length === 0 || this.tableData.slice(-1)[0].id !== data.id)
-                this.tableData.push(data)
+            this.tableData = data
         },
         onLicenseCreated: function (data) {
-            this.tableData.push(data)
+            if (this.tableData.length === 0 || this.tableData.slice(-1)[0].id !== data.id)
+                this.tableData.push(data)
         },
         onLicenseRemoved: function (data) {
             for (var i = 0; i < this.tableData.length; i ++) {

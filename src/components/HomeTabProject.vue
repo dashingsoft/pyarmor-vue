@@ -18,7 +18,7 @@
             <span>{{ props.row.entry }}</span>
           </el-form-item>
           <el-form-item label="Output">
-            <span>{{ props.row.output }}</span>
+            <span>{{ getProjectOutput( props.row ) }}</span>
           </el-form-item>
           <el-form-item label="Target">
             <span>{{ getTargetName( props.row.buildTarget ) }}</span>
@@ -76,10 +76,11 @@ export default {
     },
     methods: {
         getTargetName( target ) {
-            if (target === 'pack')
-                return 'Pack'
-            else
-                return 'Obfuscate'
+            return target === 'pack' ? 'Pack' : 'Obfuscate'
+        },
+        getProjectOutput( data ) {
+            let suffix = data.packageName && data.packageName.length ? '/' + data.packageName : ''
+            return ( data.output.length ? data.output : ( data.output.src + '/dist' ) ) + suffix
         },
         refreshData: function () {
             connector.listProject()
