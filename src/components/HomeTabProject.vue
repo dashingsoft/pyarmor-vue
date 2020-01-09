@@ -80,7 +80,7 @@ export default {
         },
         getProjectOutput( data ) {
             let suffix = data.packageName && data.packageName.length ? '/' + data.packageName : ''
-            return ( data.output.length ? data.output : ( data.output.src + '/dist' ) ) + suffix
+            return ( data.output.length ? data.output : ( data.src + '/dist' ) ) + suffix
         },
         refreshData: function () {
             connector.listProject()
@@ -89,7 +89,27 @@ export default {
             this.$emit('change-current-page', 'ProjectPageEdit')
         },
         buildProject: function (data) {
-            this.$emit('change-current-page', 'ProjectPageBuild', { projectInfo: data } )
+            // this.$emit('change-current-page', 'ProjectPageBuild', { projectInfo: data } )
+            const loading = this.$loading( {
+                lock: true,
+                text: 'Building ' + data.name,
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            } )
+            connector.buildProject(
+                data,
+                (output) => {
+                    loading.close()
+                    this.$message( {
+                        message: 'Build successfully, the results saved in: ' + output,
+                        duration: 0,
+                        showClose: true,
+                    } )
+                },
+                () => {
+                    loading.close()
+                }
+            )
         },
         editProject: function (data) {
             this.$emit('change-current-page', 'ProjectPageEdit', { projectInfo: data } )

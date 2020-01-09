@@ -49,6 +49,9 @@
       <el-button size="mini"
                  icon="el-icon-delete"
                  v-on:click.stop="onDeletePath"></el-button>
+      <el-button size="mini"
+                 icon="el-icon-check"
+                 v-on:click.stop="onAcceptPath"></el-button>
     </el-option>
     <el-option
       v-for="item in options"
@@ -123,9 +126,13 @@ export default {
                 this.prefix = this.splitPath( path )
             else
                 this.prefix = this.prefix.concat( this.splitPath( path ) )
+            this.path = this.joinPath( this.prefix )
+            this.value = ''
+            this.$el.querySelector( 'input.el-input__inner' ).setAttribute(
+                'placeholder',
+                this.$refs.select.cachedPlaceHolder
+            )
             this.$nextTick( () => {
-                this.path = path
-                this.value = ''
                 this.resetInputPadding()
             } )
             this.listRemoteDirectory( '' )
@@ -155,6 +162,13 @@ export default {
             this.prefix = []
             this.enterPath( '' )
         },
+        onAcceptPath() {
+            if ( this.value === '' )
+                this.onValueChanged( this.joinPath( this.prefix ) )
+            this.$nextTick( () => {
+                this.$refs.select.blur()
+            } )
+        },
         onCreatePath() {
             this.$prompt( 'Please input new path', 'Input', {
                 confirmButtonText: 'OK',
@@ -174,7 +188,7 @@ export default {
             } )
         },
         onEnterPrefix( index ) {
-            this.enterPath( this.joinPath( this.prefix.splice( 0, index + 1 ) ) )
+            this.enterPath( this.joinPath( this.prefix.slice( 0, index + 1 ) ) )
         },
         listRemoteDirectory( query ) {
             if ( query === '' && this.prefix.length === 0 ) {
@@ -193,8 +207,26 @@ export default {
                     this.onListDirectoryFailed
                 )
             }
-            else
+            else if ( query === '<' || query === '^' ) {
+                if ( this.prefix.length > 0 )
+                    this.$nextTick( () => {
+                        setTimeout( () => {
+                            this.enterPath( this.joinPath( this.prefix.slice( 0, -1 ) ) )
+                        }, 500 )
+                    } )
+            }
+            else if ( query.slice( -1 ) === '>' || query.slice( -1 ) === '/' ) {
+                this.onFilterOptions( query.slice(0, -1) )
+                if ( this.options.length === 1 )
+                    this.$nextTick( () => {
+                        setTimeout( () => {
+                            this.enterPath( this.options[ 0 ].value )
+                        }, 500 )
+                    } )
+            }
+            else {
                 this.onFilterOptions( query )
+            }
         },
         onListDirectory( data ) {
             this.loading = false
@@ -218,18 +250,18 @@ export default {
             } )
         },
         onValueChanged( value ) {
-            this.path = value.slice(0, 1) === '/'
-                ? value
-                : this.joinPath( value === '' ? this.prefix : this.prefix.concat( value ) )
+            if ( value.slice(0, 1) === '/' ) {
+                this.path = value
+                this.prefix = this.splitPath( value )
+                this.value = this.prefix.length ? this.prefix.pop() : ''
+                this.$nextTick( () => {
+                    this.resetInputPadding()
+                } )
+                this.listRemoteDirectory( '' )
+            }
             if ( this.path.length > 1 )
                 localStorage.setItem( 'recent.directory', this.path )
             this.$emit( 'change2', this.path )
-
-            if ( value.indexOf( '/' ) > -1 ) {
-                this.prefix = this.splitPath( this.path )
-                this.value = this.prefix.length ? this.prefix.pop() : ''
-                this.$nextTick( this.resetInputPadding )
-            }
         }
     }
 }
