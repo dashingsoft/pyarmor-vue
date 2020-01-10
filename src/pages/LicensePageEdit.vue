@@ -73,7 +73,7 @@ export default {
     props: {
         features: {
             type: String,
-            default: ''
+            default: 'all'
         },
         licenseInfo: {
             type: Object,
@@ -102,7 +102,7 @@ export default {
     },
     methods: {
         hasFeature(name) {
-            return this.features === '' || this.features.indexOf(name) !== -1
+            return this.features === 'all' || this.features.indexOf(name) !== -1
         },
         goBack() {
             this.$emit('close-current-page')

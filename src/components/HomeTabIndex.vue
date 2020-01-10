@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 style="text-align: center">Navigation</h1>
+    <h1 style="text-align: center">Home</h1>
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="Obfuscate Scripts" name="obfuscate">
         <h3 slot="title" class="item-header">
@@ -8,75 +8,30 @@
           <span>Obfuscate Scripts</span>
         </h3>
         <el-row :gutter="12">
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
-                @click="openObfuscateWizard('basic')">
-                Obfuscate scripts in one folder
+                @click="openObfuscateWizard('common')">
+                Obfuscate Script Wizard
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('license')">
-                Obfuscate with restrict license
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('package')">
-                Obfuscate one package
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('platform')">
-                Cross-platform obfuscating
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('security')">
-                Obfuscate with high security
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('performance')">
-                Obfuscate with high performance
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openObfuscateWizard('runtime')">
-                Generate runtime package
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
                 @click="openObfuscateWizard('project')">
                 Obfuscate with project
+              </el-button>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <el-card shadow="hover">
+              <el-button
+                type="text"
+                @click="openObfuscateWizard('runtime')">
+                Generate runtime package
               </el-button>
             </el-card>
           </el-col>
@@ -88,38 +43,29 @@
           <span>Pack Scripts</span>
         </h3>
         <el-row :gutter="12">
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
                 @click="openPackWizard('basic')">
-                Pack all to one bundle
+                Pack Script Wizard
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
-                @click="openPackWizard('data')">
-                Pack with data files
+                @click="openPackWizard('nolicense')">
+                Pack without license
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
-                @click="openPackWizard('license')">
-                Pack with restrict license
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openPackWizard('')">
+                @click="openPackWizard('project')">
                 Pack with project
               </el-button>
             </el-card>
@@ -132,7 +78,7 @@
           <span>Generate Licenses</span>
         </h3>
         <el-row :gutter="12">
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
@@ -141,7 +87,7 @@
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
@@ -150,20 +96,11 @@
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-card shadow="hover">
               <el-button
                 type="text"
-                @click="openLicenseWizard('extra')">
-                Custom Data License
-              </el-button>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card shadow="hover">
-              <el-button
-                type="text"
-                @click="openLicenseWizard('')">
+                @click="openLicenseWizard('all')">
                 Full Features License
               </el-button>
             </el-card>
@@ -210,10 +147,10 @@ export default {
     },
     methods: {
         openObfuscateWizard(name) {
-            this.$emit('change-current-page', 'ObfuscateWizardBasic', { features: name })
+            this.$emit('change-current-page', 'ObfuscateWizardBasic', { wizardName: name })
         },
         openPackWizard(name) {
-            this.$emit('change-current-page', 'PackWizardBasic', { features: name })
+            this.$emit('change-current-page', 'PackPageWizard', { wizardName: name })
         },
         openLicenseWizard(name) {
             this.$emit('change-current-page', 'LicensePageEdit', { features: name })

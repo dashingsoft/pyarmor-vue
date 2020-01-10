@@ -51,6 +51,7 @@
     </el-container>
     <el-container v-show="currentPageName">
       <component v-on:close-current-page="onCloseCurrentPage"
+                 v-on:change-current-page="onChangeCurrentPage"
                  v-bind="currentPageProps"
                  v-bind:is="currentPageComponent"></component>
     </el-container>
@@ -66,7 +67,7 @@ import HomeTabAbout from './components/HomeTabAbout.vue'
 import ProjectPageEdit from './pages/ProjectPageEdit.vue'
 import LicensePageEdit from './pages/LicensePageEdit.vue'
 
-import PackWizardBasic from './pages/PackWizardBasic.vue'
+import PackPageWizard from './pages/PackPageWizard.vue'
 
 import locale from 'element-ui/lib/locale'
 import connector from './connector.js'
@@ -80,7 +81,7 @@ export default {
         HomeTabAbout,
         ProjectPageEdit,
         LicensePageEdit,
-        PackWizardBasic,
+        PackPageWizard,
     },
     data: function () {
         return {

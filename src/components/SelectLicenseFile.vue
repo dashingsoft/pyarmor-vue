@@ -6,8 +6,9 @@
     filterable
     clearable
     remote
-    v-bind:remote-method="listRemoteLicenses"
-    v-bind:loading="loading"
+    :remote-method="listRemoteLicenses"
+    :loading="loading"
+    @change="onValueChanged"
     placeholder="Select one license file">
     <el-option
       v-for="item in options"
@@ -23,11 +24,15 @@ import connector from '../connector.js'
 
 export default {
     name: 'SelectLicenseFile',
+    model: {
+        name: 'value',
+        event: 'change',
+    },
+    props: [ 'value' ],
     data() {
       return {
           options: [],
           source: [],
-          value: '',
           loading: false,
       }
     },
@@ -46,23 +51,35 @@ export default {
             else
                 this.filterLicenses( query )
         },
-        onListLicense( data ) {
-            this.loading = false
-            this.source = data.map( item => {
-                return {
-                    label: [ item.rcode, item.summary ].join( ': ' ),
-                    value: item.filename,
-                }
-            } )
-            this.filterLicenses( '' )
-        },
-        onListLicenseFailed() {
-            this.loading = false
-        },
         filterLicenses( query ) {
             this.options = this.source.filter( item => {
                 return item.label.indexOf( query ) > -1
             } )
+        },
+        onValueChanged( value ) {
+            this.$emit( 'change', value )
+        },
+        onListLicense( data ) {
+            this.loading = false
+            this.source = [
+                {
+                    label: 'Default license',
+                    value: 'true'
+                },
+                {
+                    label: 'Do not generate license file',
+                    value: 'false',
+                }
+            ].concat( data.map( item => {
+                return {
+                    label: [ item.rcode, item.summary ].join( ': ' ),
+                    value: item.filename,
+                }
+            } ) )
+            this.filterLicenses( '' )
+        },
+        onListLicenseFailed() {
+            this.loading = false
         }
     }
 }

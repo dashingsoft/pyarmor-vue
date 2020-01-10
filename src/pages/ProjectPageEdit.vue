@@ -91,7 +91,7 @@ export default {
                     obfCode: true,
                     wrapMode: true,
                     advancedMode: false,
-                    licenseFile: '',
+                    licenseFile: 'true',
                     plugins: []
                 }
             }

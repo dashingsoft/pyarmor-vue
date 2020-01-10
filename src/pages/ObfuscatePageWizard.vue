@@ -5,7 +5,7 @@
 
 <script>
 export default {
-    name: 'ObfuscateWizardDefault',
+    name: 'ObfuscatePageWizard',
     methods: {
         goBack() {
             this.$emit('close-current-page')
