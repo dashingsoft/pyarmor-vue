@@ -9,13 +9,11 @@
         <el-step
           title="Start"></el-step>
         <el-step
-          v-if="hasStep( 'license' )"
+          v-if="! outerLicense"
           title="Script License"></el-step>
         <el-step
-          v-if="hasStep( 'data' )"
           title="Other Files"></el-step>
         <el-step
-          v-if="hasStep( 'options' )"
           title="Extra Options"></el-step>
         <el-step
           title="Finish"></el-step>
@@ -23,10 +21,10 @@
       <el-form
         ref="form"
         :model="formData"
+        :rules="rules"
         label-width="160px">
         <div class="item-card" v-show="isItemVisible( 'start' )">
           <el-form-item
-            :rules="rules.src"
             prop="src"
             label="Src">
             <select-folder
@@ -34,7 +32,9 @@
               v-model="formData.src">
             </select-folder>
           </el-form-item>
-          <el-form-item label="Script">
+          <el-form-item
+            prop="entry"
+            label="Script">
             <select-path-script
               placeholder="The entry script"
               select-pattern="*.py"
@@ -48,11 +48,12 @@
             <select-path-script
               placeholder="No obfuscated scripts in these pathes"
               :root-path="formData.src"
+              :only-folder="true"
               v-model="formData.exclude">
             </select-path-script>
           </el-form-item>
         </div>
-        <div class="item-card" v-show="isItemVisible( 'license' )">
+        <div class="item-card" v-if="!outerLicense" v-show="isItemVisible( 'license' )">
           <el-form-item
             label="Expired">
             <el-date-picker
@@ -89,18 +90,28 @@
             </el-select>
           </el-form-item>
           <el-form-item label="Data Files">
-            <select-path-script
+            <el-select
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              style="width: 100%"
+              no-data-text="Please input filename or pattern, then press ENTER"
               placeholder="Additional non-binary files or folders to be added to the executable"
-              :root-path="formData.src"
               v-model="formData.dataFile">
-            </select-path-script>
+            </el-select>
           </el-form-item>
           <el-form-item label="Binary Files">
-            <select-path-script
+            <el-select
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              style="width: 100%"
+              no-data-text="Please input filename or pattern, then press ENTER"
               placeholder="Additional binary files to be added to the executable"
-              :root-path="formData.src"
               v-model="formData.binaryFile">
-            </select-path-script>
+            </el-select>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'options' )">
@@ -109,6 +120,8 @@
               placeholder="Apply icon to a Windows executable or the bundle on Mac OS X"
               :root-path="formData.src"
               :multiple="false"
+              :only-script="true"
+              select-pattern="*.ic*"
               v-model="formData.icon">
             </select-path-script>
           </el-form-item>
@@ -153,7 +166,6 @@
         </div>
         <el-form-item>
           <el-button
-            :disabled="! canFinish"
             round
             plain
             type="primary"
@@ -188,30 +200,26 @@
 </template>
 
 <script>
-
-const wizards = {
-    common: {
-        steps: ['start', 'finish'],
-        restrict: {},
-    },
-    project: {
-        steps: ['start', 'license', 'data', 'options', 'finish'],
-        saveAsProject: false
-    },
-}
+import connector from '../connector.js'
 
 export default {
     name: 'PackPageWizard',
     props: {
-        wizardName: {
+        feature:  {
             type: String,
-            default: 'project'
-        },
+            default: ''
+        }
+    },
+    mounted() {
+        if (this.feature === 'outer') {
+            this.steps.splice( this.steps.indexOf( 'license' ), 1 )
+            this.formData.withoutLicense = true
+        }
     },
     data() {
         return {
             active: 0,
-            steps: ['start', 'script', 'license', 'data', 'options', 'finish'],
+            steps: ['start', 'license', 'data', 'options', 'finish'],
             formData: {
                 src: '',
                 entry: '',
@@ -232,22 +240,17 @@ export default {
                 output: '',
             },
             rules: {
-                name: [
-                    { pattern: '[-._0-9a-zA-Z]*', message: 'Invalid input', trigger: 'change' }
-                ]
+                src: [ { required: true } ],
+                entry: [ { required: true } ]
             }
-
         }
     },
-    created() {
-        this.steps = this.wizardData.steps
-    },
     computed: {
-        wizardData() {
-            return wizards[ wizards.hasOwnProperty( this.wizardName ) ? this.wizardName : 'project' ]
-        },
         canFinish() {
             return this.active > 0
+        },
+        outerLicense() {
+            return this.feature === 'outer'
         }
     },
     methods: {
@@ -260,12 +263,11 @@ export default {
                 this.active --
         },
         finish() {
-            this.$nextTick( () => {
-                this.$message('Done')
+            this.$refs['form'].validate( (valid) => {
+                if (!valid)
+                    return false
+                this.feature === 'project' ? this.newProject() : this.packScript()
             } )
-        },
-        hasStep( name ) {
-            return this.steps === '' || this.steps.indexOf(name) !== -1
         },
         isItemVisible( name ) {
             return this.steps[ this.active ] === name
@@ -273,6 +275,18 @@ export default {
         goBack() {
             this.$emit('close-current-page')
         },
+        packScript() {
+            connector.buildTempProject( this.formData, this.onPackSuccess )
+        },
+        newProject() {
+            connector.newProject( this.formData, this.onNewSuccess )
+        },
+        onPackFinished(output) {
+            this.$message( 'Pack bundle to ' + output )
+        },
+        onNewSuccess(data) {
+            this.$message( 'Create project ' + data.name + ' successfully' )
+        }
     }
 }
 </script>

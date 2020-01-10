@@ -30,8 +30,18 @@ export default new Vue({
         })
     },
     methods: {
-        sendRequest: function (url, data, event, success, error) {
+        sendRequest: function (url, data, event, success, error, loading) {
+            const vmloading = typeof loading === undefined
+                  ? null
+                  : this.$loading( {
+                      lock: true,
+                      text: loading,
+                      spinner: 'el-icon-loading',
+                      background: 'rgba(0, 0, 0, 0.7)'
+                  } )
             let onerror = function (err) {
+                if (vmloading)
+                    vmloading.close()
                 Vue.prototype.$message({
                     type: 'error',
                     message: err,
@@ -43,6 +53,8 @@ export default new Vue({
             }
             let onsuccess = function (resp) {
                 if (resp.err === 0) {
+                    if (vmloading)
+                        vmloading.close()
                     this.$emit(event, resp.data)
                     if (typeof success === 'function')
                         success(resp.data)
@@ -76,17 +88,17 @@ export default new Vue({
             let url = this.serverUrl + 'project/update'
             this.sendRequest(url, data, 'update-project', success, error)
         },
-        buildProject: function (data, success, error) {
+        buildProject: function (data, success, error, loading) {
             let url = this.serverUrl + 'project/build'
-            this.sendRequest(url, data, 'build-project', success, error)
+            this.sendRequest(url, data, 'build-project', success, error, loading)
         },
         removeProject: function (data, success, error) {
             let url = this.serverUrl + 'project/remove'
             this.sendRequest(url, data, 'remove-project', success, error)
         },
-        buildTempProject: function (data, success, error) {
+        buildTempProject: function (data, success, error, loading) {
             let url = this.serverUrl + 'project/build_temp'
-            this.sendRequest(url, data, 'build-temp-project', success, error)
+            this.sendRequest(url, data, 'build-temp-project', success, error, loading)
         },
         listProject: function (data, success, error) {
             let url = this.serverUrl + 'project/list'

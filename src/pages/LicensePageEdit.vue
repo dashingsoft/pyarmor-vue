@@ -71,7 +71,7 @@ export default {
         LicenseInputMachine,
     },
     props: {
-        features: {
+        feature: {
             type: String,
             default: 'all'
         },
@@ -102,7 +102,7 @@ export default {
     },
     methods: {
         hasFeature(name) {
-            return this.features === 'all' || this.features.indexOf(name) !== -1
+            return this.feature === 'all' || this.feature.indexOf(name) !== -1
         },
         goBack() {
             this.$emit('close-current-page')
