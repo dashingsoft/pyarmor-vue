@@ -9,10 +9,7 @@
         <el-step
           title="Start"></el-step>
         <el-step
-          v-if="! outerLicense"
-          title="Script License"></el-step>
-        <el-step
-          title="Other Files"></el-step>
+          title="Data Files"></el-step>
         <el-step
           title="Extra Options"></el-step>
         <el-step
@@ -28,7 +25,7 @@
             prop="src"
             label="Src">
             <select-folder
-              placeholder="Base path of entry script"
+              placeholder="Base path for entry script, data files, binary files etc."
               v-model="formData.src">
             </select-folder>
           </el-form-item>
@@ -53,29 +50,6 @@
             </select-path-script>
           </el-form-item>
         </div>
-        <div class="item-card" v-if="!outerLicense" v-show="isItemVisible( 'license' )">
-          <el-form-item
-            label="Expired">
-            <el-date-picker
-              placeholder="Expired the scripts"
-              type="date"
-              value-format="yyyy-MM-dd"
-              v-model="formData.licenseInfo.expired">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item
-            label="Harddisk">
-            <el-input
-              placeholder="Bind obfuscated scripts to serial number of this harddisk">
-              v-model="formData.licenseInfo.harddisk"></el-input>
-          </el-form-item>
-          <el-form-item
-            label="Mac">
-            <el-input
-              placeholder="Bind obfuscated scripts to this mac address">
-              v-model="formData.licenseInfo.mac"></el-input>
-          </el-form-item>
-        </div>
         <div class="item-card" v-show="isItemVisible( 'data' )">
           <el-form-item label="Hidden Imports">
             <el-select
@@ -84,7 +58,7 @@
               allow-create
               default-first-option
               style="width: 100%"
-              no-data-text="Please input module or package name, then press ENTER"
+              no-data-text="Type module or package name, then press ENTER"
               placeholder="Name an import not visible in the code of the script(s)"
               v-model="formData.hiddenImport">
             </el-select>
@@ -96,8 +70,8 @@
               allow-create
               default-first-option
               style="width: 100%"
-              no-data-text="Please input filename or pattern, then press ENTER"
               placeholder="Additional non-binary files or folders to be added to the executable"
+              no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
               v-model="formData.dataFile">
             </el-select>
           </el-form-item>
@@ -108,34 +82,35 @@
               allow-create
               default-first-option
               style="width: 100%"
-              no-data-text="Please input filename or pattern, then press ENTER"
               placeholder="Additional binary files to be added to the executable"
+              no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
               v-model="formData.binaryFile">
             </el-select>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'options' )">
-          <el-form-item label="Icon">
-            <select-path-script
-              placeholder="Apply icon to a Windows executable or the bundle on Mac OS X"
-              :root-path="formData.src"
-              :multiple="false"
-              :only-script="true"
-              select-pattern="*.ic*"
-              v-model="formData.icon">
-            </select-path-script>
-          </el-form-item>
-          <el-form-item label="Console">
+          <el-form-item label="No Console">
             <el-switch
-              active-text="Open a console window for standard I/O"
-              v-model="formData.consoleMode">
+              active-text="Do not provide a console window for standard I/O"
+              v-model="formData.noConsole">
             </el-switch>
           </el-form-item>
-          <el-form-item label="Extra Options">
+          <el-form-item label="Icon">
             <el-input
+              placeholder="Apply icon to a Windows executable or the bundle on Mac OS X"
+              v-model="formData.icon">
+            </el-input>
+          </el-form-item>
+          <el-form-item label="Extra Options">
+            <el-select
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              style="width: 100%"
               placeholder="Any other PyInstaller options to append command line"
               v-model="formData.extraOptions">
-            </el-input>
+            </el-select>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'finish' )">
@@ -157,11 +132,10 @@
             </select-folder>
           </el-form-item>
           <el-form-item
-            label="Name">
-            <el-input
-              placeholder="The default bundle name is entry script name"
-              v-model="formData.name">
-            </el-input>
+            label="License">
+            <select-license-file
+              v-model="formData.licenseFile">
+            </select-license-file>
           </el-form-item>
         </div>
         <el-form-item>
@@ -210,31 +184,21 @@ export default {
             default: ''
         }
     },
-    mounted() {
-        if (this.feature === 'outer') {
-            this.steps.splice( this.steps.indexOf( 'license' ), 1 )
-            this.formData.withoutLicense = true
-        }
-    },
     data() {
         return {
             active: 0,
-            steps: ['start', 'license', 'data', 'options', 'finish'],
+            steps: ['start', 'data', 'options', 'finish'],
             formData: {
                 src: '',
                 entry: '',
                 exclude: [],
-                licenseInfo: {
-                    expired: '',
-                    harddisk: '',
-                    mac: ''
-                },
+                licenseFile: 'true',
                 dataFile: [],
                 binaryFile: [],
                 hiddenImport: [],
-                consoleMode: false,
+                noConsole: false,
                 icon: '',
-                extraOptions: '',
+                extraOptions: [],
                 target: 'folder',
                 name: '',
                 output: '',
@@ -246,12 +210,42 @@ export default {
         }
     },
     computed: {
-        canFinish() {
-            return this.active > 0
+        projectInfo() {
+            let options = []
+            if (this.formData.target === 'file')
+                options.push( '--onefile' )
+            if (this.formData.icon)
+                options.push( '--icon', this.formData.icon )
+            if (this.formData.noConsole)
+                options.push( '--noconsole' )
+            this.formData.hiddenImport.map( m => options.push( '--hidden-import', m ) )
+            this.formData.dataFile.map( m => options.push( '--add-data', m + ':.' ) )
+            this.formData.dataFile.map( m => options.push( '--add-binary', m + ':.' ) )
+
+            return {
+                src: this.formData.src,
+                entry: [this.formData.entry],
+                include: 'recursive',
+                exclude: this.formData.exclude,
+                buildTarget: 'pack',
+                output: this.formData.output,
+                packageName: '',
+                enableSuffix: false,
+                packageRuntime: 1,
+                crossProtection: true,
+                bootstrapCode: true,
+                platform: [],
+                pack: options.concat( this.formData.extraOptions ),
+                restrictMode: 2,
+                entryMode: [],
+                obfMod: true,
+                obfCode: true,
+                wrapMode: true,
+                advancedMode: false,
+                licenseFile: this.formData.licenseFile,
+                plugins: []
+            }
         },
-        outerLicense() {
-            return this.feature === 'outer'
-        }
     },
     methods: {
         next() {
@@ -276,10 +270,15 @@ export default {
             this.$emit('close-current-page')
         },
         packScript() {
-            connector.buildTempProject( this.formData, this.onPackSuccess )
+            connector.buildTempProject(
+                this.projectInfo,
+                this.onPackSuccess,
+                undefined,
+                'Pack script'
+            )
         },
         newProject() {
-            connector.newProject( this.formData, this.onNewSuccess )
+            connector.newProject( this.projectInfo, this.onNewSuccess )
         },
         onPackFinished(output) {
             this.$message( 'Pack bundle to ' + output )

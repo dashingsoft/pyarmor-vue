@@ -25,18 +25,22 @@ import connector from '../connector.js'
 export default {
     name: 'SelectLicenseFile',
     model: {
-        name: 'value',
-        event: 'change',
+        prop: 'value2',
+        event: 'change2',
     },
-    props: [ 'value' ],
+    props: {
+        value2: String,
+    },
     data() {
-      return {
-          options: [],
-          source: [],
-          loading: false,
-      }
+        return {
+            value: 'true',
+            options: [],
+            source: [],
+            loading: false,
+        }
     },
     mounted() {
+        this.value = this.value2
         this.refreshData()
     },
     methods: {
@@ -57,17 +61,17 @@ export default {
             } )
         },
         onValueChanged( value ) {
-            this.$emit( 'change', value )
+            this.$emit( 'change2', value )
         },
         onListLicense( data ) {
             this.loading = false
             this.source = [
                 {
-                    label: 'Default license',
+                    label: 'Default license, no any restrict',
                     value: 'true'
                 },
                 {
-                    label: 'Do not generate license file',
+                    label: 'Do not include license file',
                     value: 'false',
                 }
             ].concat( data.map( item => {
