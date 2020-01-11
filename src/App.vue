@@ -67,6 +67,7 @@ import HomeTabAbout from './components/HomeTabAbout.vue'
 import ProjectPageEdit from './pages/ProjectPageEdit.vue'
 import LicensePageEdit from './pages/LicensePageEdit.vue'
 
+import ObfuscatePageWizard from './pages/ObfuscatePageWizard.vue'
 import PackPageWizard from './pages/PackPageWizard.vue'
 
 import locale from 'element-ui/lib/locale'
@@ -81,6 +82,7 @@ export default {
         HomeTabAbout,
         ProjectPageEdit,
         LicensePageEdit,
+        ObfuscatePageWizard,
         PackPageWizard,
     },
     data: function () {
@@ -136,10 +138,10 @@ export default {
         },
         onConnectSuccess: function (data) {
             this.connected = true
-            this.versionInfo.tag = data.rcode ? '' : 'Trial'
+            this.versionInfo.tag = data.regcode ? '' : 'Trial'
             this.versionInfo.version = data.version
-            this.versionInfo.regcode = data.rcode
-            this.versionInfo.reginfo = data.info
+            this.versionInfo.regcode = data.regcode
+            this.versionInfo.reginfo = data.reginfo
             this.versionInfo.server = data.server
             this.versionInfo.python = data.python
         },
@@ -160,6 +162,12 @@ export default {
     },
 }
 </script>
+
+<style>
+.w-100 {
+    width: 100%;
+}
+</style>
 
 <style scoped>
 #app {

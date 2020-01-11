@@ -57,7 +57,7 @@
               filterable
               allow-create
               default-first-option
-              style="width: 100%"
+              class="w-100"
               no-data-text="Type module or package name, then press ENTER"
               placeholder="Name an import not visible in the code of the script(s)"
               v-model="formData.hiddenImport">
@@ -69,7 +69,7 @@
               filterable
               allow-create
               default-first-option
-              style="width: 100%"
+              class="w-100"
               placeholder="Additional non-binary files or folders to be added to the executable"
               no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
               v-model="formData.dataFile">
@@ -81,7 +81,7 @@
               filterable
               allow-create
               default-first-option
-              style="width: 100%"
+              class="w-100"
               placeholder="Additional binary files to be added to the executable"
               no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
               v-model="formData.binaryFile">
@@ -107,7 +107,7 @@
               filterable
               allow-create
               default-first-option
-              style="width: 100%"
+              class="w-100"
               placeholder="Any other PyInstaller options to append command line"
               v-model="formData.extraOptions">
             </el-select>
@@ -145,7 +145,7 @@
             type="primary"
             icon="el-icon-position"
             @click="finish">
-            Done
+            Pack
           </el-button>
           <el-button
             round
@@ -164,7 +164,7 @@
           </el-button>
           <el-button
             round
-            :disabled="active === steps.length - 1"
+            :disabled="active >= steps.length - 1"
             @click="next">
             Next <i class="el-icon-arrow-right el-icon--right"></i>
           </el-button>
@@ -200,7 +200,6 @@ export default {
                 icon: '',
                 extraOptions: [],
                 target: 'folder',
-                name: '',
                 output: '',
             },
             rules: {
@@ -237,7 +236,6 @@ export default {
                 platform: [],
                 pack: options.concat( this.formData.extraOptions ),
                 restrictMode: 2,
-                entryMode: [],
                 obfMod: true,
                 obfCode: true,
                 wrapMode: true,
@@ -274,17 +272,20 @@ export default {
                 this.projectInfo,
                 this.onPackSuccess,
                 undefined,
-                'Pack script'
+                'Packing script ' + this.formData.entry
             )
         },
         newProject() {
-            connector.newProject( this.projectInfo, this.onNewSuccess )
+            connector.newProject( this.projectInfo, this.onProjectCreated )
         },
         onPackFinished(output) {
-            this.$message( 'Pack bundle to ' + output )
+            this.$message( 'Pack the obfuscated script successfully, ' +
+                           'the final bundle is saved to ' + output )
+            this.goBack()
         },
-        onNewSuccess(data) {
+        onProjectCreated(data) {
             this.$message( 'Create project ' + data.name + ' successfully' )
+            this.goBack()
         }
     }
 }

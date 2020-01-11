@@ -51,11 +51,11 @@ export default {
                     value: 2,
                 },
                 {
-                    label: 'Mode 2',
+                    label: 'Mode 3',
                     value: 3,
                 },
                 {
-                    label: 'Mode 3',
+                    label: 'Mode 4',
                     value: 4,
                 },
             ],

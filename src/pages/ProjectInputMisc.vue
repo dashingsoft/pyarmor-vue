@@ -32,13 +32,6 @@
         select-pattern="*.py"
         v-model="projectInfo.plugins"></select-path-script>
     </el-form-item>
-    <el-form-item
-      label="Runtime Path">
-      <el-input
-        v-model="projectInfo.runtimePath"
-        clearable>
-      </el-input>
-    </el-form-item>
   </div>
 </template>
 

@@ -12,6 +12,7 @@
       v-if="! isPackProject"
       label="Runtime Files">
       <el-select
+        key="package-runtime"
         style="width: 50%"
         v-model="projectInfo.packageRuntime">
         <el-option
@@ -32,7 +33,7 @@
       v-if="! isPackProject"
       label="Platforms">
       <el-cascader
-        style="width: 100%"
+        class="w-100"
         clearable
         :options="platforms"
         :props="{ label: 'value', multiple: true }"
@@ -43,13 +44,16 @@
     <el-form-item
       v-if="isPackProject"
       label="Pack Options">
-      <el-input
-        type="textarea"
+      <el-select
+        key="pack"
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        class="w-100"
         placeholder="Please input any pyinstaller option"
-        style="width: 100%"
-        :autosize="{ minRows: 6, maxRows: 10}"
         v-model="projectInfo.pack">
-      </el-input>
+      </el-select>
     </el-form-item>
   </div>
 </template>

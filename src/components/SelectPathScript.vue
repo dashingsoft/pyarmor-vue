@@ -1,10 +1,9 @@
 <template>
   <el-cascader
     ref="cascader"
-    style="width: 100%"
+    class="w-100"
     v-model="value"
     filterable
-    clearable
     @change="onValueChanged"
     @expand-change="onExpandChanged"
     :multiple="multiple"

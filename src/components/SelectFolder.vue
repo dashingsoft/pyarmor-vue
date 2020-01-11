@@ -2,7 +2,7 @@
   <el-select
     ref="select"
     v-model="value"
-    class="select-remote-folder"
+    class="w-100"
     filterable
     remote
     default-first-option
@@ -279,9 +279,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.select-remote-folder {
-  width: 100%;
-}
-</style>

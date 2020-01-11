@@ -1,7 +1,7 @@
 <template>
   <el-select
     ref="select"
-    style="width: 100%"
+    class="w-100"
     v-model="value"
     filterable
     clearable
@@ -9,7 +9,7 @@
     :remote-method="listRemoteLicenses"
     :loading="loading"
     @change="onValueChanged"
-    placeholder="Select one license file">
+    placeholder="Select one license file to restrict the obfuscated script">
     <el-option
       v-for="item in options"
       :key="item.value"

@@ -20,7 +20,7 @@
     </el-form-item>
     <el-form-item label="Include">
       <el-select
-        style="width: 100%"
+        class="w-100"
         v-model="projectInfo.include">
         <el-option
           v-for="item in includeOptions"
