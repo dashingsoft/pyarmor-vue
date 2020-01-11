@@ -142,7 +142,7 @@
         :disabled="projectInfo.src === ''"
         :readonly="autoOutputSuffix"
         placeholder="Append this name to output path"
-        v-model="projectInfo.packageName">
+        v-model="projectInfo.bundleName">
         <el-switch
           slot="prepend"
           :disabled="projectInfo.src === ''"
@@ -225,7 +225,7 @@ export default {
                 exclude: [],
                 buildTarget: 'obf',
                 output: '',
-                packageName: '',
+                bundleName: '',
                 enableSuffix: false,
                 packageRuntime: 1,
                 crossProtection: true,

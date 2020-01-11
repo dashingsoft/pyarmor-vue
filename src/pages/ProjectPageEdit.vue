@@ -77,7 +77,7 @@ export default {
                     exclude: [],
                     buildTarget: 'obf',
                     output: '',
-                    packageName: '',
+                    bundleName: '',
                     enableSuffix: false,
                     packageRuntime: 1,
                     crossProtection: true,

@@ -48,12 +48,12 @@
       </select-folder>
     </el-form-item>
     <el-form-item
-      label="Package Name">
+      label="Bundle Name">
       <el-input
         :disabled="projectInfo.src === ''"
         :readonly="autoOutputSuffix"
         placeholder="Append this name to output path"
-        v-model="projectInfo.packageName">
+        v-model="projectInfo.bundleName">
         <el-switch
           slot="prepend"
           :disabled="projectInfo.src === ''"
@@ -74,7 +74,7 @@ export default {
             },
             set( value ) {
                 this.outputSuffixMode = value
-                this.projectInfo.packageName = value ? this.projectInfo.src.split( '/' ).pop() : ''
+                this.projectInfo.bundleName = value ? this.projectInfo.src.split( '/' ).pop() : ''
             }
         }
     },

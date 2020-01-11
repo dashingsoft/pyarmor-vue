@@ -114,14 +114,6 @@
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'finish' )">
-          <el-form-item label="Bundle">
-            <el-radio
-              v-model="formData.target"
-              label="folder">All to one folder</el-radio>
-            <el-radio
-              v-model="formData.target"
-              label="file">All to one file</el-radio>
-          </el-form-item>
           <el-form-item
             label="Output">
             <select-folder
@@ -130,6 +122,19 @@
               :allow-create="true"
               v-model="formData.output">
             </select-folder>
+          </el-form-item>
+          <el-form-item label="Bundle">
+            <el-input
+              placeholder="Name to assign to the bundled app (default: entry script’s basename)"
+              v-model="formData.bundleName">
+              <el-select
+                style="width: 160px"
+                slot="prepend"
+                v-model="formData.target">
+                <el-option label="all to one folder" value="folder"></el-option>
+                <el-option label="all to one file" value="file"></el-option>
+              </el-select>
+            </el-input>
           </el-form-item>
           <el-form-item
             label="License">
@@ -192,7 +197,7 @@ export default {
                 src: '',
                 entry: '',
                 exclude: [],
-                licenseFile: 'true',
+                licenseFile: this.feature === 'outer'? 'false' : 'true',
                 dataFile: [],
                 binaryFile: [],
                 hiddenImport: [],
@@ -218,8 +223,8 @@ export default {
             if (this.formData.noConsole)
                 options.push( '--noconsole' )
             this.formData.hiddenImport.map( m => options.push( '--hidden-import', m ) )
-            this.formData.dataFile.map( m => options.push( '--add-data', m + ':.' ) )
-            this.formData.dataFile.map( m => options.push( '--add-binary', m + ':.' ) )
+            this.formData.dataFile.map( m => options.push( '--add-data', m ) )
+            this.formData.dataFile.map( m => options.push( '--add-binary', m ) )
 
             return {
                 src: this.formData.src,
@@ -228,7 +233,7 @@ export default {
                 exclude: this.formData.exclude,
                 buildTarget: 'pack',
                 output: this.formData.output,
-                packageName: '',
+                bundleName: '',
                 enableSuffix: false,
                 packageRuntime: 1,
                 crossProtection: true,

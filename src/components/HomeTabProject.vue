@@ -86,7 +86,7 @@ export default {
             return target === 'pack' ? 'Pack' : 'Obfuscate'
         },
         getProjectOutput( data ) {
-            let suffix = data.packageName && data.packageName.length ? '/' + data.packageName : ''
+            let suffix = data.bundleName && data.bundleName.length ? '/' + data.bundleName : ''
             return ( data.output.length ? data.output : ( data.src + '/dist' ) ) + suffix
         },
         refreshData: function () {
@@ -118,6 +118,7 @@ export default {
                 cancelButtonText: 'Cancel',
                 type: 'warning'
             }).then(() => {
+                data['clean'] = true
                 connector.removeProject(data)
             })
         },
