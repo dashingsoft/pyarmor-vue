@@ -5,7 +5,7 @@
       prop="src"
       label="Src">
       <select-folder
-        placeholder="Base path to find .py files"
+        placeholder="Base path for scripts, include and exclude"
         v-model="projectInfo.src">
       </select-folder>
     </el-form-item>
@@ -32,33 +32,10 @@
     </el-form-item>
     <el-form-item label="Exclude">
       <select-path-script
-        placeholder="Select path and scripts to exclude"
+        placeholder="Ignore the path and the .py files list here"
         :root-path="projectInfo.src"
         v-model="projectInfo.exclude">
       </select-path-script>
-    </el-form-item>
-    <el-divider></el-divider>
-    <el-form-item
-      label="Output">
-      <select-folder
-        placeholder="The default output path is $src/dist"
-        :root-path="projectInfo.src"
-        :allow-create="true"
-        v-model="projectInfo.output">
-      </select-folder>
-    </el-form-item>
-    <el-form-item
-      label="Bundle Name">
-      <el-input
-        :disabled="projectInfo.src === ''"
-        :readonly="autoOutputSuffix"
-        placeholder="Append this name to output path"
-        v-model="projectInfo.bundleName">
-        <el-switch
-          slot="prepend"
-          :disabled="projectInfo.src === ''"
-          v-model="autoOutputSuffix"></el-switch>
-      </el-input>
     </el-form-item>
   </div>
 </template>
@@ -67,20 +44,8 @@
 export default {
     name: 'ProjectInputFile',
     props: ['projectInfo'],
-    computed: {
-        autoOutputSuffix: {
-            get() {
-                return this.outputSuffixMode
-            },
-            set( value ) {
-                this.outputSuffixMode = value
-                this.projectInfo.bundleName = value ? this.projectInfo.src.split( '/' ).pop() : ''
-            }
-        }
-    },
     data() {
         return {
-            outputSuffixMode: false,
             includeOptions: [
                 {
                     label: 'Only the scripts in the list',

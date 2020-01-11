@@ -167,6 +167,9 @@ export default {
 .w-100 {
     width: 100%;
 }
+.w-50 {
+    width: 50%;
+}
 </style>
 
 <style scoped>

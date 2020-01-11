@@ -2,7 +2,7 @@
   <div class="home">
     <h1 style="text-align: center">Home</h1>
     <el-row :gutter="12">
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
@@ -11,7 +11,7 @@
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
@@ -20,16 +20,7 @@
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <el-button
-            type="text"
-            @click="registerProduct">
-            Register
-          </el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
@@ -38,16 +29,7 @@
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <el-button
-            type="text"
-            @click="openPackWizard('outer')">
-            Pack without license
-          </el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
@@ -56,16 +38,16 @@
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
             @click="openLicenseWizard('expired')">
-            Expired License
+            Generate Expired License
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
@@ -74,12 +56,21 @@
           </el-button>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-card shadow="hover">
           <el-button
             type="text"
             @click="openLicenseWizard('all')">
             Full Features License
+          </el-button>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card shadow="hover">
+          <el-button
+            type="text"
+            @click="registerProduct">
+            Register PyArmor
           </el-button>
         </el-card>
       </el-col>

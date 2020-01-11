@@ -1,60 +1,73 @@
 <template>
   <div class="project-target">
-    <el-form-item label="Build Type">
-        <el-radio
-          v-model="projectInfo.buildTarget"
-          label="obf">Obfuscate</el-radio>
-        <el-radio
-          v-model="projectInfo.buildTarget"
-          label="pack">Pack</el-radio>
+    <el-form-item
+      label="Output">
+      <select-folder
+        placeholder="The default output path is $src/dist"
+        :root-path="projectInfo.src"
+        :allow-create="true"
+        v-model="projectInfo.output">
+      </select-folder>
     </el-form-item>
     <el-form-item
-      v-if="! isPackProject"
-      label="Runtime Files">
-      <el-select
-        key="package-runtime"
-        style="width: 50%"
-        v-model="projectInfo.packageRuntime">
-        <el-option
-          v-for="item in runtimeModes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+      label="Bundle Name">
+      <el-input
+        :disabled="projectInfo.src === ''"
+        :readonly="autoOutputSuffix"
+        :placeholder="projectInfo.buildTarget ? 'Name to assign to the bundled app' : 'Append this name to output path'"
+        v-model="projectInfo.bundleName">
+        <el-switch
+          slot="prepend"
+          :disabled="projectInfo.src === ''"
+          v-model="autoOutputSuffix"></el-switch>
+      </el-input>
     </el-form-item>
-    <el-form-item
-      v-if="! isPackProject"
-      label="Enable Suffix">
-      <el-switch v-model="projectInfo.enableSuffix">
-      </el-switch>
+    <el-form-item label="License">
+      <select-license-file
+        v-model="projectInfo.licenseFile"></select-license-file>
     </el-form-item>
-    <el-form-item
-      v-if="! isPackProject"
-      label="Platforms">
-      <el-cascader
-        class="w-100"
-        clearable
-        :options="platforms"
-        :props="{ label: 'value', multiple: true }"
-        :show-all-levels="false"
-        v-model="projectInfo.platform"
-        placeholder="Please select one or more platforms"></el-cascader>
-    </el-form-item>
-    <el-form-item
-      v-if="isPackProject"
-      label="Pack Options">
-      <el-select
-        key="pack"
-        multiple
-        filterable
-        allow-create
-        default-first-option
-        class="w-100"
-        placeholder="Please input any pyinstaller option"
-        v-model="projectInfo.pack">
-      </el-select>
-    </el-form-item>
+    <div v-if="! isPackProject">
+      <el-form-item
+        label="Package Runtime">
+        <el-select
+          key="package-runtime"
+          style="width: 50%"
+          v-model="projectInfo.packageRuntime">
+          <el-option
+            v-for="item in runtimeModes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item
+        label="Platforms">
+        <el-cascader
+          class="w-100"
+          clearable
+          :options="platforms"
+          :props="{ label: 'value', multiple: true }"
+          :show-all-levels="false"
+          placeholder="Cross platform, select one or more platforms to run obfuscated scripts"
+          v-model="projectInfo.platform"></el-cascader>
+      </el-form-item>
+    </div>
+    <div v-if="isPackProject">
+      <el-form-item
+        label="Pack Options">
+        <el-select
+          key="pack"
+          multiple
+          filterable
+          allow-create
+          default-first-option
+          class="w-100"
+          placeholder="Please input any pyinstaller option"
+          v-model="projectInfo.pack">
+        </el-select>
+      </el-form-item>
+    </div>
   </div>
 </template>
 
@@ -65,11 +78,32 @@ export default {
     props: ['projectInfo'],
     computed: {
         isPackProject() {
-            return this.projectInfo.buildTarget === 'pack'
+            return this.projectInfo.buildTarget > 0
+        },
+        autoOutputSuffix: {
+            get() {
+                return this.outputSuffixMode
+            },
+            set( value ) {
+                this.outputSuffixMode = value
+                this.projectInfo.bundleName = value ? this.projectInfo.src.split( '/' ).pop() : ''
+            }
+        },
+        oneFileBundle: {
+            get() {
+                return this.projectInfo.pack.indexOf('--onefile') === -1 ? 'folder' : 'file'
+            },
+            set( value ) {
+                let i = this.projectInfo.pack.indexOf( '--onefile' )
+                value === 'file'
+                    ? this.projectInfo.pack.push('--onefile')
+                    : this.projectInfo.pack.splice( i, 1 )
+            }
         }
     },
     data() {
         return {
+            outputSuffixMode: false,
             platforms: [
                 { value: 'More security', children: [
                     { value: 'Common', children: [
@@ -86,7 +120,7 @@ export default {
                     ] },
                     { value: 'others', children: [
                         { value: 'centos6.x86_64.7' },
-                    ] }                    
+                    ] }
                 ] },
                 { value: 'More quickly', children: [
                     { value: 'Common', children: [
@@ -117,16 +151,24 @@ export default {
             ],
             runtimeModes: [
                 {
-                    label: 'Generate runtime files as a package',
-                    value: 1,
+                    label: 'Do not generate runtime files',
+                    value: -1,
                 },
                 {
-                    label: 'Generate runtime files, but not as a package',
+                    label: 'Generate runtime files as a module "pytransform.py"',
                     value: 0,
                 },
                 {
-                    label: 'Do not generate runtime files',
-                    value: -1,
+                    label: 'Generate runtime files as a package "pytransform"',
+                    value: 1,
+                },
+                {
+                    label: 'Generate runtime files with unique module name "pytransform_SUFFIX.py"',
+                    value: 2,
+                },
+                {
+                    label: 'Generate runtime files with unique package name "pytransform_SUFFIX"',
+                    value: 3,
                 },
             ],
         }

@@ -128,15 +128,17 @@
               placeholder="Name to assign to the bundled app (default: entry script’s basename)"
               v-model="formData.bundleName">
               <el-select
-                style="width: 160px"
+                style="width: 260px"
                 slot="prepend"
                 v-model="formData.target">
-                <el-option label="all to one folder" value="folder"></el-option>
-                <el-option label="all to one file" value="file"></el-option>
+                <el-option label="all to one folder" :value="1"></el-option>
+                <el-option label="all to one file" :value="2"></el-option>
+                <el-option label="all to one file with outer license" :value="3"></el-option>
               </el-select>
             </el-input>
           </el-form-item>
           <el-form-item
+            v-show="formData.target !== 3"
             label="License">
             <select-license-file
               v-model="formData.licenseFile">
@@ -197,14 +199,14 @@ export default {
                 src: '',
                 entry: '',
                 exclude: [],
-                licenseFile: this.feature === 'outer'? 'false' : 'true',
+                licenseFile: 'true',
                 dataFile: [],
                 binaryFile: [],
                 hiddenImport: [],
                 noConsole: false,
                 icon: '',
                 extraOptions: [],
-                target: 'folder',
+                target: 1,
                 output: '',
             },
             rules: {
@@ -231,7 +233,7 @@ export default {
                 entry: [this.formData.entry],
                 include: 'recursive',
                 exclude: this.formData.exclude,
-                buildTarget: 'pack',
+                buildTarget: this.formData.target,
                 output: this.formData.output,
                 bundleName: '',
                 enableSuffix: false,
@@ -245,7 +247,7 @@ export default {
                 obfCode: true,
                 wrapMode: true,
                 advancedMode: false,
-                licenseFile: this.formData.licenseFile,
+                licenseFile: this.formData.target === 3 ? 'false' : this.formData.licenseFile,
                 plugins: []
             }
         },

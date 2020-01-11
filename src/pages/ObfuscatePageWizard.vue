@@ -11,8 +11,6 @@
       <el-step
         title="Mode"></el-step>
       <el-step
-        title="Advanced"></el-step>
-      <el-step
         title="Finish"></el-step>
     </el-steps>
     <el-form
@@ -72,15 +70,15 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Security Level">
+        <el-form-item label="Bootstrap Code">
           <el-select
             class="w-100"
-            placeholder="Select security level"
-            v-model="projectInfo.securityLevel">
+            placeholder="How to insert bootstrap code"
+            v-model="projectInfo.bootstrapCode">
           </el-select>
         </el-form-item>
-        <el-form-item label="Bootstrap Mode">
-          <el-switch v-model="projectInfo.bootstrapCode">
+        <el-form-item label="Advanced Mode">
+          <el-switch v-model="projectInfo.advancedMode">
           </el-switch>
         </el-form-item>
         <el-form-item label="Cross Protection">
@@ -88,7 +86,29 @@
           </el-switch>
         </el-form-item>
       </div>
-      <div class="item-card" v-show="isItemVisible( 'advanced' )">
+      <div class="item-card" v-show="isItemVisible( 'finish' )">
+        <el-form-item
+          label="Output">
+          <select-folder
+            placeholder="The default output path is $src/dist"
+            :root-path="projectInfo.src"
+            :allow-create="true"
+            v-model="projectInfo.output">
+          </select-folder>
+        </el-form-item>
+        <el-form-item
+          label="Package Name">
+          <el-input
+            :disabled="projectInfo.src === ''"
+            :readonly="autoOutputSuffix"
+            placeholder="Append this name to output path"
+            v-model="projectInfo.bundleName">
+            <el-switch
+              slot="prepend"
+              :disabled="projectInfo.src === ''"
+              v-model="autoOutputSuffix"></el-switch>
+          </el-input>
+        </el-form-item>
         <el-form-item
           label="Platforms">
           <el-cascader
@@ -100,82 +120,20 @@
             v-model="projectInfo.platform"
             placeholder="Please select one or more platforms"></el-cascader>
         </el-form-item>
-        <el-form-item
-          label="Enable Suffix">
-          <el-switch v-model="projectInfo.enableSuffix">
-          </el-switch>
+        <el-form-item label="License">
+          <select-license-file
+            v-model="projectInfo.licenseFile"></select-license-file>
         </el-form-item>
-        <el-form-item label="Plugins">
-          <select-path-script
-            :root-path="projectInfo.src"
-            :only-script="true"
-            select-pattern="*.py"
-              v-model="projectInfo.plugins"></select-path-script>
-          </el-form-item>
-          <el-form-item label="Import Runtime">
-            <el-select
-              style="width: 50%"
-              v-model="projectInfo.entryMode"
-              placeholder="Select entry mode">
-              <el-option
-                v-for="item in entryModes"
-                :key="item.label"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
-        </div>
-        <div class="item-card" v-show="isItemVisible( 'finish' )">
-    <el-form-item
-      label="Output">
-      <select-folder
-        placeholder="The default output path is $src/dist"
-        :root-path="projectInfo.src"
-        :allow-create="true"
-        v-model="projectInfo.output">
-      </select-folder>
-    </el-form-item>
-    <el-form-item
-      label="Package Name">
-      <el-input
-        :disabled="projectInfo.src === ''"
-        :readonly="autoOutputSuffix"
-        placeholder="Append this name to output path"
-        v-model="projectInfo.bundleName">
-        <el-switch
-          slot="prepend"
-          :disabled="projectInfo.src === ''"
-          v-model="autoOutputSuffix"></el-switch>
-      </el-input>
-    </el-form-item>
-          <el-form-item
-            label="Runtime Files">
-            <el-select
-              style="width: 50%"
-              v-model="projectInfo.packageRuntime">
-              <el-option
-                v-for="item in runtimeModes"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Script License">
-            <select-license-file
-              v-model="projectInfo.licenseFile"></select-license-file>
-          </el-form-item>
-        </div>
-        <el-form-item>
-          <el-button
-            round
-            plain
-            type="primary"
-            icon="el-icon-position"
-            @click="finish">
-            Obfuscate
-          </el-button>
+      </div>
+      <el-form-item>
+        <el-button
+          round
+          plain
+          type="primary"
+          icon="el-icon-position"
+          @click="finish">
+          Obfuscate
+        </el-button>
           <el-button
             round
             plain
@@ -216,20 +174,19 @@ export default {
     data() {
         return {
             active: 0,
-            steps: ['start', 'mode', 'advanced', 'finish'],
+            steps: ['start', 'mode', 'finish'],
             projectInfo: {
                 title: '',
                 src: '',
                 entry: [],
                 include: 'recursive',
                 exclude: [],
-                buildTarget: 'obf',
+                buildTarget: 0,
                 output: '',
                 bundleName: '',
-                enableSuffix: false,
                 packageRuntime: 1,
                 crossProtection: true,
-                bootstrapCode: true,
+                bootstrapCode: 1,
                 platform: [],
                 restrictMode: 2,
                 obfMod: true,

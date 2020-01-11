@@ -83,7 +83,8 @@ export default {
     },
     methods: {
         getTargetName( target ) {
-            return target === 'pack' ? 'Pack' : 'Obfuscate'
+            return target === 0 ? 'Obfuscate' : target === 1 ? 'One folder bundle'
+                : target === 2 ? 'One file bundle' : 'One file bundle with outer license'
         },
         getProjectOutput( data ) {
             let suffix = data.bundleName && data.bundleName.length ? '/' + data.bundleName : ''

@@ -2,8 +2,8 @@
   <div class="project-file">
     <el-form-item label="Restrict Mode">
       <el-select
-        v-model="projectInfo.restrictMode"
-        placeholder="Select restrict mode">
+        placeholder="Select restrict mode"
+        v-model="projectInfo.restrictMode">
         <el-option
           v-for="item in restrictModes"
           :key="item.value"
@@ -13,19 +13,27 @@
       </el-select>
     </el-form-item>
     <el-form-item label="Obfuscate Module">
-      <el-switch v-model="projectInfo.obfMod">
+      <el-switch
+        active-text="Obfuscate the whole module object"
+        v-model="projectInfo.obfMod">
       </el-switch>
     </el-form-item>
     <el-form-item label="Obfuscate Code Object">
-      <el-switch v-model="projectInfo.obfCode">
+      <el-switch
+        active-text="Obfuscate each code (function) in the module"
+        v-model="projectInfo.obfCode">
       </el-switch>
     </el-form-item>
     <el-form-item label="Wrap Code Object">
-      <el-switch v-model="projectInfo.wrapMode">
+      <el-switch
+        active-text="Obfuscate each code object again as soon as it returns"
+        v-model="projectInfo.wrapMode">
       </el-switch>
     </el-form-item>
     <el-form-item label="Advanced Mode">
-      <el-switch v-model="projectInfo.advancedMode">
+      <el-switch
+        active-text="Change the structure of code object to improve security (only for x86-64 arch)"
+        v-model="projectInfo.advancedMode">
       </el-switch>
     </el-form-item>
   </div>

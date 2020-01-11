@@ -23,9 +23,27 @@
       label-position="left">
       <el-tabs type="border-card">
         <el-tab-pane label="Basic">
+          <el-form-item label="Type">
+            <el-select
+              class="w-50"
+              v-model="projectInfo.buildTarget">
+              <el-option
+                label="Obfuscate"
+                :value="0"></el-option>
+              <el-option
+                label="Pack all to one folder"
+                :value="1"></el-option>
+              <el-option
+                label="Pack all to one file"
+                :value="2"></el-option>
+              <el-option
+                label="Pack all to one file with outer license"
+                :value="3"></el-option>
+            </el-select>
+          </el-form-item>
           <project-input-file v-bind:project-info="projectInfo"></project-input-file>
         </el-tab-pane>
-        <el-tab-pane label="Build Options">
+        <el-tab-pane label="Output">
             <project-input-target v-bind:project-info="projectInfo"></project-input-target>
         </el-tab-pane>
         <el-tab-pane label="Obfuscate Mode">
@@ -75,13 +93,13 @@ export default {
                     entry: [],
                     include: 'recursive',
                     exclude: [],
-                    buildTarget: 'obf',
+                    buildTarget: 0,
                     output: '',
                     bundleName: '',
                     enableSuffix: false,
                     packageRuntime: 1,
                     crossProtection: true,
-                    bootstrapCode: true,
+                    bootstrapCode: 1,
                     platform: [],
                     pack: [],
                     restrictMode: 2,

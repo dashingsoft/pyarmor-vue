@@ -1,29 +1,23 @@
 <template>
   <div class="project-misc">
     <el-form-item label="Cross Protection">
-      <el-switch v-model="projectInfo.crossProtection">
+      <el-switch
+        active-text="Inject cross protection code into entry scripts before obfuscating"
+        v-model="projectInfo.crossProtection">
       </el-switch>
     </el-form-item>
     <el-form-item label="Bootstrap Code">
-      <el-switch v-model="projectInfo.bootstrapCode">
-      </el-switch>
-    </el-form-item>
-    <el-form-item label="Import Runtime">
       <el-select
-        style="width: 50%"
-        v-model="projectInfo.entryMode"
-        placeholder="Select entry mode">
+        class="w-50"
+        placeholder="Select entry mode"
+        v-model="projectInfo.bootstrapCode">
         <el-option
-          v-for="item in entryModes"
+          v-for="item in bootstrapModes"
           :key="item.label"
           :label="item.label"
           :value="item.value">
         </el-option>
       </el-select>
-    </el-form-item>
-    <el-form-item label="Script License">
-      <select-license-file
-        v-model="projectInfo.licenseFile"></select-license-file>
     </el-form-item>
     <el-form-item label="Plugins">
       <select-path-script
@@ -41,18 +35,22 @@ export default {
     props: ['projectInfo'],
     data() {
         return {
-            entryModes: [
+            bootstrapModes: [
                 {
-                    label: 'Auto decided by script name',
-                    value: '',
+                    label: 'Do not insert bootstrap code into entry scripts',
+                    value: 0,
                 },
                 {
-                    label: 'Always absolute import',
-                    value: 'absolute',
+                    label: 'Insert bootstrap code into entry scripts after obfuscated',
+                    value: 1,
                 },
                 {
-                    label: 'Always relative import',
-                    value: 'relative',
+                    label: 'Import the runtime package without leading dot in the bootstrap code',
+                    value: 2,
+                },
+                {
+                    label: 'Import the runtime package with leading dot in the bootstrap code',
+                    value: 3,
                 },
             ],
         }
