@@ -276,7 +276,7 @@ export default {
             }
             else
                 this.path = this.joinPath( value === '' ? this.prefix : this.prefix.concat( value ) )
-            if ( this.path.length > 1 )
+            if ( this.path.length > 1 && this.onlyFolder )
                 localStorage.setItem( 'recent.directory', this.path )
             this.$emit( 'change2', this.path )
         }
