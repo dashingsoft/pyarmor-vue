@@ -186,7 +186,6 @@ export default {
             connector.buildTempProject(
                 this.projectInfo,
                 this.onObfuscateFinished,
-                undefined,
                 'Obfuscate scripts: ' + this.projectInfo.entry.join( ',' )
             )
         },

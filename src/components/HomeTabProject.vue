@@ -106,7 +106,6 @@ export default {
                         showClose: true,
                     } )
                 },
-                undefined,
                 'Building ' + data.name
             )
         },

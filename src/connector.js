@@ -30,18 +30,8 @@ export default new Vue({
         })
     },
     methods: {
-        sendRequest: function (url, data, event, success, error, loading) {
-            const vmloading = typeof loading === undefined
-                  ? null
-                  : this.$loading( {
-                      lock: true,
-                      text: loading,
-                      spinner: 'el-icon-loading',
-                      background: 'rgba(0, 0, 0, 0.7)'
-                  } )
+        sendRequest: function (url, data, event, success, error) {
             let onerror = function (err) {
-                if (vmloading)
-                    vmloading.close()
                 Vue.prototype.$message({
                     type: 'error',
                     message: err,
@@ -53,8 +43,34 @@ export default new Vue({
             }
             let onsuccess = function (resp) {
                 if (resp.err === 0) {
-                    if (vmloading)
-                        vmloading.close()
+                    this.$emit(event, resp.data)
+                    if (typeof success === 'function')
+                        success(resp.data)
+                }
+                else
+                    onerror.call(this, resp.data)
+            }
+            send_request(url, data, onsuccess.bind(this), onerror.bind(this))
+        },
+        loadRequest: function (url, data, event, success, text) {
+            const loading = this.$loading( {
+                      lock: true,
+                      text: text,
+                      spinner: 'el-icon-loading',
+                      background: 'rgba(0, 0, 0, 0.7)'
+                  } )
+            let onerror = function (err) {
+                loading.close()
+                Vue.prototype.$message({
+                    type: 'error',
+                    message: err,
+                    showClose: true
+                })
+                this.$emit(event + '-fail')
+            }
+            let onsuccess = function (resp) {
+                if (resp.err === 0) {
+                    loading.close()
                     this.$emit(event, resp.data)
                     if (typeof success === 'function')
                         success(resp.data)
@@ -92,17 +108,17 @@ export default new Vue({
             let url = this.serverUrl + 'project/update'
             this.sendRequest(url, data, 'update-project', success, error)
         },
-        buildProject: function (data, success, error, loading) {
+        buildProject: function (data, success, text) {
             let url = this.serverUrl + 'project/build'
-            this.sendRequest(url, data, 'build-project', success, error, loading)
+            this.loadRequest(url, data, 'build-project', success, text)
         },
         removeProject: function (data, success, error) {
             let url = this.serverUrl + 'project/remove'
             this.sendRequest(url, data, 'remove-project', success, error)
         },
-        buildTempProject: function (data, success, error, loading) {
+        buildTempProject: function (data, success, text) {
             let url = this.serverUrl + 'project/build_temp'
-            this.sendRequest(url, data, 'build-temp-project', success, error, loading)
+            this.loadRequest(url, data, 'build-project', success, text)
         },
         listProject: function (data, success, error) {
             let url = this.serverUrl + 'project/list'

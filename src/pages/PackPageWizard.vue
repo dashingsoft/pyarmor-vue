@@ -278,7 +278,6 @@ export default {
             connector.buildTempProject(
                 this.projectInfo,
                 this.onPackSuccess,
-                undefined,
                 'Packing script ' + this.formData.entry
             )
         },
