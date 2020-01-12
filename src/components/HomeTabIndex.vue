@@ -96,7 +96,10 @@
       :visible.sync="dialogVisible">
       <p>Please select one regfile, for example, pyarmor-regfile-1.zip</p>
       <select-folder
-        v-model="regfile"></select-folder>
+        select-pattern="pyarmor-*.zip"
+        :only-folder="false"
+        v-model="regfile">
+      </select-folder>
       <p>No this file?
         <el-link
           :underline="false"
@@ -146,6 +149,7 @@ export default {
                 connector.registerProduct(this.regfile, (data) => {
                     connector.$emit('query-version', data)
                     this.dialogVisible = false
+                    this.$message('Register PyArmor successfully')
                 } )
             }
             else {

@@ -5,8 +5,10 @@
     <div v-if="versionInfo.version">
       <p>pyarmor-server: {{ versionInfo.server }}</p>
       <p>Python: {{ versionInfo.python }}</p>
-      <p>pyarmor ({{ versionInfo.tag }}): {{ versionInfo.version }}</p>
-      <p v-if="versionInfo.regcode.length">Registeration code: {{ versionInfo.regcode }}</p>
+      <p v-if="versionInfo.regcode.length">
+        pyarmor ({{ versionInfo.regcode }}): {{ versionInfo.version }}
+      </p>
+      <p v-else>pyarmor ({{ versionInfo.tag }}): {{ versionInfo.version }}</p>
       <p v-if="versionInfo.reginfo.length">{{ versionInfo.reginfo }}</p>
     </div>
     <div v-else>

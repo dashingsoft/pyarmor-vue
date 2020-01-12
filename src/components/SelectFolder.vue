@@ -94,6 +94,10 @@ export default {
             type: Boolean,
             default: true
         },
+        selectPattern: {
+            type: String,
+            default: '*'
+        },
         placeholder: {
             type: String,
             default: ''

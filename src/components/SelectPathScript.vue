@@ -102,7 +102,7 @@ export default {
             let path = level === 0 ? [] : this.path.slice( 0, level - 1 ).concat( node.value )
             connector.listDirectory(
                 {
-                    path: this.splitPath( this.rootPath ).concat( path ).join( '/' ),
+                    path: this.joinPath( this.splitPath( this.rootPath ).concat( path ) ),
                     pattern: this.selectPattern,
                 },
                 data => {
