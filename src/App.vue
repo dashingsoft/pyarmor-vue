@@ -117,21 +117,25 @@ export default {
     },
     methods: {
         onChangeCurrentPage: function (name, props) {
-            this.pageStack.push([name, props])
-            this.currentPageName = name
-            this.currentPageProps = props
+            this.$nextTick( () => {
+                this.pageStack.push([name, props])
+                this.currentPageName = name
+                this.currentPageProps = props
+            } )
         },
         onCloseCurrentPage: function () {
-            this.pageStack.pop()
-            if ( this.pageStack.length ) {
-                let page = this.pageStack.slice(-1)[0]
-                this.currentPageName = page[0]
-                this.currentPageProps = page[1]
-            }
-            else {
-                this.currentPageName = ''
-                this.currentPageProps = {}
-            }
+            this.$nextTick( () => {
+                this.pageStack.pop()
+                if ( this.pageStack.length ) {
+                    let page = this.pageStack.slice(-1)[0]
+                    this.currentPageName = page[0]
+                    this.currentPageProps = page[1]
+                }
+                else {
+                    this.currentPageName = ''
+                    this.currentPageProps = {}
+                }
+            } )
         },
         onSelectMenuItem: function (index) {
             this.currentTabName = index
