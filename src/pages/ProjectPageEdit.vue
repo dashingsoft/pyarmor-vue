@@ -80,9 +80,9 @@ export default {
         ProjectInputMisc
     },
     props: {
-        features: {
-            type: String,
-            default: ''
+        target: {
+            type: Number,
+            default: 0
         },
         projectInfo: {
             type: Object,
@@ -93,7 +93,7 @@ export default {
                     entry: [],
                     include: 'recursive',
                     exclude: [],
-                    buildTarget: 0,
+                    buildTarget: this.target,
                     output: '',
                     bundleName: '',
                     enableSuffix: false,

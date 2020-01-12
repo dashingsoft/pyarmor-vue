@@ -5,11 +5,11 @@
       content="Obfuscate Script Wizard">
     </el-page-header>
     <el-divider></el-divider>
-    <el-steps :active="active" align-center>
+    <el-steps :active="active" simple>
       <el-step
         title="Start"></el-step>
       <el-step
-        title="Mode"></el-step>
+        title="Advanced"></el-step>
       <el-step
         title="Finish"></el-step>
     </el-steps>
@@ -17,72 +17,16 @@
       ref="form"
       :model="projectInfo"
       :rules="rules"
-      label-width="160px">
+      label-width="200px">
       <div class="item-card" v-show="isItemVisible( 'start' )">
-        <el-form-item
-          :rules="rules.src"
-          prop="src"
-          label="Src">
-          <select-folder
-            placeholder="Base path to find .py files"
-            v-model="projectInfo.src">
-          </select-folder>
-        </el-form-item>
-        <el-form-item label="Scripts">
-          <select-path-script
-            placeholder="Select one or more entry scripts"
-            select-pattern="*.py"
-            :only-script="true"
-            :root-path="projectInfo.src"
-            v-model="projectInfo.entry">
-          </select-path-script>
-        </el-form-item>
-        <el-form-item label="Include">
-          <el-select
-            class="w-100"
-            v-model="projectInfo.include">
-            <el-option
-              v-for="item in includeOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Exclude">
-          <select-path-script
-            placeholder="Select path and scripts to exclude"
-            :root-path="projectInfo.src"
-            v-model="projectInfo.exclude">
-          </select-path-script>
-        </el-form-item>
+        <project-input-file v-bind:project-info="projectInfo"></project-input-file>
       </div>
-      <div class="item-card" v-show="isItemVisible( 'mode' )">
-        <el-form-item label="Restrict Mode">
-          <el-select
-            v-model="projectInfo.restrictMode"
-            placeholder="Select restrict mode">
-            <el-option
-              v-for="item in restrictModes"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Bootstrap Code">
-          <el-select
-            class="w-100"
-            placeholder="How to insert bootstrap code"
-            v-model="projectInfo.bootstrapCode">
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Advanced Mode">
-          <el-switch v-model="projectInfo.advancedMode">
-          </el-switch>
-        </el-form-item>
+      <div class="item-card" v-show="isItemVisible( 'advanced' )">
+        <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
         <el-form-item label="Cross Protection">
-          <el-switch v-model="projectInfo.crossProtection">
+          <el-switch
+            active-text="Inject cross protection code into entry scripts before obfuscating"
+            v-model="projectInfo.crossProtection">
           </el-switch>
         </el-form-item>
       </div>
@@ -111,14 +55,9 @@
         </el-form-item>
         <el-form-item
           label="Platforms">
-          <el-cascader
+          <select-platform
             class="w-100"
-            clearable
-            :options="platforms"
-            :props="{ label: 'value', multiple: true }"
-            :show-all-levels="false"
-            v-model="projectInfo.platform"
-            placeholder="Please select one or more platforms"></el-cascader>
+            v-model="projectInfo.platform"></select-platform>
         </el-form-item>
         <el-form-item label="License">
           <select-license-file
@@ -161,10 +100,17 @@
 </template>
 
 <script>
+import ProjectInputFile from './ProjectInputFile.vue'
+import ProjectInputMisc from './ProjectInputMisc.vue'
+
 import connector from '../connector.js'
 
 export default {
     name: 'ObfuscatePageWizard',
+    components: {
+        ProjectInputFile,
+        ProjectInputMisc
+    },
     props: {
         feature:  {
             type: String,
@@ -174,7 +120,7 @@ export default {
     data() {
         return {
             active: 0,
-            steps: ['start', 'mode', 'finish'],
+            steps: ['start', 'advanced', 'finish'],
             projectInfo: {
                 title: '',
                 src: '',
@@ -199,12 +145,19 @@ export default {
             rules: {
                 src: [ { required: true } ],
                 entry: [ { required: true } ]
-            }
+            },
+            outputSuffixMode: false,
         }
     },
     computed: {
-        projectData() {
-            return this.projectInfo
+        autoOutputSuffix: {
+            get() {
+                return this.outputSuffixMode
+            },
+            set( value ) {
+                this.outputSuffixMode = value
+                this.projectInfo.bundleName = value ? this.projectInfo.src.split( '/' ).pop() : ''
+            }
         },
     },
     methods: {
@@ -220,7 +173,7 @@ export default {
             this.$refs['form'].validate( (valid) => {
                 if (!valid)
                     return false
-                this.feature === 'project' ? this.newProject() : this.obfuscateScript()
+                this.obfuscateScript()
             } )
         },
         isItemVisible( name ) {
@@ -231,24 +184,16 @@ export default {
         },
         obfuscateScript() {
             connector.buildTempProject(
-                this.projectData,
+                this.projectInfo,
                 this.onObfuscateFinished,
                 undefined,
-                'Obfuscate scripts: ' + this.projectData.entry.join( ',' )
+                'Obfuscate scripts: ' + this.projectInfo.entry.join( ',' )
             )
-        },
-        newProject() {
-            connector.newProject( this.projectData, this.onProjectCreated )
         },
         onObfuscateFinished(output) {
             this.$message( 'Obfuscate the scripts successfully, ' +
                            'the result is saved to ' + output )
-            this.goBack()
         },
-        onProjectCreated(data) {
-            this.$message( 'Create project ' + data.name + ' successfully' )
-            this.goBack()
-        }
     }
 }
 </script>

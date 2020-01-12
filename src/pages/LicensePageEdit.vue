@@ -34,7 +34,7 @@
         ref="machine"
         v-bind:license-info="licenseInfo"></license-input-machine>
       <el-form-item
-        v-if="hasFeature('mode')"
+        v-if="0"
         label="Disable Restrict Mode">
         <el-switch
           v-model="licenseInfo.disable_restrict_mode"

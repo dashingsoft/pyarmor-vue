@@ -3,108 +3,172 @@
     <h1 style="text-align: center">Home</h1>
     <el-row :gutter="12">
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openObfuscateWizard()">
-            Obfuscate Script Wizard
+            <img src="shield-alt.svg" class="icon"/>
+            <p>Obfuscate Script Wizard</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openObfuscateWizard('project')">
-            Obfuscate with project
+            <img src="folder.svg" class="icon"/>
+            <p>Obfuscate With Project</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openPackWizard()">
-            Pack Script Wizard
+            <img src="cog.svg" class="icon"/>
+            <p>Pack Script Wizard</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openPackWizard('project')">
-            Pack with project
+            <img src="folder-solid.svg" class="icon"/>
+            <p>Pack With Project</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openLicenseWizard('expired')">
-            Generate Expired License
+            <img src="calendar.svg" class="icon"/>
+            <p>Generate Expired License</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openLicenseWizard('machine')">
-            Fixed Machine License
+            <img src="tablet-alt.svg" class="icon"/>
+            <p>Fixed Machine License</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="openLicenseWizard('all')">
-            Full Features License
+            <img src="calendar-alt.svg" class="icon"/>
+            <p>Full Features License</p>
           </el-button>
         </el-card>
       </el-col>
       <el-col :span="6">
-        <el-card shadow="hover">
+        <el-card shadow="never">
           <el-button
-            type="text"
+            size="medium"
+            class="btn"
             @click="registerProduct">
-            Register PyArmor
+            <img src="registered.svg" class="icon"/>
+            <p>Register PyArmor</p>
           </el-button>
         </el-card>
       </el-col>
     </el-row>
+    <el-dialog
+      title="Register PyArmor"
+      :visible.sync="dialogVisible">
+      <p>Please select one regfile, for example, pyarmor-regfile-1.zip</p>
+      <select-folder
+        v-model="regfile"></select-folder>
+      <p>No this file?
+        <el-link
+          :underline="false"
+          target="_blank"
+          type="primary"
+          href="https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1">
+          Click here to purchase one</el-link>
+      </p>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="handleRegister">Register</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import connector from '../connector.js'
+
 export default {
     name: 'HomeTabIndex',
     data() {
         return {
-            activeName: ''
+            regfile: '',
+            dialogVisible: false,
         }
     },
     methods: {
         openObfuscateWizard(name) {
-            this.$emit('change-current-page', 'ObfuscatePageWizard', { feature: name } )
+            this.$emit('change-current-page',
+                       name === 'project' ? 'ProjectPageEdit' : 'ObfuscatePageWizard')
         },
         openPackWizard(name) {
-            this.$emit('change-current-page', 'PackPageWizard', { feature: name } )
+            if (name === 'project')
+                this.$emit('change-current-page', 'ProjectPageEdit', { target: 1 } )
+            else
+                this.$emit('change-current-page', 'PackPageWizard')
         },
         openLicenseWizard(name) {
             this.$emit('change-current-page', 'LicensePageEdit', { feature: name })
         },
         registerProduct() {
-            this.$message('Register pyarmor with pyarmor-regfile-1.zip')
+            this.dialogVisible = true
         },
+        handleRegister() {
+            if (this.regfile.length) {
+                connector.registerProduct(this.regfile, (data) => {
+                    connector.$emit('query-version', data)
+                    this.dialogVisible = false
+                } )
+            }
+            else {
+                this.$message('regfile is empty')
+            }
+        }
     },
 }
 </script>
 
 <style scoped>
 .el-col {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.el-card {
+    border: 0;
+}
+.btn {
+    border: 0;
+    padding: 32px;
+}
+.icon {
+    width: 32px;
 }
 </style>

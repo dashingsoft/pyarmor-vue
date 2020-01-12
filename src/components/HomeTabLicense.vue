@@ -26,7 +26,7 @@
             <el-form-item label="Mac Address">
               <span>{{ props.row.mac }}</span>
             </el-form-item>
-            <el-form-item label="Disable Restrict Mode">
+            <el-form-item v-if="0" label="Disable Restrict Mode">
               <span>{{ props.row.disable_restrict_mode }}</span>
             </el-form-item>
             <el-form-item label="Extra Data">

@@ -138,9 +138,9 @@
             </el-input>
           </el-form-item>
           <el-form-item
-            v-show="formData.target !== 3"
             label="License">
             <select-license-file
+              :disabled="formData.target === 3"
               v-model="formData.licenseFile">
             </select-license-file>
           </el-form-item>
@@ -265,7 +265,7 @@ export default {
             this.$refs['form'].validate( (valid) => {
                 if (!valid)
                     return false
-                this.feature === 'project' ? this.newProject() : this.packScript()
+                this.packScript()
             } )
         },
         isItemVisible( name ) {
@@ -282,18 +282,10 @@ export default {
                 'Packing script ' + this.formData.entry
             )
         },
-        newProject() {
-            connector.newProject( this.projectInfo, this.onProjectCreated )
-        },
         onPackFinished(output) {
             this.$message( 'Pack the obfuscated script successfully, ' +
                            'the final bundle is saved to ' + output )
-            this.goBack()
         },
-        onProjectCreated(data) {
-            this.$message( 'Create project ' + data.name + ' successfully' )
-            this.goBack()
-        }
     }
 }
 </script>

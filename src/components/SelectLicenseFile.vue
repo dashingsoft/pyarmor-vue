@@ -6,6 +6,7 @@
     filterable
     clearable
     remote
+    :disabled="disabled"
     :remote-method="listRemoteLicenses"
     :loading="loading"
     @change="onValueChanged"
@@ -30,6 +31,7 @@ export default {
     },
     props: {
         value2: String,
+        disabled: Boolean,
     },
     data() {
         return {

@@ -1,0 +1,85 @@
+<template>
+  <el-cascader
+    class="w-100"
+    clearable
+    :disabled="disabled"
+    :multiple="multiple"
+    :options="platforms"
+    :props="{ label: 'value', multiple: true }"
+    :show-all-levels="false"
+    placeholder="Cross platform, select one or more platforms to run obfuscated scripts"
+    v-model="value"></el-cascader>
+</template>
+
+<script>
+export default {
+    name: 'SelectPlatform',
+    model: {
+        prop: 'value2',
+        event: 'change2',
+    },
+    props: {
+        value2: Array,
+        disabled: Boolean,
+        multiple: Boolean,
+    },
+    data() {
+        return {
+            value: [],
+            platforms: [
+                { value: 'More security', children: [
+                    { value: 'Common', children: [
+                        { value: 'windows.x86_64.7' },
+                        { value: 'linux.x86_64.7' },
+                        { value: 'darwin.x86_64.7' },
+                        { value: 'windows.x86.7' },
+                        { value: 'linux.x86.7' },
+                    ] },
+                    { value: 'arm', children: [
+                        { value: 'linux.armv7.3' },
+                        { value: 'linux.aarch32.3' },
+                        { value: 'linux.aarch64.3' },
+                    ] },
+                    { value: 'others', children: [
+                        { value: 'centos6.x86_64.7' },
+                    ] }
+                ] },
+                { value: 'More quickly', children: [
+                    { value: 'Common', children: [
+                        { value: 'windows.x86_64.0' },
+                        { value: 'linux.x86_64.0' },
+                        { value: 'darwin.x86_64.0' },
+                        { value: 'windows.x86.0' },
+                        { value: 'linux.x86.0' },
+                    ] },
+                    { value: 'arm', children: [
+                        { value: 'alpine.arm.0' },
+                        { value: 'linux.arm.0' },
+                        { value: 'linux.armv7.0' },
+                        { value: 'linux.aarch32.0' },
+                        { value: 'linux.aarch64.0' },
+                        { value: 'darwin.arm64.0' },
+                    ] },
+                    { value: 'others', children: [
+                        { value: 'vs2015.x86_64.0' },
+                        { value: 'vs2015.x86.0' },
+                        { value: 'alpine.x86_64.0' },
+                        { value: 'android.aarch64.0' },
+                        { value: 'linux.ppc64.0' },
+                        { value: 'freebsd.x86_64.0' },
+                        { value: 'poky.x86.0' },
+                    ] }
+                ] }
+            ],
+        }
+    },
+    mounted() {
+        this.value = this.value2
+    },
+    methods: {
+        onValueChanged( value ) {
+            this.$emit( 'change2', value )
+        },
+    }
+}
+</script>

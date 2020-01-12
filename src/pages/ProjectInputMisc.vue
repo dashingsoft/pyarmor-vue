@@ -1,10 +1,16 @@
 <template>
   <div class="project-misc">
-    <el-form-item label="Cross Protection">
-      <el-switch
-        active-text="Inject cross protection code into entry scripts before obfuscating"
-        v-model="projectInfo.crossProtection">
-      </el-switch>
+    <el-form-item label="Restrict Mode">
+      <el-select
+        placeholder="Select restrict mode"
+        v-model="projectInfo.restrictMode">
+        <el-option
+          v-for="item in restrictModes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </el-form-item>
     <el-form-item label="Bootstrap Code">
       <el-select
@@ -19,13 +25,20 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Plugins">
-      <select-path-script
-        :root-path="projectInfo.src"
-        :only-script="true"
-        select-pattern="*.py"
-        v-model="projectInfo.plugins"></select-path-script>
-    </el-form-item>
+      <el-form-item
+        label="Package Runtime">
+        <el-select
+          key="package-runtime"
+          style="width: 50%"
+          v-model="projectInfo.packageRuntime">
+          <el-option
+            v-for="item in runtimeModes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
   </div>
 </template>
 
@@ -51,6 +64,50 @@ export default {
                 {
                     label: 'Import the runtime package with leading dot in the bootstrap code',
                     value: 3,
+                },
+            ],
+            runtimeModes: [
+                {
+                    label: 'Do not generate runtime files',
+                    value: -1,
+                },
+                {
+                    label: 'Generate runtime files as a module "pytransform.py"',
+                    value: 0,
+                },
+                {
+                    label: 'Generate runtime files as a package "pytransform"',
+                    value: 1,
+                },
+                {
+                    label: 'Generate runtime files with unique module name "pytransform_SUFFIX.py"',
+                    value: 2,
+                },
+                {
+                    label: 'Generate runtime files with unique package name "pytransform_SUFFIX"',
+                    value: 3,
+                },
+            ],
+            restrictModes: [
+                {
+                    label: 'Disable restrict mode',
+                    value: 0,
+                },
+                {
+                    label: 'Mode 1',
+                    value: 1,
+                },
+                {
+                    label: 'Mode 2',
+                    value: 2,
+                },
+                {
+                    label: 'Mode 3',
+                    value: 3,
+                },
+                {
+                    label: 'Mode 4',
+                    value: 4,
                 },
             ],
         }

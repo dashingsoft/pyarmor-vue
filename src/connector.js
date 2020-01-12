@@ -68,6 +68,10 @@ export default new Vue({
             let url = this.serverUrl + 'version'
             this.sendRequest(url, data, 'query-version', success, error)
         },
+        registerProduct: function (data, success, error) {
+            let url = this.serverUrl + 'register'
+            this.sendRequest(url, data, 'register-product', success, error)
+        },
         listDirectory: function (data, success, error) {
             let url = this.serverUrl + 'directory/list'
             this.sendRequest(url, data, 'list-directory', success, error)
