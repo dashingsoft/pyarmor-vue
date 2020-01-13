@@ -12,7 +12,13 @@
       <p v-if="versionInfo.reginfo.length">{{ versionInfo.reginfo }}</p>
     </div>
     <div v-else>
-      <p>PyArmor server is not running at http://localhost:9096/</p>
+      <p>PyArmor server is not running on <span>http://localhost:9096/</span>. Make sure the server is running, or click here to
+        <el-button
+          type="text"
+          @click="$emit('connect-server')">
+          connect another server url
+        </el-button>
+      </P>
     </div>
     <p>PyArmor is a powerful tool in the field of protecting and distributing python scripts.</p>
     <p>The goal of PyArmor is to make Python applied to commercial application easily.</p>

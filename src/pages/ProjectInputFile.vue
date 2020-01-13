@@ -53,7 +53,7 @@ export default {
                 },
                 {
                     label: 'Only the ".py" files in the src path',
-                    value: 'glob'
+                    value: 'list'
                 },
                 {
                     label: 'All the scripts in the src path recursively',

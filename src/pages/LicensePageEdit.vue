@@ -16,7 +16,7 @@
         label="Name"
         prop="name">
         <el-input
-          :disabled="licenseInfo.id"
+          :disabled="!!licenseInfo.id"
           maxlength="60"
           show-word-limit
           placeholder="Leave it blank to set default name like 'reg-xxxxxx'"
@@ -30,7 +30,7 @@
           v-model="licenseInfo.expired"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="Set the expired date of the obfuscated scripts">
+          placeholder="Expired the obfuscated scripts">
         </el-date-picker>
       </el-form-item>
       <license-input-machine
@@ -62,7 +62,6 @@
           {{ licenseInfo.id ? "Update" : "Create" }}
         </el-button>
         <el-button v-on:click="goBack">Cancel</el-button>
-        <el-button v-on:click="resetForm">Reset</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -101,6 +100,7 @@ export default {
     },
     data() {
         return {
+            cachedValue: JSON.stringify( this.licenseInfo ),
             rules: {
                 name: { pattern: '[-._0-9a-zA-Z]*', message: 'Invalid input', trigger: 'change' }
             }
@@ -114,7 +114,11 @@ export default {
             this.$emit('close-current-page')
         },
         resetForm() {
-            this.$message(JSON.stringify(this.licenseInfo))
+            let obj = JSON.parse(this.cachedValue)
+            Object.keys(obj).map( k => {
+                if ( obj[ k ] !== this.licenseInfo[ k ] )
+                    this.licenseInfo[ k ] = obj[ k ]
+            } )
         },
         onSubmit() {
             this.$refs['form'].validate((valid) => {

@@ -34,14 +34,16 @@ export default new Vue({
     methods: {
         sendRequest: function (url, data, event, success, error) {
             let onerror = function (err) {
-                Vue.prototype.$message({
-                    type: 'error',
-                    message: err,
-                    showClose: true
-                })
-                this.$emit(event + '-fail')
                 if (typeof error === 'function')
                     error(err)
+                else
+                    Vue.prototype.$message({
+                        type: 'error',
+                        message: typeof error === 'string' ? error :
+                            typeof err === 'string' ? err : JSON.stringify(err),
+                        showClose: true
+                    })
+                this.$emit(event + '-fail')
             }
             let onsuccess = function (resp) {
                 if (resp.err === 0) {
@@ -65,7 +67,7 @@ export default new Vue({
                 loading.close()
                 Vue.prototype.$message({
                     type: 'error',
-                    message: err,
+                    message: typeof err === 'string' ? err : JSON.stringify(err),
                     showClose: true
                 })
                 this.$emit(event + '-fail')

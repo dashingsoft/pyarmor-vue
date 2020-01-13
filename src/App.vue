@@ -4,7 +4,7 @@
       <el-aside>
         <el-container>
           <img class="brand-logo" src="./assets/logo.png">
-          <el-button type="text" class="brand-text">PyArmor</el-button>
+          <el-button type="text" class="brand-text" @click="onConnectServer">PyArmor</el-button>
           <el-badge v-bind:value="versionInfo.tag" type="warning">
           </el-badge>
         </el-container>
@@ -42,9 +42,11 @@
         </el-header>
         <el-main style="padding-top: 0">
           <keep-alive>
-            <component v-on:change-current-page="onChangeCurrentPage"
-                       v-bind:version-info="versionInfo"
-                       v-bind:is="currentTabComponent"></component>
+            <component
+              v-on:change-current-page="onChangeCurrentPage"
+              v-on:connect-server="onConnectServer"
+              v-bind:version-info="versionInfo"
+              v-bind:is="currentTabComponent"></component>
           </keep-alive>
         </el-main>
       </el-container>
@@ -55,6 +57,19 @@
                  v-bind="currentPageProps"
                  v-bind:is="currentPageComponent"></component>
     </el-container>
+    <el-dialog
+      title="Connect PyArmor Server"
+      :visible.sync="dialogVisible">
+      <p>Please type pyarmor server url:</p>
+      <el-input
+        v-model="serverUrl">
+      </el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="resetServer">Reset</el-button>
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="connectServer">Connect</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -92,6 +107,7 @@ export default {
             currentPageProps: {},
             pageStack: [],
             connected: false,
+            dialogVisible: false,
             versionInfo: {
                 tag: 'Off',
                 version: '',
@@ -103,9 +119,7 @@ export default {
         }
     },
     mounted: function () {
-        connector.$on('query-version', this.onConnectSuccess)
-        connector.$on('query-version-fail', this.onConnectFailed)
-        connector.queryVersion()
+        connector.queryVersion({}, this.onConnectSuccess,this.onConnectFailed)
     },
     computed: {
         currentTabComponent: function () {
@@ -155,6 +169,9 @@ export default {
                 message: 'Could not connect PyArmor server',
                 type: 'error'
             })
+        },
+        onConnectServer() {
+            this.dialogVisible = true
         },
         changeLanguage: function (lang) {
             locale.use(lang)
