@@ -83,6 +83,7 @@ export default {
     mounted: function () {
         connector.$on('list-license', this.onListLicense)
         connector.$on('new-license', this.onLicenseCreated)
+        connector.$on('update-license', this.onLicenseUpdated)
         connector.$on('remove-license', this.onLicenseRemoved)
         this.refreshData()
     },
@@ -94,7 +95,8 @@ export default {
             this.$emit('change-current-page', 'LicensePageEdit')
         },
         editLicense: function (data) {
-            this.$emit('change-current-page', 'LicensePageEdit', { licenseInfo: data })
+            this.$emit('change-current-page', 'LicensePageEdit',
+                       { licenseInfo: JSON.parse( JSON.stringify( data ) ) })
         },
         removeLicense: function (data) {
             this.$confirm('Are you sure remove this license: ' + data.rcode + '?', 'Confirm', {
@@ -111,6 +113,14 @@ export default {
         onLicenseCreated: function (data) {
             if (this.tableData.length === 0 || this.tableData.slice(-1)[0].id !== data.id)
                 this.tableData.push(data)
+        },
+        onLicenseUpdated: function (data) {
+            for (var i = 0; i < this.tableData.length; i ++) {
+                if (this.tableData[i].id === data.id) {
+                    this.tableData[i] = data
+                    break
+                }
+            }
         },
         onLicenseRemoved: function (data) {
             for (var i = 0; i < this.tableData.length; i ++) {

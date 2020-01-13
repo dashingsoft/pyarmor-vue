@@ -97,7 +97,7 @@ export default {
             ],
             restrictModes: [
                 {
-                    label: 'Disable restrict mode',
+                    label: 'Mode 0, disable all the restricts for the obfuscated scripts',
                     value: 0,
                 },
                 {

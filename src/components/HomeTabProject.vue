@@ -110,7 +110,8 @@ export default {
             )
         },
         editProject: function (data) {
-            this.$emit('change-current-page', 'ProjectPageEdit', { projectInfo: data } )
+            this.$emit('change-current-page', 'ProjectPageEdit',
+                       { projectInfo: JSON.parse( JSON.stringify( data ) ) } )
         },
         removeProject: function (data) {
             this.$confirm('Are you sure remove this project: ' + data.name + '?', 'Confirm', {

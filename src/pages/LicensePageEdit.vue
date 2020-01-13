@@ -5,28 +5,32 @@
       :content="licenseInfo.id ? 'Edit License' : 'New License'">
     </el-page-header>
     <el-divider></el-divider>
-    <el-form ref="form"
-             v-bind:model="licenseInfo"
-             v-bind:rules="rules"
-             label-width="auto"
-             label-position="left">
+    <el-form
+      ref="form"
+      v-bind:model="licenseInfo"
+      v-bind:rules="rules"
+      label-width="auto"
+      label-position="left">
       <el-form-item
         v-if="hasFeature('name')"
         label="Name"
         prop="name">
-        <el-input v-model="licenseInfo.rcode"
-                  :disabled="licenseInfo.id"
-                  maxlength="60"
-                  show-word-limit></el-input>
+        <el-input
+          :disabled="licenseInfo.id"
+          maxlength="60"
+          show-word-limit
+          placeholder="Leave it blank to set default name like 'reg-xxxxxx'"
+          v-model="licenseInfo.rcode"></el-input>
       </el-form-item>
       <el-form-item
         v-if="hasFeature('expired')"
         label="Expired">
         <el-date-picker
+          class="w-50"
           v-model="licenseInfo.expired"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="Select expired date">
+          placeholder="Set the expired date of the obfuscated scripts">
         </el-date-picker>
       </el-form-item>
       <license-input-machine
@@ -37,25 +41,28 @@
         v-if="0"
         label="Disable Restrict Mode">
         <el-switch
-          v-model="licenseInfo.disableRestrictMode"
-          placeholder="">
+          v-model="licenseInfo.disableRestrictMode">
         </el-switch>
       </el-form-item>
       <el-form-item
         v-if="hasFeature('extra')"
         label="Extra Data">
-        <el-input v-model="licenseInfo.extraData"
-                  type="textarea"
-                  maxlength="600"
-                  show-word-limit
-                  autosize></el-input>
+        <el-input
+          placeholder="Any ascii string data to store in the license file"
+          type="textarea"
+          maxlength="600"
+          show-word-limit
+          autosize
+          v-model="licenseInfo.extraData"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" v-on:click="onSubmit">
+        <el-button
+          type="primary"
+          v-on:click="onSubmit">
           {{ licenseInfo.id ? "Update" : "Create" }}
         </el-button>
-    <el-button v-on:click="goBack">Cancel</el-button>
-            <el-button v-on:click="resetForm">Reset</el-button>
+        <el-button v-on:click="goBack">Cancel</el-button>
+        <el-button v-on:click="resetForm">Reset</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -95,9 +102,7 @@ export default {
     data() {
         return {
             rules: {
-                name: [
-                    { pattern: '[-._0-9a-zA-Z]*', message: 'Invalid input', trigger: 'change' }
-                ]
+                name: { pattern: '[-._0-9a-zA-Z]*', message: 'Invalid input', trigger: 'change' }
             }
         }
     },
@@ -109,18 +114,7 @@ export default {
             this.$emit('close-current-page')
         },
         resetForm() {
-            let msg = []
-            this.$refs.form.fields.forEach( field => {
-                msg.push( 'Init value: ' + JSON.stringify(field.initialValue)
-                          + ', field value: ' + JSON.stringify(field.fieldValue)
-                          + ', this.value:' + JSON.stringify(field.value))
-            } )
-            this.$message({
-                message: msg.join('\t : \n'),
-                showClose: true,
-                duration: 0
-            })
-            this.$refs.form.resetFields()
+            this.$message(JSON.stringify(this.licenseInfo))
         },
         onSubmit() {
             this.$refs['form'].validate((valid) => {

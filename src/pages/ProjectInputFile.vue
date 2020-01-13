@@ -48,15 +48,15 @@ export default {
         return {
             includeOptions: [
                 {
-                    label: 'Only the scripts in the list',
+                    label: 'Only the scripts list above',
                     value: 'exact',
                 },
                 {
-                    label: 'All the scripts in the src path',
+                    label: 'Only the ".py" files in the src path',
                     value: 'glob'
                 },
                 {
-                    label: 'Recursively the scripts in the src path',
+                    label: 'All the scripts in the src path recursively',
                     value: 'all'
                 },
             ],

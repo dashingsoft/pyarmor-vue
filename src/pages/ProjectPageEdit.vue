@@ -86,7 +86,7 @@ export default {
         },
         projectInfo: {
             type: Object,
-            default: function () {
+            default () {
                 return {
                     title: '',
                     src: '',

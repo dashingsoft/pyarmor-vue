@@ -38,15 +38,10 @@ export default {
         disabled: Boolean,
         multiple: Boolean,
     },
-    mounted() {
-        this.value = this.value2
-        if ( this.value2.length && this.values[0][1].slice(-2) === '.0' )
-            this.level = 1
-    },
     data() {
         return {
-            level: 0,
-            value: [],
+            level: ( this.value2.length && this.value2[0][1].slice(-2) === '.0' ) ? 1 : 0,
+            value: this.value2,
             platforms: [
                 [ { value: 'Common', children: [
                     { value: 'windows.x86_64.7' },
