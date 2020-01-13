@@ -125,12 +125,12 @@ export default {
                 title: '',
                 src: '',
                 entry: [],
-                include: 'recursive',
+                include: 'all',
                 exclude: [],
                 buildTarget: 0,
                 output: '',
                 bundleName: '',
-                packageRuntime: 1,
+                runtimeMode: 1,
                 crossProtection: true,
                 bootstrapCode: 1,
                 platforms: [],
@@ -143,8 +143,8 @@ export default {
                 plugins: []
             },
             rules: {
-                src: [ { required: true } ],
-                entry: [ { required: true } ]
+                src: { required: true },
+                entry: { required: true }
             },
             outputSuffixMode: false,
         }
@@ -183,7 +183,7 @@ export default {
             this.$emit('close-current-page')
         },
         obfuscateScript() {
-            connector.buildTempProject(
+            connector.buildProject(
                 this.projectInfo,
                 this.onObfuscateFinished,
                 'Obfuscate scripts: ' + this.projectInfo.entry.join( ',' )

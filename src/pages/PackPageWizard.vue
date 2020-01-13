@@ -231,13 +231,12 @@ export default {
             return {
                 src: this.formData.src,
                 entry: [this.formData.entry],
-                include: 'recursive',
+                include: 'all',
                 exclude: this.formData.exclude,
                 buildTarget: this.formData.target,
                 output: this.formData.output,
                 bundleName: '',
-                enableSuffix: false,
-                packageRuntime: 1,
+                runtimeMode: 1,
                 crossProtection: true,
                 bootstrapCode: true,
                 platforms: [],
@@ -275,7 +274,7 @@ export default {
             this.$emit('close-current-page')
         },
         packScript() {
-            connector.buildTempProject(
+            connector.buildProject(
                 this.projectInfo,
                 this.onPackSuccess,
                 'Packing script ' + this.formData.entry

@@ -53,18 +53,16 @@ export default {
                 },
                 {
                     label: 'All the scripts in the src path',
-                    value: 'normal'
+                    value: 'glob'
                 },
                 {
                     label: 'Recursively the scripts in the src path',
-                    value: 'recursive'
+                    value: 'all'
                 },
             ],
             rules: {
-                src: [
-                    { required: true }
-                ]
-            }
+                src: { required: true }
+             }
         }
     }
 }

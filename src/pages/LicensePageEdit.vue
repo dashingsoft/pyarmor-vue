@@ -37,14 +37,14 @@
         v-if="0"
         label="Disable Restrict Mode">
         <el-switch
-          v-model="licenseInfo.disable_restrict_mode"
+          v-model="licenseInfo.disableRestrictMode"
           placeholder="">
         </el-switch>
       </el-form-item>
       <el-form-item
         v-if="hasFeature('extra')"
         label="Extra Data">
-        <el-input v-model="licenseInfo.extra_data"
+        <el-input v-model="licenseInfo.extraData"
                   type="textarea"
                   maxlength="600"
                   show-word-limit
@@ -54,7 +54,8 @@
         <el-button type="primary" v-on:click="onSubmit">
           {{ licenseInfo.id ? "Update" : "Create" }}
         </el-button>
-        <el-button v-on:click="goBack">Cancel</el-button>
+    <el-button v-on:click="goBack">Cancel</el-button>
+            <el-button v-on:click="resetForm">Reset</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -85,8 +86,8 @@ export default {
                     harddisk: '',
                     mac: '',
                     ipv4: '',
-                    extra_data: '',
-                    disable_restrict_mode: false
+                    extraData: '',
+                    disableRestrictMode: false
                 }
             }
         }
@@ -107,6 +108,20 @@ export default {
         goBack() {
             this.$emit('close-current-page')
         },
+        resetForm() {
+            let msg = []
+            this.$refs.form.fields.forEach( field => {
+                msg.push( 'Init value: ' + JSON.stringify(field.initialValue)
+                          + ', field value: ' + JSON.stringify(field.fieldValue)
+                          + ', this.value:' + JSON.stringify(field.value))
+            } )
+            this.$message({
+                message: msg.join('\t : \n'),
+                showClose: true,
+                duration: 0
+            })
+            this.$refs.form.resetFields()
+        },
         onSubmit() {
             this.$refs['form'].validate((valid) => {
                 if (!valid)
@@ -121,9 +136,9 @@ export default {
                     v.push(this.licenseInfo.mac)
                 if (this.licenseInfo.ipv4)
                     v.push(this.licenseInfo.ipv4)
-                if (this.licenseInfo.extra_data)
+                if (this.licenseInfo.extraData)
                     v.push('Extra data')
-                if (this.licenseInfo.disable_restrict_mode)
+                if (this.licenseInfo.disableRestrictMode)
                     v.push('Disable restrict mode')
                 this.licenseInfo.summary = v.join(',')
 

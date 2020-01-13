@@ -20,8 +20,10 @@ const send_request = function (url, data, success, error) {
 }
 
 export default new Vue({
-    data: {
-        serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
+    computed: {
+        serverUrl() {
+            return Vue.$isServer ? '/' : 'http://localhost:9096/'
+        },
     },
     created() {
         send_request(this.serverUrl + 'directory/list', { path: '@' }, resp => {
@@ -115,10 +117,6 @@ export default new Vue({
         removeProject: function (data, success, error) {
             let url = this.serverUrl + 'project/remove'
             this.sendRequest(url, data, 'remove-project', success, error)
-        },
-        buildTempProject: function (data, success, text) {
-            let url = this.serverUrl + 'project/build_temp'
-            this.loadRequest(url, data, 'build-project', success, text)
         },
         listProject: function (data, success, error) {
             let url = this.serverUrl + 'project/list'

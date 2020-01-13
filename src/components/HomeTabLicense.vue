@@ -27,10 +27,10 @@
               <span>{{ props.row.mac }}</span>
             </el-form-item>
             <el-form-item v-if="0" label="Disable Restrict Mode">
-              <span>{{ props.row.disable_restrict_mode }}</span>
+              <span>{{ props.row.disableRestrictMode }}</span>
             </el-form-item>
             <el-form-item label="Extra Data">
-              <span>{{ props.row.extra_data }}</span>
+              <span>{{ props.row.extraData }}</span>
             </el-form-item>
             <el-form-item label="Filename">
               <span>{{ props.row.filename }}</span>

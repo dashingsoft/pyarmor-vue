@@ -27,12 +27,12 @@
       </el-select>
     </el-form-item>
       <el-form-item
-        label="Package Runtime">
+        label="Runtime Mode">
         <el-select
           :disabled="isPackProject"
-          key="package-runtime"
-          style="width: 50%"
-          v-model="projectInfo.packageRuntime">
+          key="runtime-mode"
+          class="w-50"
+          v-model="projectInfo.runtimeMode">
           <el-option
             v-for="item in runtimeModes"
             :key="item.value"
