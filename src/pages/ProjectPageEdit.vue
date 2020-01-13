@@ -100,7 +100,7 @@ export default {
                     packageRuntime: 1,
                     crossProtection: true,
                     bootstrapCode: 1,
-                    platform: [],
+                    platforms: [],
                     pack: [],
                     restrictMode: 2,
                     obfMod: true,

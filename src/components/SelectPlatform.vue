@@ -1,14 +1,29 @@
 <template>
-  <el-cascader
-    class="w-100"
-    clearable
-    :disabled="disabled"
-    :multiple="multiple"
-    :options="platforms"
-    :props="{ label: 'value', multiple: true }"
-    :show-all-levels="false"
-    placeholder="Cross platform, select one or more platforms to run obfuscated scripts"
-    v-model="value"></el-cascader>
+  <div class="el-input-group el-input-group--prepend">
+    <div class="el-input-group__prepend">
+      <el-select
+        style="width: 160px"
+        v-model="level">
+        <el-option
+          label="High Security"
+          :value="0"></el-option>
+        <el-option
+          label="High Speed"
+          :value="1"></el-option>
+      </el-select>
+    </div>
+    <el-cascader
+      class="w-100"
+      clearable
+      :disabled="disabled"
+      :multiple="multiple"
+      :options="platforms[level]"
+      :props="{ label: 'value', multiple: true }"
+      :show-all-levels="false"
+      @change="onValueChanged"
+      placeholder="Cross platform, select one or more platforms to run obfuscated scripts"
+      v-model="value"></el-cascader>
+  </div>
 </template>
 
 <script>
@@ -25,10 +40,10 @@ export default {
     },
     data() {
         return {
+            level: 0,
             value: [],
             platforms: [
-                { value: 'More security', children: [
-                    { value: 'Common', children: [
+                [ { value: 'Common', children: [
                         { value: 'windows.x86_64.7' },
                         { value: 'linux.x86_64.7' },
                         { value: 'darwin.x86_64.7' },
@@ -43,9 +58,8 @@ export default {
                     { value: 'others', children: [
                         { value: 'centos6.x86_64.7' },
                     ] }
-                ] },
-                { value: 'More quickly', children: [
-                    { value: 'Common', children: [
+                ],
+                [ { value: 'Common', children: [
                         { value: 'windows.x86_64.0' },
                         { value: 'linux.x86_64.0' },
                         { value: 'darwin.x86_64.0' },
@@ -69,8 +83,8 @@ export default {
                         { value: 'freebsd.x86_64.0' },
                         { value: 'poky.x86.0' },
                     ] }
-                ] }
-            ],
+                ]
+            ]
         }
     },
     mounted() {

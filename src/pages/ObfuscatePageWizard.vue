@@ -57,7 +57,7 @@
           label="Platforms">
           <select-platform
             class="w-100"
-            v-model="projectInfo.platform"></select-platform>
+            v-model="projectInfo.platforms"></select-platform>
         </el-form-item>
         <el-form-item label="License">
           <select-license-file
@@ -133,7 +133,7 @@ export default {
                 packageRuntime: 1,
                 crossProtection: true,
                 bootstrapCode: 1,
-                platform: [],
+                platforms: [],
                 restrictMode: 2,
                 obfMod: true,
                 obfCode: true,

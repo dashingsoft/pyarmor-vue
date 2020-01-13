@@ -240,7 +240,7 @@ export default {
                 packageRuntime: 1,
                 crossProtection: true,
                 bootstrapCode: true,
-                platform: [],
+                platforms: [],
                 pack: options.concat( this.formData.extraOptions ),
                 restrictMode: 2,
                 obfMod: true,

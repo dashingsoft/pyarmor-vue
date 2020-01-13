@@ -32,7 +32,7 @@
         label="Platforms">
         <select-platform
           class="w-100"
-          v-model="projectInfo.platform"></select-platform>
+          v-model="projectInfo.platforms"></select-platform>
       </el-form-item>
     </div>
     <el-form-item label="Plugins">

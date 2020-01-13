@@ -14,6 +14,7 @@
     </el-form-item>
     <el-form-item label="Bootstrap Code">
       <el-select
+        :disabled="isPackProject"
         class="w-50"
         placeholder="Select entry mode"
         v-model="projectInfo.bootstrapCode">
@@ -28,6 +29,7 @@
       <el-form-item
         label="Package Runtime">
         <el-select
+          :disabled="isPackProject"
           key="package-runtime"
           style="width: 50%"
           v-model="projectInfo.packageRuntime">
@@ -46,6 +48,11 @@
 export default {
     name: 'ProjectInputMisc',
     props: ['projectInfo'],
+    computed: {
+        isPackProject() {
+            return this.projectInfo.buildTarget > 0
+        },
+    },
     data() {
         return {
             bootstrapModes: [
