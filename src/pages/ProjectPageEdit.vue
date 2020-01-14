@@ -9,6 +9,7 @@
         <span v-else>New Project</span>
         <span v-if="projectInfo.title"> - {{ projectInfo.title }}</span>
         <el-button
+          v-if="isEdit"
           size="mini"
           icon="el-icon-edit"
           style="margin-left: 16px"

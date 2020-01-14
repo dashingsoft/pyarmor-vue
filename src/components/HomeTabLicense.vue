@@ -53,6 +53,7 @@
         <template slot-scope="scope">
           <el-button @click="editLicense(scope.row)"
                      type="text"
+                     title="Edit this license"
                      icon="el-icon-edit"
                      size="medium"></el-button>
           <el-button @click="cloneLicense(scope.row)"
@@ -62,6 +63,7 @@
                      size="medium"></el-button>
           <el-button @click="removeLicense(scope.row)"
                      type="text"
+                     title="Remove this license"
                      icon="el-icon-delete"
                      size="medium"></el-button>
         </template>

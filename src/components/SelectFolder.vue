@@ -36,21 +36,27 @@
     </el-breadcrumb>
     <el-option disabled value="">
       <el-button size="mini"
+                 title="Parent directory"
                  icon="el-icon-arrow-up"
                  v-on:click.stop="selectUpPath"></el-button>
       <el-button size="mini"
+                 title="Restore init value"
                  icon="el-icon-refresh-left"
                  v-on:click.stop="restoreInitPath"></el-button>
       <el-button size="mini"
+                 title="Root path and favorite paths"
                  icon="el-icon-link"
                  v-on:click.stop="selectRootPath"></el-button>
       <el-button size="mini"
+                 title="Create new path"
                  icon="el-icon-plus"
                  v-on:click.stop="onCreatePath"></el-button>
       <el-button size="mini"
+                 title="Delete an empty path"
                  icon="el-icon-delete"
                  v-on:click.stop="onDeletePath"></el-button>
       <el-button size="mini"
+                 title="Accept path"
                  icon="el-icon-check"
                  v-on:click.stop="onAcceptPath"></el-button>
     </el-option>

@@ -27,17 +27,20 @@ export default new Vue({
         }
     },
     methods: {
+        showError(err) {
+            Vue.prototype.$message({
+                type: 'error',
+                message: typeof err === 'string'? err : 'Server error: please check console output',
+                showClose: true,
+                duration: 0
+            })
+        },
         sendRequest: function (url, data, event, success, error) {
             let onerror = function (err) {
                 if (typeof error === 'function')
                     error(err)
                 else
-                    Vue.prototype.$message({
-                        type: 'error',
-                        message: typeof error === 'string' ? error :
-                            typeof err === 'string' ? err : JSON.stringify(err),
-                        showClose: true
-                    })
+                    this.showError(err)
                 this.$emit(event + '-fail')
             }
             let onsuccess = function (resp) {
@@ -60,11 +63,7 @@ export default new Vue({
                   } )
             let onerror = function (err) {
                 loading.close()
-                Vue.prototype.$message({
-                    type: 'error',
-                    message: typeof err === 'string' ? err : JSON.stringify(err),
-                    showClose: true
-                })
+                this.showError(err)
                 this.$emit(event + '-fail')
             }
             let onsuccess = function (resp) {

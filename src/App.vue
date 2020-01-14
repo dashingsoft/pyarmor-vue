@@ -180,6 +180,8 @@ export default {
         },
         connectServer() {
             this.dialogVisible = false
+            if (this.serverUrl.slice(-1) !== '/')
+                this.serverUrl += '/'
             connector.serverUrl = this.serverUrl
             connector.connectServer()
         },

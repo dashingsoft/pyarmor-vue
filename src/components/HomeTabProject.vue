@@ -48,14 +48,17 @@
         <template slot-scope="scope">
           <el-button v-on:click="buildProject(scope.row)"
                      type="text"
+                     title="Build this project"
                      icon="el-icon-s-tools"
                      size="medium"></el-button>
           <el-button v-on:click="editProject(scope.row)"
                      type="text"
+                     title="Edit this project"
                      icon="el-icon-edit"
                      size="medium"></el-button>
           <el-button v-on:click="removeProject(scope.row)"
                      type="text"
+                     title="Remove this project"
                      icon="el-icon-delete"
                      size="medium"></el-button>
         </template>

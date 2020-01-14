@@ -43,7 +43,7 @@
           </el-form-item>
           <el-form-item label="Exclude">
             <select-path-script
-              placeholder="No obfuscated scripts in these pathes"
+              placeholder="No obfuscated scripts in these paths"
               :root-path="formData.src"
               :only-folder="true"
               v-model="formData.exclude">

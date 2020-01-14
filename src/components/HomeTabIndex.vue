@@ -8,7 +8,7 @@
             size="medium"
             class="btn"
             @click="openObfuscateWizard()">
-            <img src="shield-alt.svg" class="icon"/>
+            <img src="img/shield-alt.svg" class="icon"/>
             <p>Obfuscate Script Wizard</p>
           </el-button>
         </el-card>
@@ -19,7 +19,7 @@
             size="medium"
             class="btn"
             @click="openObfuscateWizard('project')">
-            <img src="folder.svg" class="icon"/>
+            <img src="img/folder.svg" class="icon"/>
             <p>Obfuscate With Project</p>
           </el-button>
         </el-card>
@@ -30,7 +30,7 @@
             size="medium"
             class="btn"
             @click="openPackWizard()">
-            <img src="cog.svg" class="icon"/>
+            <img src="img/cog.svg" class="icon"/>
             <p>Pack Script Wizard</p>
           </el-button>
         </el-card>
@@ -41,7 +41,7 @@
             size="medium"
             class="btn"
             @click="openPackWizard('project')">
-            <img src="folder-solid.svg" class="icon"/>
+            <img src="img/folder-solid.svg" class="icon"/>
             <p>Pack With Project</p>
           </el-button>
         </el-card>
@@ -52,7 +52,7 @@
             size="medium"
             class="btn"
             @click="openLicenseWizard('expired')">
-            <img src="calendar.svg" class="icon"/>
+            <img src="img/calendar.svg" class="icon"/>
             <p>Generate Expired License</p>
           </el-button>
         </el-card>
@@ -63,7 +63,7 @@
             size="medium"
             class="btn"
             @click="openLicenseWizard('machine')">
-            <img src="tablet-alt.svg" class="icon"/>
+            <img src="img/tablet-alt.svg" class="icon"/>
             <p>Fixed Machine License</p>
           </el-button>
         </el-card>
@@ -74,7 +74,7 @@
             size="medium"
             class="btn"
             @click="openLicenseWizard('all')">
-            <img src="calendar-alt.svg" class="icon"/>
+            <img src="img/calendar-alt.svg" class="icon"/>
             <p>Full Features License</p>
           </el-button>
         </el-card>
@@ -85,7 +85,7 @@
             size="medium"
             class="btn"
             @click="registerProduct">
-            <img src="registered.svg" class="icon"/>
+            <img src="img/registered.svg" class="icon"/>
             <p>Register PyArmor</p>
           </el-button>
         </el-card>
