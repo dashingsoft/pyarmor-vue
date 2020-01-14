@@ -9,10 +9,27 @@
         v-model="projectInfo.src">
       </select-folder>
     </el-form-item>
-    <el-form-item label="Scripts">
+    <el-form-item
+      v-show="projectInfo.include === 'exact'"
+      label="Scripts">
       <select-path-script
         placeholder="Select one or more entry scripts"
         select-pattern="*.py"
+        ref="entry1"
+        :multiple="true"
+        :only-script="true"
+        :root-path="projectInfo.src"
+        v-model="projectInfo.entry">
+      </select-path-script>
+    </el-form-item>
+    <el-form-item
+      v-show="projectInfo.include !== 'exact'"
+      label="Scripts">
+      <select-path-script
+        placeholder="Select one entry script"
+        select-pattern="*.py"
+        ref="entry2"
+        :multiple="false"
         :only-script="true"
         :root-path="projectInfo.src"
         v-model="projectInfo.entry">
@@ -21,6 +38,7 @@
     <el-form-item label="Include">
       <el-select
         class="w-100"
+        @change="onIncludeChanged"
         v-model="projectInfo.include">
         <el-option
           v-for="item in includeOptions"
@@ -63,6 +81,16 @@ export default {
             rules: {
                 src: { required: true }
              }
+        }
+    },
+    methods: {
+        onIncludeChanged(value) {
+            if ( value === 'exact' )
+                this.projectInfo.entry = this.$refs.entry1.value.map( x => x.join( '/' ) )
+            else {
+                let x = this.$refs.entry2.value
+                this.projectInfo.entry = typeof x === 'string' ? [ x ] : x
+            }
         }
     }
 }

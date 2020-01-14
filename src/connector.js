@@ -30,7 +30,8 @@ export default new Vue({
         showError(err) {
             Vue.prototype.$message({
                 type: 'error',
-                message: typeof err === 'string'? err : 'Server error: please check console output',
+                message: typeof err === 'string'? err
+                    : 'Server error: please check console output and make sure server is on',
                 showClose: true,
                 duration: 0
             })
@@ -92,6 +93,8 @@ export default new Vue({
                 () => {
                     favorPath = []
                     this.connected = false
+                    this.showError('Could not connect to pyarmor server, make sure it runs on ' +
+                                   this.serverUrl)
                     this.$emit('connect-changed', this.connected)
                 }
             )

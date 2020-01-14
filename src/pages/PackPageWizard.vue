@@ -197,7 +197,7 @@ export default {
             steps: ['start', 'data', 'options', 'finish'],
             formData: {
                 src: '',
-                entry: '',
+                entry: [],
                 exclude: [],
                 licenseFile: 'true',
                 dataFile: [],
@@ -230,7 +230,7 @@ export default {
 
             return {
                 src: this.formData.src,
-                entry: [this.formData.entry],
+                entry: this.formData.entry,
                 include: 'all',
                 exclude: this.formData.exclude,
                 buildTarget: this.formData.target,

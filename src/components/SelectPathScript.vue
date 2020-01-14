@@ -23,7 +23,7 @@ export default {
     },
     props: {
         value2: {
-            type: [ String, Array ]
+            type: Array
         },
         rootPath: {
             type: String,
@@ -73,15 +73,16 @@ export default {
             return p === '' ? [] : p === '/' ? [ '' ] : p.split( '/' )
         },
         joinPath( a ) {
-            return a.length === 0 ? '' : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
+            return typeof a === 'string' ? a : a.length === 0 ? ''
+                : ( a.length > 1 || a[0] !== '' ) ? a.join( '/' ) : '/'
         },
         resetRootPath() {
             this.$refs['cascader'].$refs['panel'].initStore()
         },
         onValueChanged() {
-            this.$emit( 'change2', this.multiple
-                        ? this.value.map( x => this.joinPath( x ) )
-                        : this.joinPath( this.value ) )
+            this.$emit( 'change2', ! this.multiple ? [ this.joinPath( this.value ) ]
+                        : typeof this.value === 'string' ? [ this.value ]
+                        :  this.value.map( x => this.joinPath( x ) ) )
             // 变通解决 ElementUI 的 bug: multiple === false && lazyLoad
             //     点击选项的单选按钮不会关闭菜单，而是弹出没有数据的下一级菜单
             // if ( ! this.multiple ) {
@@ -126,7 +127,7 @@ export default {
                 }
             } ) )
             if ( level === 0 && this.value2.length > 0 ) {
-                this.value = this.multiple ? this.value2.map( x => [ x ] ) : [ this.value2 ]
+                this.value = this.multiple ? this.value2.map( x => [ x ] ) : this.value2
                 this.value.map( item => {
                         let s = this.multiple ? item[0] : item
                         if ( s.indexOf( '/' ) > -1 )

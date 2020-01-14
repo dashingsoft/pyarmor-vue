@@ -163,12 +163,6 @@ export default {
             this.connected = false
             this.versionInfo.tag = 'Off'
             this.currentTabName = 'HomeTabAbout'
-
-            this.$message({
-                showClose: true,
-                message: 'Could not connect PyArmor server',
-                type: 'error'
-            })
         },
         onServerChanged( connected ) {
             connected
