@@ -20,16 +20,11 @@ const send_request = function (url, data, success, error) {
 }
 
 export default new Vue({
-    computed: {
-        serverUrl() {
-            return Vue.$isServer ? '/' : 'http://localhost:9096/'
-        },
-    },
-    created() {
-        send_request(this.serverUrl + 'directory/list', { path: '@' }, resp => {
-            if (resp.err === 0)
-                favorPath = resp.data.dirs
-        })
+    data() {
+        return {
+            connected: false,
+            serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
+        }
     },
     methods: {
         sendRequest: function (url, data, event, success, error) {
@@ -83,6 +78,24 @@ export default new Vue({
                     onerror.call(this, resp.data)
             }
             send_request(url, data, onsuccess.bind(this), onerror.bind(this))
+        },
+        connectServer() {
+            send_request(
+                this.serverUrl + 'directory/list',
+                { path: '@' },
+                resp => {
+                    if (resp.err === 0) {
+                        favorPath = resp.data.dirs
+                        this.connected = true
+                        this.$emit('connect-changed', this.connected)
+                    }
+                },
+                () => {
+                    favorPath = []
+                    this.connected = false
+                    this.$emit('connect-changed', this.connected)
+                }
+            )
         },
         queryVersion: function (data, success, error) {
             let url = this.serverUrl + 'version'

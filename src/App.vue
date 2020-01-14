@@ -65,7 +65,6 @@
         v-model="serverUrl">
       </el-input>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="resetServer">Reset</el-button>
         <el-button @click="dialogVisible = false">Cancel</el-button>
         <el-button type="primary" @click="connectServer">Connect</el-button>
       </span>
@@ -106,8 +105,8 @@ export default {
             currentPageName: '',
             currentPageProps: {},
             pageStack: [],
-            connected: false,
             dialogVisible: false,
+            serverUrl: connector.serverUrl,
             versionInfo: {
                 tag: 'Off',
                 version: '',
@@ -119,7 +118,8 @@ export default {
         }
     },
     mounted: function () {
-        connector.queryVersion({}, this.onConnectSuccess,this.onConnectFailed)
+        connector.$on('connect-changed', this.onServerChanged)
+        this.connectServer()
     },
     computed: {
         currentTabComponent: function () {
@@ -170,8 +170,18 @@ export default {
                 type: 'error'
             })
         },
+        onServerChanged( connected ) {
+            connected
+                ? connector.queryVersion( {}, this.onConnectSuccess, this.onConnectFailed )
+                : this.onConnectFailed()
+        },
         onConnectServer() {
             this.dialogVisible = true
+        },
+        connectServer() {
+            this.dialogVisible = false
+            connector.serverUrl = this.serverUrl
+            connector.connectServer()
         },
         changeLanguage: function (lang) {
             locale.use(lang)
