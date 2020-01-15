@@ -96,8 +96,10 @@ export default {
     },
     mounted() {
         this.$watch( 'advanced', ( value ) => {
-            if ( value && this.level === 1 )
+            if ( value && this.level === 1 ) {
                 this.level = 0
+                this.value = []
+            }
         } )
     }
 }

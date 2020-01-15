@@ -23,7 +23,7 @@ export default new Vue({
     data() {
         return {
             connected: false,
-            serverUrl: Vue.$isServer ? '/' : 'http://localhost:9096/'
+            serverUrl: 'http://localhost:9096/'
         }
     },
     methods: {
@@ -80,23 +80,39 @@ export default new Vue({
             send_request(url, data, onsuccess.bind(this), onerror.bind(this))
         },
         connectServer() {
-            send_request(
-                this.serverUrl + 'directory/list',
-                { path: '@' },
-                resp => {
-                    if (resp.err === 0) {
-                        favorPath = resp.data.dirs
-                        this.connected = true
-                        this.$emit('connect-changed', this.connected)
-                    }
-                },
-                () => {
+            let url = this.serverUrl
+            let onerror = function () {
+                if (url === '/') {
                     favorPath = []
                     this.connected = false
                     this.showError('Could not connect to pyarmor server, make sure it runs on ' +
                                    this.serverUrl)
                     this.$emit('connect-changed', this.connected)
                 }
+                else {
+                    url = '/'
+                    send_request(
+                        '/directory/list',
+                        { path: '@' },
+                        onsuccess.bind( this ),
+                        onerror.bind( this )
+                    )
+                }
+            }
+            let onsuccess = function (resp) {
+                if (resp.err === 0) {
+                    if (this.serverUrl !== url)
+                        this.serverUrl = url
+                    favorPath = resp.data.dirs
+                    this.connected = true
+                    this.$emit('connect-changed', this.connected)
+                }
+            }
+            send_request(
+                this.serverUrl + 'directory/list',
+                { path: '@' },
+                onsuccess.bind( this ),
+                onerror.bind( this )
             )
         },
         queryVersion: function (data, success, error) {
