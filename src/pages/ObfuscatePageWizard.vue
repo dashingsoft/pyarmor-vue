@@ -57,6 +57,7 @@
           label="Platforms">
           <select-platform
             class="w-100"
+            :advanced="false"
             v-model="projectInfo.platforms"></select-platform>
         </el-form-item>
         <el-form-item label="License">

@@ -2,6 +2,7 @@
   <div class="el-input-group el-input-group--prepend">
     <div class="el-input-group__prepend">
       <el-select
+        :disabled="advanced"
         style="width: 160px"
         v-model="level">
         <el-option
@@ -37,6 +38,7 @@ export default {
         value2: Array,
         disabled: Boolean,
         multiple: Boolean,
+        advanced: Boolean,
     },
     data() {
         return {
@@ -90,7 +92,13 @@ export default {
     methods: {
         onValueChanged( value ) {
             this.$emit( 'change2', value )
-        },
+        }
+    },
+    mounted() {
+        this.$watch( 'advanced', ( value ) => {
+            if ( value && this.level === 1 )
+                this.level = 0
+        } )
     }
 }
 </script>

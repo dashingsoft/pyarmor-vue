@@ -32,6 +32,7 @@
         label="Platforms">
         <select-platform
           class="w-100"
+          :advanced="projectInfo.advancedMode"
           v-model="projectInfo.platforms"></select-platform>
       </el-form-item>
     </div>
