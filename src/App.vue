@@ -171,6 +171,7 @@ export default {
         },
         onConnectServer() {
             this.dialogVisible = true
+            this.serverUrl = connector.serverUrl
         },
         connectServer() {
             this.dialogVisible = false
