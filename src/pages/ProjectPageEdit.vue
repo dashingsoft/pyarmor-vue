@@ -52,6 +52,20 @@
         </el-tab-pane>
         <el-tab-pane label="Advanced Options">
           <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
+          <el-form-item
+            label="Runtime Files">
+            <el-select
+              class="w-50"
+              :disabled="projectInfo.buildTarget > 0"
+              v-model="runtimeMode">
+              <el-option
+                v-for="item in runtimeOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
         </el-tab-pane>
         <el-form-item style="margin-top: 30px">
           <el-button type="primary" v-on:click="onSubmit">
@@ -97,7 +111,9 @@ export default {
                     buildTarget: this.target,
                     output: '',
                     bundleName: '',
-                    runtimeMode: 1,
+                    packageRuntime: true,
+                    noRuntime: false,
+                    enableSuffix: false,
                     crossProtection: true,
                     bootstrapCode: 1,
                     platforms: [],
@@ -111,12 +127,40 @@ export default {
                     plugins: []
                 }
             }
+        },
+    },
+    data() {
+        return {
+            runtimeOptions: [
+                {
+                    label: 'DO NOT generate runtime files',
+                    value: -1,
+                },
+                {
+                    label: 'Generate runtime files as a module "pytransform.py"',
+                    value: 0,
+                },
+                {
+                    label: 'Generate runtime files as a package "pytransform"',
+                    value: 1,
+                },
+            ],
         }
     },
     computed: {
         isEdit() {
             return this.projectInfo.id
-        }
+        },
+        runtimeMode: {
+            get() {
+                return this.projectInfo.noRuntime ? -1 : this.projectInfo.packageRuntime ? 1 : 0
+            },
+            set( value ) {
+                this.projectInfo.noRuntime = value === -1
+                if ( value > -1 )
+                    this.projectInfo.packageRuntime = !! value
+            }
+        },
     },
     methods: {
         goBack() {

@@ -26,21 +26,13 @@
         </el-option>
       </el-select>
     </el-form-item>
-      <el-form-item
-        label="Runtime Mode">
-        <el-select
-          :disabled="isPackProject"
-          key="runtime-mode"
-          class="w-50"
-          v-model="projectInfo.runtimeMode">
-          <el-option
-            v-for="item in runtimeModes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
+    <el-form-item label="Enable Suffix">
+      <el-switch
+        :disabled="isPackProject"
+        active-text="Generate unique obfuscated scripts with a suffix"
+        v-model="projectInfo.enableSuffix">
+      </el-switch>
+    </el-form-item>
   </div>
 </template>
 
@@ -57,7 +49,7 @@ export default {
         return {
             bootstrapModes: [
                 {
-                    label: 'Do not insert bootstrap code into entry scripts',
+                    label: 'DO NOT insert bootstrap code into entry scripts',
                     value: 0,
                 },
                 {
@@ -65,33 +57,11 @@ export default {
                     value: 1,
                 },
                 {
-                    label: 'Import the runtime package without leading dot in the bootstrap code',
+                    label: 'Generate bootstrap code always without leading dot (absolute import)',
                     value: 2,
                 },
                 {
-                    label: 'Import the runtime package with leading dot in the bootstrap code',
-                    value: 3,
-                },
-            ],
-            runtimeModes: [
-                {
-                    label: 'Do not generate runtime files',
-                    value: -1,
-                },
-                {
-                    label: 'Generate runtime files as a module "pytransform.py"',
-                    value: 0,
-                },
-                {
-                    label: 'Generate runtime files as a package "pytransform"',
-                    value: 1,
-                },
-                {
-                    label: 'Generate runtime files with unique module name "pytransform_SUFFIX.py"',
-                    value: 2,
-                },
-                {
-                    label: 'Generate runtime files with unique package name "pytransform_SUFFIX"',
+                    label: 'Generate bootstrap code always without leading dot (relative import)',
                     value: 3,
                 },
             ],
