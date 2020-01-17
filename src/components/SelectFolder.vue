@@ -3,6 +3,7 @@
     ref="select"
     v-model="value"
     class="w-100"
+    clearable
     filterable
     remote
     default-first-option
@@ -10,6 +11,7 @@
     :remote-method="listRemoteDirectory"
     :loading="loading"
     :placeholder="placeholder"
+    @clear="selectRootPath"
     @visible-change="onVisibleChanged"
     @change="onValueChanged">
     <el-breadcrumb
