@@ -26,11 +26,12 @@
         v-if="hasFeature('expired')"
         label="Expired">
         <el-date-picker
+          name="expired"
           class="w-50"
-          v-model="licenseInfo.expired"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="Expired the obfuscated scripts">
+          placeholder="Expired the obfuscated scripts"
+          v-model="licenseInfo.expired">
         </el-date-picker>
       </el-form-item>
       <license-input-machine
