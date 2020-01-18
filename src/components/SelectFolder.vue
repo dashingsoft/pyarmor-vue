@@ -243,6 +243,10 @@ export default {
                         }, 500 )
                     } )
             }
+            else if ( this.value === '' && query.length > 1 && query.slice( 0, 1 ) === '/' ) {
+                // Paste the absolute path directly
+                this.onValueChanged( query )
+            }
             else {
                 this.onFilterOptions( query )
             }
