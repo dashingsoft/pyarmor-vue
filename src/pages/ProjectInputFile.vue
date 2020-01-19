@@ -24,7 +24,7 @@
     </el-form-item>
     <el-form-item
       v-show="projectInfo.include !== 'exact'"
-      label="Scripts">
+      label="Script">
       <select-path-script
         placeholder="Select one entry script"
         select-pattern="*.py"

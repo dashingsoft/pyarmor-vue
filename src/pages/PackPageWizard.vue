@@ -218,6 +218,7 @@ export default {
     computed: {
         projectInfo() {
             let options = []
+            let src = this.formData.src
             if (this.formData.target === 'file')
                 options.push( '--onefile' )
             if (this.formData.icon)
@@ -225,8 +226,8 @@ export default {
             if (this.formData.noConsole)
                 options.push( '--noconsole' )
             this.formData.hiddenImport.map( m => options.push( '--hidden-import', m ) )
-            this.formData.dataFile.map( m => options.push( '--add-data', m ) )
-            this.formData.dataFile.map( m => options.push( '--add-binary', m ) )
+            this.formData.dataFile.map( m => options.push( '--add-data', src + '/' + m ) )
+            this.formData.binaryFile.map( m => options.push( '--add-binary', src + '/' + m ) )
 
             return {
                 src: this.formData.src,
@@ -235,7 +236,7 @@ export default {
                 exclude: this.formData.exclude,
                 buildTarget: this.formData.target,
                 output: this.formData.output,
-                bundleName: '',
+                bundleName: this.formData.bundleName,
                 packageRuntime: false,
                 noRuntime: false,
                 enableSuffix: false,
@@ -278,7 +279,7 @@ export default {
         packScript() {
             connector.buildProject(
                 this.projectInfo,
-                this.onPackSuccess,
+                this.onPackFinished,
                 'Packing script ' + this.formData.entry
             )
         },
