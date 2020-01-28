@@ -61,7 +61,7 @@ export default {
                     value: 2,
                 },
                 {
-                    label: 'Generate bootstrap code always without leading dot (relative import)',
+                    label: 'Generate bootstrap code always with leading dot (relative import)',
                     value: 3,
                 },
             ],
