@@ -71,6 +71,7 @@ export default {
                   { value: 'arm', children: [
                       { value: 'alpine.arm.0' },
                       { value: 'linux.arm.0' },
+                      { value: 'linux.armv6.0' },
                       { value: 'linux.armv7.0' },
                       { value: 'linux.aarch32.0' },
                       { value: 'linux.aarch64.0' },
