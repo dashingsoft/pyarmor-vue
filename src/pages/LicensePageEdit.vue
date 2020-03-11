@@ -46,6 +46,13 @@
         </el-switch>
       </el-form-item>
       <el-form-item
+        v-if="0"
+        label="Enable Period Mode">
+        <el-switch
+          v-model="licenseInfo.enablePeriodMode">
+        </el-switch>
+      </el-form-item>
+      <el-form-item
         v-if="hasFeature('extra')"
         label="Extra Data">
         <el-input
@@ -94,7 +101,8 @@ export default {
                     mac: '',
                     ipv4: '',
                     extraData: '',
-                    disableRestrictMode: false
+                    disableRestrictMode: false,
+                    enablePeriodMode: false
                 }
             }
         }
@@ -139,6 +147,8 @@ export default {
                     v.push('Extra data')
                 if (this.licenseInfo.disableRestrictMode)
                     v.push('Disable restrict mode')
+                if (this.licenseInfo.enablePeriodMode)
+                    v.push('Enable period mode')
                 this.licenseInfo.summary = v.join(',')
 
                 this.licenseInfo.id
