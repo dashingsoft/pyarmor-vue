@@ -76,6 +76,7 @@ export default {
                       { value: 'linux.aarch32.0' },
                       { value: 'linux.aarch64.0' },
                       { value: 'darwin.arm64.0' },
+                      { value: 'uclibc.armv7.0' },
                   ] },
                   { value: 'others', children: [
                       { value: 'vs2015.x86_64.0' },
