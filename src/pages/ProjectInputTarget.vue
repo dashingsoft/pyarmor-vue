@@ -37,12 +37,23 @@
       </el-form-item>
     </div>
     <el-form-item label="Plugins">
-      <select-path-script
-        :root-path="projectInfo.src"
-        :only-script="true"
-        select-pattern="*.py"
-        placeholder="Select one or more plugin scripts"
-        v-model="projectInfo.plugins"></select-path-script>
+      <!-- <select-path-script -->
+      <!--   :root-path="projectInfo.src" -->
+      <!--   :only-script="true" -->
+      <!--   select-pattern="*.py" -->
+      <!--   placeholder="Select one or more plugin scripts" -->
+      <!--   v-model="projectInfo.plugins"></select-path-script> -->
+      <el-select
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        class="w-100"
+        placeholder="Type plugin name, then press ENTER"
+        no-data-text=""
+        v-model="projectInfo.plugins">
+        <el-option value="check_ntp_time"></el-option>
+      </el-select>
     </el-form-item>
     <div v-if="isPackProject">
       <el-form-item

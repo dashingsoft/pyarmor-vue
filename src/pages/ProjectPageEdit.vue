@@ -212,7 +212,8 @@ export default {
         onProjectUpdated(data) {
             this.$message('The project "' + data.name + '" has been ' +
                           (this.isEdit ? 'updated' : 'created'))
-            // this.goBack()
+            if (!this.isEdit)
+                this.goBack()
         },
         changeProjectTitle() {
             this.$prompt('Please input project title', 'Input', {
