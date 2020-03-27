@@ -35,9 +35,12 @@
     </el-table-column>
       <el-table-column
         sortable
-        prop="name"
         label="Name"
         width="180">
+        <template slot-scope="scope">
+          <el-link :underline="false"
+                   v-on:click="editProject(scope.row)">{{ scope.row.name }}</el-link>
+        </template>
       </el-table-column>
       <el-table-column
         prop="title"

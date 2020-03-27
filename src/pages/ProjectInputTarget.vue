@@ -41,21 +41,19 @@
         :root-path="projectInfo.src"
         :only-script="true"
         select-pattern="*.py"
+        placeholder="Select one or more plugin scripts"
         v-model="projectInfo.plugins"></select-path-script>
     </el-form-item>
     <div v-if="isPackProject">
       <el-form-item
         label="Pack Options">
-        <el-select
-          key="pack"
-          multiple
-          filterable
-          allow-create
-          default-first-option
+        <el-input
+          type="textarea"
+          autosize
           class="w-100"
           placeholder="Please input any pyinstaller option"
-          v-model="projectInfo.pack">
-        </el-select>
+          v-model="packOptions">
+        </el-input>
       </el-form-item>
     </div>
   </div>
@@ -82,6 +80,14 @@ export default {
             set( value ) {
                 this.outputSuffixMode = value
                 this.projectInfo.bundleName = value ? this.projectInfo.src.split( '/' ).pop() : ''
+            }
+        },
+        packOptions: {
+            get() {
+                return this.projectInfo.pack.join(' ')
+            },
+            set( value ) {
+                this.projectInfo.pack = [ value ]
             }
         },
     },

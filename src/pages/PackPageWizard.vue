@@ -71,7 +71,7 @@
               default-first-option
               class="w-100"
               placeholder="Additional non-binary files or folders to be added to the executable"
-              no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
+              no-data-text="Type file name or path name relative to src, then press ENTER"
               v-model="formData.dataFile">
             </el-select>
           </el-form-item>
@@ -83,7 +83,7 @@
               default-first-option
               class="w-100"
               placeholder="Additional binary files to be added to the executable"
-              no-data-text="Type SRC;DEST or SRC:DEST, then press ENTER"
+              no-data-text="Type binary filename relative to src, then press ENTER"
               v-model="formData.binaryFile">
             </el-select>
           </el-form-item>
@@ -102,15 +102,13 @@
             </el-input>
           </el-form-item>
           <el-form-item label="Extra Options">
-            <el-select
-              multiple
-              filterable
-              allow-create
-              default-first-option
+            <el-input
+              type="textarea"
+              autosize
               class="w-100"
               placeholder="Any other PyInstaller options to append command line"
               v-model="formData.extraOptions">
-            </el-select>
+            </el-input>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'finish' )">
@@ -205,7 +203,7 @@ export default {
                 hiddenImport: [],
                 noConsole: false,
                 icon: '',
-                extraOptions: [],
+                extraOptions: '',
                 target: 1,
                 output: '',
             },
@@ -243,7 +241,7 @@ export default {
                 crossProtection: true,
                 bootstrapCode: true,
                 platforms: [],
-                pack: options.concat( this.formData.extraOptions ),
+                pack: options.push( this.formData.extraOptions ),
                 restrictMode: 2,
                 obfMod: true,
                 obfCode: true,
