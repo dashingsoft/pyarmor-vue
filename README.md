@@ -27,9 +27,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### v0.2.0
 
-* Add hints for most of fields in each page
+* Add hints for some fields
 * Add new platform: `uclibc.armv7.0`
-* In my projects page add an action `Diagnostics` which will print debug information in the console
+* In my projects page add a project action `Diagnose` to print debug information
+  in case something is wrong with building the project
 * In project edit page add 2 buttons:
   - Build
   - Diagnose
