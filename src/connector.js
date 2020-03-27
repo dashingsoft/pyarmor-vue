@@ -147,6 +147,10 @@ export default new Vue({
             let url = this.serverUrl + 'project/build'
             this.loadRequest(url, data, 'build-project', success, text)
         },
+        diagnoseProject: function (data, success, text) {
+            let url = this.serverUrl + 'project/diagnose'
+            this.loadRequest(url, data, 'diagnose-project', success, text)
+        },
         removeProject: function (data, success, error) {
             let url = this.serverUrl + 'project/remove'
             this.sendRequest(url, data, 'remove-project', success, error)
