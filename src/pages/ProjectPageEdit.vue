@@ -25,6 +25,8 @@
       <el-tabs type="border-card">
         <el-tab-pane label="Basic">
           <el-form-item label="Type">
+            <span slot="label">Type
+              <el-link :underline="false"> <i class="el-icon-question"></i></el-link></span>
             <el-select
               class="w-50"
               v-model="projectInfo.buildTarget">
@@ -71,7 +73,13 @@
           <el-button type="primary" v-on:click="onSubmit">
             {{ isEdit ? "Update" : "Create" }}
           </el-button>
-          <el-button v-on:click="goBack">Cancel</el-button>
+          <el-button type="default" v-show="isEdit" v-on:click="onBuild">
+            Build
+          </el-button>
+          <el-button type="default" v-show="isEdit" v-on:click="onDiagnose">
+            Diagnose
+          </el-button>
+          <el-button v-on:click="goBack">Close</el-button>
         </el-form-item>
       </el-tabs>
     </el-form>
@@ -166,6 +174,32 @@ export default {
         goBack() {
             this.$emit('close-current-page')
         },
+        onBuild() {
+            connector.buildProject(
+                this.projectInfo,
+                (output) => {
+                    this.$message( {
+                        message: 'Build successfully, the results saved in: ' + output,
+                        duration: 0,
+                        showClose: true,
+                    } )
+                },
+                'Building ' + this.projectInfo.title
+            )
+        },
+        onDiagnose() {
+            connector.diagnoseProject(
+                this.projectInfo,
+                (output) => {
+                    this.$message( {
+                        message: 'Build successfully, the results saved in: ' + output,
+                        duration: 0,
+                        showClose: true,
+                    } )
+                },
+                'Diagnosing project ' + this.projectInfo.title
+            )
+        },
         onSubmit() {
             this.$refs.form.validate((valid) => {
                 if (valid) {
@@ -178,7 +212,7 @@ export default {
         onProjectUpdated(data) {
             this.$message('The project "' + data.name + '" has been ' +
                           (this.isEdit ? 'updated' : 'created'))
-            this.goBack()
+            // this.goBack()
         },
         changeProjectTitle() {
             this.$prompt('Please input project title', 'Input', {
