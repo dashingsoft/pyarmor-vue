@@ -2,7 +2,7 @@
   <div class="project-file">
     <el-form-item label="Advanced Mode">
       <el-switch
-        active-text="Change the structure of code object to improve security (only for x86-64 arch)"
+        active-text="Change the structure of code object to improve security (only for x86/64 arch)"
         v-model="projectInfo.advancedMode">
       </el-switch>
     </el-form-item>
@@ -14,19 +14,19 @@
     </el-form-item>
     <el-form-item label="Obfuscate Module">
       <el-switch
-        active-text="Obfuscate the whole module object"
+        active-text="Obfuscate the whole module"
         v-model="projectInfo.obfMod">
       </el-switch>
     </el-form-item>
     <el-form-item label="Obfuscate Code Object">
       <el-switch
-        active-text="Obfuscate each code (function) in the module"
+        active-text="Obfuscate each function (code object) in the module"
         v-model="projectInfo.obfCode">
       </el-switch>
     </el-form-item>
     <el-form-item label="Wrap Code Object">
       <el-switch
-        active-text="Obfuscate each code object again as soon as it returns"
+        active-text="Obfuscate each function (code object) in runtime"
         v-model="projectInfo.wrapMode">
       </el-switch>
     </el-form-item>

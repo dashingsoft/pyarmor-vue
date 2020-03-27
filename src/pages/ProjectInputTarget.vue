@@ -50,7 +50,6 @@
         default-first-option
         class="w-100"
         placeholder="Type plugin name, then press ENTER"
-        no-data-text=""
         v-model="projectInfo.plugins">
         <el-option value="check_ntp_time"></el-option>
       </el-select>

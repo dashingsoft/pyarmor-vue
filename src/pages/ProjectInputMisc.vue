@@ -29,7 +29,7 @@
     <el-form-item label="Enable Suffix">
       <el-switch
         :disabled="isPackProject"
-        active-text="Generate unique obfuscated scripts with a suffix"
+        active-text="Generate runtime package with an unique suffix"
         v-model="projectInfo.enableSuffix">
       </el-switch>
     </el-form-item>
