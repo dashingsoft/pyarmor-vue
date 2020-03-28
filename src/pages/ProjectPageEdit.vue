@@ -124,7 +124,7 @@ export default {
                     bootstrapCode: 1,
                     platforms: [],
                     pack: [],
-                    restrictMode: 2,
+                    restrictMode: 1,
                     obfMod: true,
                     obfCode: true,
                     wrapMode: true,

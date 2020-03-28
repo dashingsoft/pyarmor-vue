@@ -137,7 +137,7 @@ export default {
                 crossProtection: true,
                 bootstrapCode: 1,
                 platforms: [],
-                restrictMode: 2,
+                restrictMode: 1,
                 obfMod: true,
                 obfCode: true,
                 wrapMode: true,

@@ -40,3 +40,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * In pack wizard page, change the input way for extra data and extra binary
   field, now what you need to do is jsut to select multiple folders or files
   from a cascader.
+* Change default restrict mode to `1`
