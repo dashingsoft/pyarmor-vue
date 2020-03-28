@@ -25,9 +25,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Change logs
 
-### v0.2.0
-
+### v0.2.1 (devep)
 * Add hints for some fields
+
+### v0.2.0
 * Add new platform: `uclibc.armv7.0`
 * In my projects page add a project action `Diagnose` to print debug information
   in case something is wrong with building the project
