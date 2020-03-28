@@ -25,8 +25,6 @@
       <el-tabs type="border-card">
         <el-tab-pane label="Basic">
           <el-form-item label="Type">
-            <span slot="label">Type
-              <el-link :underline="false"> <i class="el-icon-question"></i></el-link></span>
             <el-select
               class="w-50"
               v-model="projectInfo.buildTarget">

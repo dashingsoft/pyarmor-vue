@@ -1,6 +1,12 @@
 <template>
   <div class="project-misc">
     <el-form-item label="Restrict Mode">
+      <span slot="label">Restrict Mode
+        <el-link :underline="false"
+                 target="_blank"
+                 href="https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode">
+          <i class="el-icon-question"></i></el-link>
+      </span>
       <el-select
         placeholder="Select restrict mode"
         v-model="projectInfo.restrictMode">
