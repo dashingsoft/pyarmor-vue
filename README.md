@@ -35,9 +35,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * In project edit page add 2 buttons:
   - Build
   - Diagnose
-* In project edit page, the field of `Pack options` now is textarea with a popup
-  dialog to accept any pyinstaller option.
-* In pack wizard page, change the input way for extra data and extra binary
-  field, now what you need to do is jsut to select multiple folders or files
-  from a cascader.
+* In project edit page, the field of `Pack options` now is textarea.
 * Change default restrict mode to `1`
