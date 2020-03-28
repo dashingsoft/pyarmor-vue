@@ -215,7 +215,7 @@ export default {
     },
     computed: {
         projectInfo() {
-            let options = []
+            let options = [this.formData.extraOptions]
             let src = this.formData.src
             if (this.formData.target === 'file')
                 options.push( '--onefile' )
@@ -241,7 +241,7 @@ export default {
                 crossProtection: true,
                 bootstrapCode: true,
                 platforms: [],
-                pack: options.push( this.formData.extraOptions ),
+                pack: options,
                 restrictMode: 2,
                 obfMod: true,
                 obfCode: true,
