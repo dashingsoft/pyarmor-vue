@@ -33,7 +33,7 @@ export default new Vue({
                 message: typeof err === 'string'? err
                     : 'Server error: please check console output and make sure server is on',
                 showClose: true,
-                duration: 0
+                duration: 30000
             })
         },
         sendRequest: function (url, data, event, success, error) {
