@@ -51,7 +51,9 @@
         class="w-100"
         placeholder="Type plugin name, then press ENTER"
         v-model="projectInfo.plugins">
+        <el-option value="on"></el-option>
         <el-option value="check_ntp_time"></el-option>
+        <el-option value="assert_armored"></el-option>
       </el-select>
     </el-form-item>
     <div v-if="isPackProject">
