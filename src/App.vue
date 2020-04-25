@@ -85,6 +85,8 @@ import ObfuscatePageWizard from './pages/ObfuscatePageWizard.vue'
 import PackPageWizard from './pages/PackPageWizard.vue'
 
 import locale from 'element-ui/lib/locale'
+import enLocale from 'element-ui/lib/locale/lang/en'
+import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import connector from './connector.js'
 
 export default {
@@ -181,7 +183,7 @@ export default {
             connector.connectServer()
         },
         changeLanguage: function (lang) {
-            locale.use(lang)
+            locale.use(lang === 'en' ? enLocale : zhLocale)
         }
     },
 }
