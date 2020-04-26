@@ -12,19 +12,19 @@
                  v-on:select="onSelectMenuItem">
           <el-menu-item index="HomeTabIndex">
             <i class="el-icon-s-home"></i>
-            <span slot="title">Home</span>
+            <span slot="title">{{ $t('Home') }}</span>
           </el-menu-item>
           <el-menu-item index="HomeTabProject">
             <i class="el-icon-files"></i>
-            <span slot="title">My Projects</span>
+            <span slot="title">{{ $t('My Projects') }}</span>
           </el-menu-item>
           <el-menu-item index="HomeTabLicense">
             <i class="el-icon-key"></i>
-            <span slot="title">My Licenses</span>
+            <span slot="title">{{ $t('My Licenses') }}</span>
           </el-menu-item>
           <el-menu-item index="HomeTabAbout">
             <i class="el-icon-info"></i>
-            <span slot="title">About</span>
+            <span slot="title">{{ $t('About') }}</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -60,13 +60,13 @@
     <el-dialog
       title="Connect PyArmor Server"
       :visible.sync="dialogVisible">
-      <p>Please type pyarmor server url:</p>
+      <p>{{ $t('Please type pyarmor server url:') }}</p>
       <el-input
         v-model="serverUrl">
       </el-input>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="connectServer">Connect</el-button>
+        <el-button @click="dialogVisible = false">{{ $t('Cancel') }}</el-button>
+        <el-button type="primary" @click="connectServer">{{ $t('Connect') }}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -184,6 +184,12 @@ export default {
         changeLanguage: function (lang) {
             this.lang = lang === 'en' ? 'English' : '简体中文'
             setLocale(lang)
+            // Force update all the components
+            let update = function (obj) {
+                obj.$forceUpdate()
+                obj.$children.forEach( child => update( child ) )
+            }
+            update( this )
         }
     },
 }

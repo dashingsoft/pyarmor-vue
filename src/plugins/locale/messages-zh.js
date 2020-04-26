@@ -6,6 +6,11 @@ const messages = {
     "Server error: please check console output and make sure server is on": "服务器错误：请确认 pyarmor-webui 后台服务已经在运行，并检查控制台输出",
     "Could not connect to pyarmor server, make sure it runs on %1": "无法连接到后台服务：%1",
 
+    "My Projects": "我的工程",
+    "My Licenses": "我的许可证",
+    "Please type pyarmor server url:": "输入 pyarmor 服务地址：",
+    "Connect": "连接",
+
     // src/components/SelectLicenseFile.vue 13
     "Select one license file to restrict the obfuscated script": "选择加密脚本的许可证",
 
@@ -78,7 +83,7 @@ const messages = {
     "Cross platform, select one or more platforms to run obfuscated scripts": "",
 
     // src/components/HomeTabAbout.vue 3
-    "About": "",
+    "About": "关于",
 
     // src/components/HomeTabAbout.vue 15
     "PyArmor server is not running on": "",
@@ -96,7 +101,7 @@ const messages = {
     "The goal of PyArmor is to make Python applied to commercial application easily.": "",
 
     // src/components/HomeTabAbout.vue 32
-    "Homepage": "",
+    "Homepage": "主页",
 
     // src/components/HomeTabAbout.vue 39
     "https://pyarmor.readthedocs.io/en/latest/": "",
