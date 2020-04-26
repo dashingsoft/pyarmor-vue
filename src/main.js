@@ -6,6 +6,9 @@ import SelectPathScript from './components/SelectPathScript.vue'
 import SelectLicenseFile from './components/SelectLicenseFile.vue'
 import SelectPlatform from './components/SelectPlatform.vue'
 
+import I18nPlugin from './plugins/gettext.js'
+Vue.use(I18nPlugin)
+
 import './plugins/element.js'
 
 const routes = {

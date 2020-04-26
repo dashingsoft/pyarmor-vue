@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <el-page-header
       v-on:back="goBack"
-      :content="licenseInfo.id ? 'Edit License' : 'New License'">
+      :content="licenseInfo.id ? $t('Edit License') : $t('New License')">
     </el-page-header>
     <el-divider></el-divider>
     <el-form
@@ -13,24 +13,24 @@
       label-position="left">
       <el-form-item
         v-if="hasFeature('name')"
-        label="Name"
+        :label="$t('Name')"
         prop="name">
         <el-input
           :disabled="!!licenseInfo.id"
           maxlength="60"
           show-word-limit
-          placeholder="Leave it blank to set default name like 'reg-xxxxxx'"
+          :placeholder="$t('Leave it blank to set default name like `reg-xxxxxx`')"
           v-model="licenseInfo.rcode"></el-input>
       </el-form-item>
       <el-form-item
         v-if="hasFeature('expired')"
-        label="Expired">
+        :label="$t('Expired')">
         <el-date-picker
           name="expired"
           class="w-50"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="Expired the obfuscated scripts"
+          :placeholder="$t('Expired the obfuscated scripts')"
           v-model="licenseInfo.expired">
         </el-date-picker>
       </el-form-item>
@@ -40,23 +40,23 @@
         v-bind:license-info="licenseInfo"></license-input-machine>
       <el-form-item
         v-if="0"
-        label="Disable Restrict Mode">
+        :label="$t('Disable Restrict Mode')">
         <el-switch
           v-model="licenseInfo.disableRestrictMode">
         </el-switch>
       </el-form-item>
       <el-form-item
         v-if="0"
-        label="Enable Period Mode">
+        :label="$t('Enable Period Mode')">
         <el-switch
           v-model="licenseInfo.enablePeriodMode">
         </el-switch>
       </el-form-item>
       <el-form-item
         v-if="hasFeature('extra')"
-        label="Extra Data">
+        :label="$t('Extra Data')">
         <el-input
-          placeholder="Any ascii string data to store in the license file"
+          :placeholder="$t('Any ascii string data to store in the license file')"
           type="textarea"
           maxlength="600"
           show-word-limit
@@ -79,6 +79,7 @@
 import LicenseInputMachine from './LicenseInputMachine.vue'
 
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'LicensePageEdit',
@@ -111,7 +112,7 @@ export default {
         return {
             cachedValue: JSON.stringify( this.licenseInfo ),
             rules: {
-                name: { pattern: '[-._0-9a-zA-Z]*', message: 'Invalid input', trigger: 'change' }
+                name: { pattern: '[-._0-9a-zA-Z]*', message: _t('Invalid input'), trigger: 'change' }
             }
         }
     },
@@ -157,7 +158,7 @@ export default {
             })
         },
         onLicenseCreated(data) {
-            this.$message('The license has been saved to ' + data.filename)
+            this.$message(_t('The license has been saved to %1', data.filename))
             this.goBack()
         },
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 style="text-align: center">Home</h1>
+    <h1 style="text-align: center">{{ $t('Home') }}</h1>
     <el-row :gutter="12">
       <el-col :span="6">
         <el-card shadow="never">
@@ -9,7 +9,7 @@
             class="btn"
             @click="openObfuscateWizard()">
             <img src="img/shield-alt.svg" class="icon"/>
-            <p>Obfuscate Script Wizard</p>
+            <p>{{ $t('Obfuscate Script Wizard') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -20,7 +20,7 @@
             class="btn"
             @click="openObfuscateWizard('project')">
             <img src="img/folder.svg" class="icon"/>
-            <p>Obfuscate With Project</p>
+            <p>{{ $t('Obfuscate With Project') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -31,7 +31,7 @@
             class="btn"
             @click="openPackWizard()">
             <img src="img/cog.svg" class="icon"/>
-            <p>Pack Script Wizard</p>
+            <p>{{ $t('Pack Script Wizard') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -42,7 +42,7 @@
             class="btn"
             @click="openPackWizard('project')">
             <img src="img/folder-solid.svg" class="icon"/>
-            <p>Pack With Project</p>
+            <p>{{ $t('Pack With Project') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -53,7 +53,7 @@
             class="btn"
             @click="openLicenseWizard('expired')">
             <img src="img/calendar.svg" class="icon"/>
-            <p>Generate Expired License</p>
+            <p>{{ $t('Generate Expired License') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -64,7 +64,7 @@
             class="btn"
             @click="openLicenseWizard('machine')">
             <img src="img/tablet-alt.svg" class="icon"/>
-            <p>Fixed Machine License</p>
+            <p>{{ $t('Fixed Machine License') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -75,7 +75,7 @@
             class="btn"
             @click="openLicenseWizard('all')">
             <img src="img/calendar-alt.svg" class="icon"/>
-            <p>Full Features License</p>
+            <p>{{ $t('Full Features License') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -86,7 +86,7 @@
             class="btn"
             @click="registerProduct">
             <img src="img/registered.svg" class="icon"/>
-            <p>Register PyArmor</p>
+            <p>{{ $t('Register PyArmor') }}</p>
           </el-button>
         </el-card>
       </el-col>
@@ -94,23 +94,23 @@
     <el-dialog
       title="Register PyArmor"
       :visible.sync="dialogVisible">
-      <p>Please select one regfile, for example, pyarmor-regfile-1.zip</p>
+      <p>{{ $t('Please select one regfile, for example, pyarmor-regfile-1.zip') }}</p>
       <select-folder
         select-pattern="pyarmor-*.zip"
         :only-folder="false"
         v-model="regfile">
       </select-folder>
-      <p>No this file?
+      <p>{{ $t('No this file?') }}
         <el-link
           :underline="false"
           target="_blank"
           type="primary"
-          href="https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1">
-          Click here to purchase one</el-link>
+          :href="$t('https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1')">
+          {{ $t('Click here to purchase one') }}</el-link>
       </p>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="handleRegister">Register</el-button>
+        <el-button @click="dialogVisible = false">{{ $t('Cancel') }}</el-button>
+        <el-button type="primary" @click="handleRegister">{{ $t('Register') }}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -118,6 +118,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'HomeTabIndex',
@@ -149,11 +150,11 @@ export default {
                 connector.registerProduct(this.regfile, (data) => {
                     connector.$emit('query-version', data)
                     this.dialogVisible = false
-                    this.$message('Register PyArmor successfully')
+                    this.$message(_t('Register PyArmor successfully'))
                 } )
             }
             else {
-                this.$message('regfile is empty')
+                this.$message(_t('regfile is empty'))
             }
         }
     },

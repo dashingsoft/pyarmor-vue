@@ -3,17 +3,17 @@
     <el-form-item
       :rules="rules.src"
       prop="src"
-      label="Src">
+      :label="$t('Src')">
       <select-folder
-        placeholder="Base path for scripts, include and exclude"
+        :placeholder="$t('Base path for scripts, include and exclude')"
         v-model="projectInfo.src">
       </select-folder>
     </el-form-item>
     <el-form-item
       v-show="projectInfo.include === 'exact'"
-      label="Scripts">
+      :label="$t('Scripts')">
       <select-path-script
-        placeholder="Select one or more entry scripts"
+        :placeholder="$t('Select one or more entry scripts')"
         select-pattern="*.py"
         ref="entry1"
         :multiple="true"
@@ -24,9 +24,9 @@
     </el-form-item>
     <el-form-item
       v-show="projectInfo.include !== 'exact'"
-      label="Script">
+      :label="$t('Script')">
       <select-path-script
-        placeholder="Select one entry script"
+        :placeholder="$t('Select one entry script')"
         select-pattern="*.py"
         ref="entry2"
         :multiple="false"
@@ -35,7 +35,7 @@
         v-model="projectInfo.entry">
       </select-path-script>
     </el-form-item>
-    <el-form-item label="Include">
+    <el-form-item :label="$t('Include')">
       <el-select
         class="w-100"
         @change="onIncludeChanged"
@@ -48,9 +48,9 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Exclude">
+    <el-form-item :label="$t('Exclude')">
       <select-path-script
-        placeholder="Ignore the path and the .py files list here"
+        :placeholder="$t('Ignore the path and the .py files list here')"
         :root-path="projectInfo.src"
         v-model="projectInfo.exclude">
       </select-path-script>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import { _t } from '../plugins/gettext.js'
+
 export default {
     name: 'ProjectInputFile',
     props: ['projectInfo'],
@@ -66,15 +68,15 @@ export default {
         return {
             includeOptions: [
                 {
-                    label: 'Only the scripts list above',
+                    label: _t('Only the scripts list above'),
                     value: 'exact',
                 },
                 {
-                    label: 'Only the ".py" files in the src path',
+                    label: _t('Only the ".py" files in the src path'),
                     value: 'list'
                 },
                 {
-                    label: 'All the scripts in the src path recursively',
+                    label: _t('All the scripts in the src path recursively'),
                     value: 'all'
                 },
             ],

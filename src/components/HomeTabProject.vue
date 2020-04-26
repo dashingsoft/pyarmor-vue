@@ -1,9 +1,9 @@
 <template>
   <div class="project-tab">
     <el-button v-on:click="newProject"
-               size="small">New</el-button>
+               size="small">{{ $t('New') }}</el-button>
     <el-button v-on:click="refreshData"
-               size="small">Refresh</el-button>
+               size="small">{{ $t('Refresh') }}</el-button>
     <el-table
       v-bind:data="tableData"
       stripe
@@ -15,19 +15,19 @@
             label-position="left"
             class="home-table-expand"
             size="mini">
-            <el-form-item label="Src">
+            <el-form-item :label="$t('Src')">
             <span>{{ props.row.src }}</span>
           </el-form-item>
-          <el-form-item label="Entry">
+          <el-form-item :label="$t('Entry')">
             <span>{{ props.row.entry }}</span>
           </el-form-item>
-          <el-form-item label="Output">
+          <el-form-item :label="$t('Output')">
             <span>{{ getProjectOutput( props.row ) }}</span>
           </el-form-item>
-          <el-form-item label="Target">
+          <el-form-item :label="$t('Target')">
             <span>{{ getTargetName( props.row.buildTarget ) }}</span>
           </el-form-item>
-          <el-form-item label="Path">
+          <el-form-item :label="$t('Path')">
             <span>{{ props.row.path }}</span>
           </el-form-item>
         </el-form>
@@ -35,7 +35,7 @@
     </el-table-column>
       <el-table-column
         sortable
-        label="Name"
+        :label="$t('Name')"
         width="180">
         <template slot-scope="scope">
           <el-link :underline="false"
@@ -44,29 +44,29 @@
       </el-table-column>
       <el-table-column
         prop="title"
-        label="Title">
+        :label="$t('Title')">
       </el-table-column>
       <el-table-column
         align="right">
         <template slot-scope="scope">
           <el-button v-on:click="buildProject(scope.row)"
                      type="text"
-                     title="Build this project"
+                     :title="$t('Build this project')"
                      icon="el-icon-s-tools"
                      size="medium"></el-button>
           <el-button v-on:click="diagnoseProject(scope.row)"
                      type="text"
-                     title="Build with debug information in case something is wrong"
+                     :title="$t('Build with debug information in case something is wrong')"
                      icon="el-icon-first-aid-kit"
                      size="medium"></el-button>
           <el-button v-on:click="removeProject(scope.row)"
                      type="text"
-                     title="Remove this project"
+                     :title="$t('Remove this project')"
                      icon="el-icon-delete"
                      size="medium"></el-button>
           <el-button v-on:click="editProject(scope.row)"
                      type="text"
-                     title="Edit this project"
+                     :title="$t('Edit this project')"
                      icon="el-icon-edit"
                      size="medium"></el-button>
         </template>
@@ -77,6 +77,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'HomeTabProject',
@@ -94,8 +95,8 @@ export default {
     },
     methods: {
         getTargetName( target ) {
-            return target === 0 ? 'Obfuscate' : target === 1 ? 'One folder bundle'
-                : target === 2 ? 'One file bundle' : 'One file bundle with outer license'
+            return target === 0 ? _t('Obfuscate') : target === 1 ? _t('One folder bundle')
+                : target === 2 ? _t('One file bundle') : _t('One file bundle with outer license')
         },
         getProjectOutput( data ) {
             let suffix = data.bundleName && data.bundleName.length ? '/' + data.bundleName : ''
@@ -112,12 +113,12 @@ export default {
                 data,
                 (output) => {
                     this.$message( {
-                        message: 'Build successfully, the results saved in: ' + output,
+                        message: _t('Build successfully, the results saved in: %1', output),
                         duration: 0,
                         showClose: true,
                     } )
                 },
-                'Building ' + data.name
+                _t('Building ') + data.name
             )
         },
         diagnoseProject: function (data) {
@@ -125,12 +126,12 @@ export default {
                 data,
                 (output) => {
                     this.$message( {
-                        message: 'Build successfully, the results saved in: ' + output,
+                        message: _t('Build successfully, the results saved in: ', output),
                         duration: 0,
                         showClose: true,
                     } )
                 },
-                'Diagnosing project ' + data.name
+                _t('Diagnosing project ') + data.name
             )
         },
         editProject: function (data) {
@@ -138,9 +139,7 @@ export default {
                        { projectInfo: JSON.parse( JSON.stringify( data ) ) } )
         },
         removeProject: function (data) {
-            this.$confirm('Are you sure remove this project: ' + data.name + '?', 'Confirm', {
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel',
+            this.$confirm(_t('Are you sure remove this project: %1 ?', data.name), _t('Confirm'), {
                 type: 'warning'
             }).then(() => {
                 data['clean'] = true

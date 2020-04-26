@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import reqwest from './reqwest.js'
+import { _t } from './plugins/gettext.js'
 
 var favorPath = []
 
@@ -31,7 +32,7 @@ export default new Vue({
             Vue.prototype.$message({
                 type: 'error',
                 message: typeof err === 'string'? err
-                    : 'Server error: please check console output and make sure server is on',
+                    : _t('Server error: please check console output and make sure server is on'),
                 showClose: true,
                 duration: 30000
             })
@@ -85,8 +86,8 @@ export default new Vue({
                 if (url === '/') {
                     favorPath = []
                     this.connected = false
-                    this.showError('Could not connect to pyarmor server, make sure it runs on ' +
-                                   this.serverUrl)
+                    this.showError(_t('Could not connect to pyarmor server, make sure it runs on %1',
+                                      this.serverUrl))
                     this.$emit('connect-changed', this.connected)
                 }
                 else {

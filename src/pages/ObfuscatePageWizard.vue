@@ -2,16 +2,16 @@
   <el-card class="wizard-page">
     <el-page-header
       v-on:back="goBack"
-      content="Obfuscate Script Wizard">
+      :content="$t('Obfuscate Script Wizard')">
     </el-page-header>
     <el-divider></el-divider>
     <el-steps :active="active" simple>
       <el-step
-        title="Start"></el-step>
+        :title="$t('Start')"></el-step>
       <el-step
-        title="Advanced"></el-step>
+        :title="$t('Advanced')"></el-step>
       <el-step
-        title="Finish"></el-step>
+        :title="$t('Finish')"></el-step>
     </el-steps>
     <el-form
       ref="form"
@@ -23,29 +23,29 @@
       </div>
       <div class="item-card" v-show="isItemVisible( 'advanced' )">
         <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
-        <el-form-item label="Cross Protection">
+        <el-form-item :label="$t('Cross Protection')">
           <el-switch
-            active-text="Inject cross protection code into entry scripts before obfuscating"
+            :active-text="$t('Inject cross protection code into entry scripts before obfuscating')"
             v-model="projectInfo.crossProtection">
           </el-switch>
         </el-form-item>
       </div>
       <div class="item-card" v-show="isItemVisible( 'finish' )">
         <el-form-item
-          label="Output">
+          :label="$t('Output')">
           <select-folder
-            placeholder="The default output path is $src/dist"
+            :placeholder="$t('The default output path is $src/dist')"
             :root-path="projectInfo.src"
             :allow-create="true"
             v-model="projectInfo.output">
           </select-folder>
         </el-form-item>
         <el-form-item
-          label="Package Name">
+          :label="$t('Package Name')">
           <el-input
             :disabled="projectInfo.src === ''"
             :readonly="autoOutputSuffix"
-            placeholder="Append this name to output path"
+            :placeholder="$t('Append this name to output path')"
             v-model="projectInfo.bundleName">
             <el-switch
               slot="prepend"
@@ -54,13 +54,13 @@
           </el-input>
         </el-form-item>
         <el-form-item
-          label="Platforms">
+          :label="$t('Platforms')">
           <select-platform
             class="w-100"
             :advanced="false"
             v-model="projectInfo.platforms"></select-platform>
         </el-form-item>
-        <el-form-item label="License">
+        <el-form-item :label="$t('License')">
           <select-license-file
             v-model="projectInfo.licenseFile"></select-license-file>
         </el-form-item>
@@ -105,6 +105,7 @@ import ProjectInputFile from './ProjectInputFile.vue'
 import ProjectInputMisc from './ProjectInputMisc.vue'
 
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'ObfuscatePageWizard',
@@ -189,12 +190,12 @@ export default {
             connector.buildProject(
                 this.projectInfo,
                 this.onObfuscateFinished,
-                'Obfuscate scripts: ' + this.projectInfo.entry.join( ',' )
+                _t('Obfuscate scripts: ') + this.projectInfo.entry.join( ',' )
             )
         },
         onObfuscateFinished(output) {
-            this.$message( 'Obfuscate the scripts successfully, ' +
-                           'the result is saved to ' + output )
+            this.$message( _t('Obfuscate the scripts successfully, the result is saved to %1',
+                              output) )
         },
     }
 }

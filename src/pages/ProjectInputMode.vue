@@ -1,32 +1,32 @@
 <template>
   <div class="project-file">
-    <el-form-item label="Advanced Mode">
+    <el-form-item :label="$t('Advanced Mode')">
       <el-switch
-        active-text="Change the structure of code object to improve security (only for x86/64 arch)"
+        :active-text="$t('Change code object structure to improve security (only for x86/64 arch)')"
         v-model="projectInfo.advancedMode">
       </el-switch>
     </el-form-item>
-    <el-form-item label="Cross Protection">
+    <el-form-item :label="$t('Cross Protection')">
       <el-switch
-        active-text="Inject cross protection code into entry scripts before obfuscating"
+        :active-text="$t('Inject cross protection code into entry scripts before obfuscating')"
         v-model="projectInfo.crossProtection">
       </el-switch>
     </el-form-item>
-    <el-form-item label="Obfuscate Module">
+    <el-form-item :label="$t('Obfuscate Module')">
       <el-switch
-        active-text="Obfuscate the whole module"
+        :active-text="$t('Obfuscate the whole module')"
         v-model="projectInfo.obfMod">
       </el-switch>
     </el-form-item>
-    <el-form-item label="Obfuscate Code Object">
+    <el-form-item :label="$t('Obfuscate Code Object')">
       <el-switch
-        active-text="Obfuscate each function (code object) in the module"
+        :active-text="$t('Obfuscate each function (code object) in the module')"
         v-model="projectInfo.obfCode">
       </el-switch>
     </el-form-item>
-    <el-form-item label="Wrap Code Object">
+    <el-form-item :label="$t('Wrap Code Object')">
       <el-switch
-        active-text="Obfuscate each function (code object) in runtime"
+        :active-text="$t('Obfuscate each function (code object) in runtime')"
         v-model="projectInfo.wrapMode">
       </el-switch>
     </el-form-item>

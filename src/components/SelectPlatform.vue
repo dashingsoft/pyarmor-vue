@@ -6,10 +6,10 @@
         style="width: 160px"
         v-model="level">
         <el-option
-          label="High Security"
+          :label="$t('High Security')"
           :value="0"></el-option>
         <el-option
-          label="High Speed"
+          :label="$t('High Speed')"
           :value="1"></el-option>
       </el-select>
     </div>
@@ -22,7 +22,7 @@
       :props="{ label: 'value', multiple: true }"
       :show-all-levels="false"
       @change="onValueChanged"
-      placeholder="Cross platform, select one or more platforms to run obfuscated scripts"
+      :placeholder="$t('Cross platform, select one or more platforms to run obfuscated scripts')"
       v-model="value"></el-cascader>
   </div>
 </template>

@@ -10,7 +10,7 @@
     :remote-method="listRemoteLicenses"
     :loading="loading"
     @change="onValueChanged"
-    placeholder="Select one license file to restrict the obfuscated script">
+    :placeholder="$t('Select one license file to restrict the obfuscated script')">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -22,6 +22,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'SelectLicenseFile',
@@ -69,11 +70,11 @@ export default {
             this.loading = false
             this.source = [
                 {
-                    label: 'Default license, no any restrict',
+                    label: _t('Default license, no any restrict'),
                     value: 'true'
                 },
                 {
-                    label: 'Do not include license file',
+                    label: _t('Do not include license file'),
                     value: 'false',
                 }
             ].concat( data.map( item => {

@@ -1,16 +1,16 @@
 <template>
   <div class="project-target">
     <el-form-item
-      label="Output">
+      :label="$t('Output')">
       <select-folder
-        placeholder="The default output path is $src/dist"
+        :placeholder="$t('The default output path is $src/dist')"
         :root-path="projectInfo.src"
         :allow-create="true"
         v-model="projectInfo.output">
       </select-folder>
     </el-form-item>
     <el-form-item
-      label="Bundle Name">
+      :label="$t('Bundle Name')">
       <el-input
         :disabled="projectInfo.src === ''"
         :readonly="autoOutputSuffix"
@@ -22,26 +22,26 @@
           v-model="autoOutputSuffix"></el-switch>
       </el-input>
     </el-form-item>
-    <el-form-item label="License">
+    <el-form-item :label="$t('License')">
       <select-license-file
         :disabled="projectInfo.buildTarget === 3"
         v-model="projectInfo.licenseFile"></select-license-file>
     </el-form-item>
     <div v-if="! isPackProject">
       <el-form-item
-        label="Platforms">
+        :label="$t('Platforms')">
         <select-platform
           class="w-100"
           :advanced="projectInfo.advancedMode"
           v-model="projectInfo.platforms"></select-platform>
       </el-form-item>
     </div>
-    <el-form-item label="Plugins">
+    <el-form-item :label="$t('Plugins')">
       <!-- <select-path-script -->
       <!--   :root-path="projectInfo.src" -->
       <!--   :only-script="true" -->
       <!--   select-pattern="*.py" -->
-      <!--   placeholder="Select one or more plugin scripts" -->
+      <!--   :placeholder="$t('Select one or more plugin scripts" -->
       <!--   v-model="projectInfo.plugins"></select-path-script> -->
       <el-select
         multiple
@@ -49,7 +49,7 @@
         allow-create
         default-first-option
         class="w-100"
-        placeholder="Type plugin name, then press ENTER"
+        :placeholder="$t('Type plugin name, then press ENTER')"
         v-model="projectInfo.plugins">
         <el-option value="on"></el-option>
         <el-option value="check_ntp_time"></el-option>
@@ -58,12 +58,12 @@
     </el-form-item>
     <div v-if="isPackProject">
       <el-form-item
-        label="Pack Options">
+        :label="$t('Pack Options')">
         <el-input
           type="textarea"
           autosize
           class="w-100"
-          placeholder="Please input any pyinstaller option"
+          :placeholder="$t('Please input any pyinstaller option')"
           v-model="packOptions">
         </el-input>
       </el-form-item>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'ProjectInputTarget',
@@ -82,8 +83,8 @@ export default {
         },
         bundlePlaceholder() {
             return this.projectInfo.buildTarget
-                ? 'Name to assign to the bundled app (default: entry script’s basename)'
-                : 'Append this name to output path for package'
+                ? _t('Name to assign to the bundled app (default: entry script’s basename)')
+                : _t('Append this name to output path for package')
         },
         autoOutputSuffix: {
             get() {

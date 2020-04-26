@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1 style="text-align: center">About</h1>
+    <h1 style="text-align: center">{{ $t('About') }}</h1>
     <p>pyarmor-vue: 0.2.0</p>
     <div v-if="versionInfo.version">
       <p>pyarmor-server: {{ versionInfo.server }}</p>
@@ -12,16 +12,16 @@
       <p v-if="versionInfo.reginfo.length">{{ versionInfo.reginfo }}</p>
     </div>
     <div v-else>
-      <p>PyArmor server is not running on <span>http://localhost:9096/</span>. Make sure the server is running, or click here to
+      <p>{{ $t('PyArmor server is not running on') }} <span>http://localhost:9096/</span>. {{ $t('Make sure the server is running, or click here to') }}
         <el-button
           type="text"
           @click="$emit('connect-server')">
-          connect another server url
+          {{ $t('connect another server url') }}
         </el-button>
       </P>
     </div>
-    <p>PyArmor is a powerful tool in the field of protecting and distributing python scripts.</p>
-    <p>The goal of PyArmor is to make Python applied to commercial application easily.</p>
+    <p>{{ $t('PyArmor is a powerful tool in the field of protecting and distributing python scripts.') }}</p>
+    <p>{{ $t('The goal of PyArmor is to make Python applied to commercial application easily.') }}</p>
     <div class="footer">
       <ul>
         <li>
@@ -29,38 +29,38 @@
             :underline="false"
             target="_blank"
             type="primary"
-            href="https://github.com/dashingsoft/pyarmor">Homepage</el-link>
+            href="https://github.com/dashingsoft/pyarmor">{{ $t('Homepage') }}</el-link>
         </li>
         <li>
           <el-link
             :underline="false"
             target="_blank"
             type="primary"
-            href="https://pyarmor.readthedocs.io/en/latest/">Documentation</el-link>
+            :href="$t('https://pyarmor.readthedocs.io/en/latest/')">{{ $t('Documentation') }}</el-link>
         </li>
         <li>
           <el-link
             :underline="false"
             target="_blank"
             type="primary"
-            href="https://pyarmor.readthedocs.io/en/latest/license.html">License &amp; Purchase</el-link>
+            :href="$t('https://pyarmor.readthedocs.io/en/latest/license.html')">{{ $t('License &amp; Purchase') }}</el-link>
         </li>
         <li>
           <el-link
             :underline="false"
             target="_blank"
             type="primary"
-            href="https://github.com/dashingsoft/pyarmor/issues">Report Issues</el-link>
+            href="https://github.com/dashingsoft/pyarmor/issues">{{ $t('Report Issues') }}</el-link>
         </li>
         <li>
           <el-link
             :underline="false"
             target="_blank"
             type="primary"
-            href="mailto:jondy.zhao@gmail.com">Concat</el-link>
+            href="mailto:jondy.zhao@gmail.com">{{ $t('Concat') }}</el-link>
         </li>
       </ul>
-      <p>Copyright @ 2008 - 2020 Dashingsoft Corp.</p>
+      <p>{{ $t('Copyright @ 2008 - 2020 Dashingsoft Corp.') }}</p>
     </div>
   </div>
 </template>

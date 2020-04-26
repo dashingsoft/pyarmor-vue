@@ -38,27 +38,27 @@
     </el-breadcrumb>
     <el-option disabled value="">
       <el-button size="mini"
-                 title="Parent directory"
+                 :title="$t('Parent directory')"
                  icon="el-icon-arrow-up"
                  v-on:click.stop="selectUpPath"></el-button>
       <el-button size="mini"
-                 title="Restore init value"
+                 :title="$t('Restore init value')"
                  icon="el-icon-refresh-left"
                  v-on:click.stop="restoreInitPath"></el-button>
       <el-button size="mini"
-                 title="Root path and favorite paths"
+                 :title="$t('Root path and favorite paths')"
                  icon="el-icon-link"
                  v-on:click.stop="selectRootPath"></el-button>
       <el-button size="mini"
-                 title="Create new path"
+                 :title="$t('Create new path')"
                  icon="el-icon-plus"
                  v-on:click.stop="onCreatePath"></el-button>
       <el-button size="mini"
-                 title="Delete an empty path"
+                 :title="$t('Delete an empty path')"
                  icon="el-icon-delete"
                  v-on:click.stop="onDeletePath"></el-button>
       <el-button size="mini"
-                 title="Accept path"
+                 :title="$t('Accept path')"
                  icon="el-icon-check"
                  v-on:click.stop="onAcceptPath"></el-button>
     </el-option>
@@ -85,6 +85,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'SelectFolder',
@@ -168,7 +169,7 @@ export default {
                 this.enterPath( this.joinPath( this.prefix ) )
             }
             else
-                this.$message.warning( 'This is top path' )
+                this.$message.warning( _t('This is top path') )
         },
         selectRootPath() {
             this.prefix = []
@@ -182,23 +183,19 @@ export default {
             } )
         },
         onCreatePath() {
-            this.$prompt( 'Please type path to create in ' + this.path, 'Input', {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
+            this.$prompt( _t('Please type path to create in %1', this.path), _t('Input'), {
                 inputValidator: ( value ) => value.length > 0
             } ).then( ( { value } ) => {
                 connector.newDirectory(
                     [ this.path, value ].join( '/' ),
                     ret => {
-                        this.$message( 'This path has been created: ' + ret )
+                        this.$message( _t('This path has been created: %1', ret) )
                     }
                 )
             } )
         },
         onDeletePath() {
-            this.$confirm( 'Are you sure to remove this path: ' + this.path, 'Confirm', {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
+            this.$confirm( _t('Are you sure to remove this path: %1 ?', this.path), _t('Confirm'), {
             } ).then( () => {
                 if ( this.path.length > 2 )
                     connector.removeDirectory( this.path )

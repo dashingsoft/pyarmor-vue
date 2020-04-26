@@ -2,18 +2,18 @@
     <el-card class="wizard-page">
       <el-page-header
         v-on:back="goBack"
-        content="Pack Script Wizard">
+        :content="$t('Pack Script Wizard')">
       </el-page-header>
       <el-divider></el-divider>
       <el-steps :active="active" align-center>
         <el-step
-          title="Start"></el-step>
+          :title="$t('Start')"></el-step>
         <el-step
-          title="Data Files"></el-step>
+          :title="$t('Data Files')"></el-step>
         <el-step
-          title="Extra Options"></el-step>
+          :title="$t('Extra Options')"></el-step>
         <el-step
-          title="Finish"></el-step>
+          :title="$t('Finish')"></el-step>
       </el-steps>
       <el-form
         ref="form"
@@ -25,15 +25,15 @@
             prop="src"
             label="Src">
             <select-folder
-              placeholder="Base path for entry script, data files, binary files etc."
+              :placeholder="$t('Base path for entry script, data files, binary files etc.')"
               v-model="formData.src">
             </select-folder>
           </el-form-item>
           <el-form-item
             prop="entry"
-            label="Script">
+            :label="$t('Script')">
             <select-path-script
-              placeholder="The entry script"
+              :placeholder="$t('The entry script')"
               select-pattern="*.py"
               :only-script="true"
               :multiple="false"
@@ -43,7 +43,7 @@
           </el-form-item>
           <el-form-item label="Exclude">
             <select-path-script
-              placeholder="No obfuscated scripts in these paths"
+              :placeholder="$t('No obfuscated scripts in these paths')"
               :root-path="formData.src"
               :only-folder="true"
               v-model="formData.exclude">
@@ -58,8 +58,8 @@
               allow-create
               default-first-option
               class="w-100"
-              no-data-text="Type module or package name, then press ENTER"
-              placeholder="Name an import not visible in the code of the script(s)"
+              :no-data-text="$t('Type module or package name, then press ENTER')"
+              :placeholder="$t('Name an import not visible in the code of the script(s)')"
               v-model="formData.hiddenImport">
             </el-select>
           </el-form-item>
@@ -70,8 +70,8 @@
               allow-create
               default-first-option
               class="w-100"
-              placeholder="Additional non-binary files or folders to be added to the executable"
-              no-data-text="Type file name or path name relative to src, then press ENTER"
+              :placeholder="$t('Additional data files or folders to be added to the executable')"
+              :no-data-text="$t('Type file name or path name relative to src, then press ENTER')"
               v-model="formData.dataFile">
             </el-select>
           </el-form-item>
@@ -82,56 +82,56 @@
               allow-create
               default-first-option
               class="w-100"
-              placeholder="Additional binary files to be added to the executable"
-              no-data-text="Type binary filename relative to src, then press ENTER"
+              :placeholder="$t('Additional binary files to be added to the executable')"
+              :no-data-text="$t('Type binary filename relative to src, then press ENTER')"
               v-model="formData.binaryFile">
             </el-select>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'options' )">
-          <el-form-item label="No Console">
+          <el-form-item :label="$t('No Console')">
             <el-switch
-              active-text="Do not provide a console window for standard I/O"
+              :active-text="$t('Do not provide a console window for standard I/O')"
               v-model="formData.noConsole">
             </el-switch>
           </el-form-item>
           <el-form-item label="Icon">
             <el-input
-              placeholder="Apply icon to a Windows executable or the bundle on Mac OS X"
+              :placeholder="$t('Apply icon to a Windows executable or the bundle on Mac OS X')"
               v-model="formData.icon">
             </el-input>
           </el-form-item>
-          <el-form-item label="Extra Options">
+          <el-form-item :label="$t('Extra Options')">
             <el-input
               type="textarea"
               autosize
               class="w-100"
-              placeholder="Any other PyInstaller options to append command line"
+              :placeholder="$t('Any other PyInstaller options to append command line')"
               v-model="formData.extraOptions">
             </el-input>
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'finish' )">
           <el-form-item
-            label="Output">
+            :label="$t('Output')">
             <select-folder
-              placeholder="The default output path is $src/dist"
+              :placeholder="$t('The default output path is $src/dist')"
               :root-path="formData.src"
               :allow-create="true"
               v-model="formData.output">
             </select-folder>
           </el-form-item>
-          <el-form-item label="Bundle">
+          <el-form-item :label="$t('Bundle')">
             <el-input
-              placeholder="Name to assign to the bundled app (default: entry script’s basename)"
+              :placeholder="$t('Name to the bundled app (default: basename of entry script)')"
               v-model="formData.bundleName">
               <el-select
                 style="width: 260px"
                 slot="prepend"
                 v-model="formData.target">
-                <el-option label="all to one folder" :value="1"></el-option>
-                <el-option label="all to one file" :value="2"></el-option>
-                <el-option label="all to one file with outer license" :value="3"></el-option>
+                <el-option label="$t('all to one folder')" :value="1"></el-option>
+                <el-option label="$t('all to one file')" :value="2"></el-option>
+                <el-option label="$t('all to one file with outer license')" :value="3"></el-option>
               </el-select>
             </el-input>
           </el-form-item>
@@ -150,7 +150,7 @@
             type="primary"
             icon="el-icon-position"
             @click="finish">
-            Pack
+            {{ $t('Pack') }}
           </el-button>
           <el-button
             round
@@ -158,20 +158,20 @@
             type="info"
             icon="el-icon-close"
             @click="goBack">
-            Close
+            {{ $t('Close') }}
           </el-button>
           <el-button
             round
             :disabled="active === 0"
             icon="el-icon-arrow-left"
             @click="prev">
-            Prev
+            {{ $t('Prev') }}
           </el-button>
           <el-button
             round
             :disabled="active >= steps.length - 1"
             @click="next">
-            Next <i class="el-icon-arrow-right el-icon--right"></i>
+            {{ $t('Next') }} <i class="el-icon-arrow-right el-icon--right"></i>
           </el-button>
         </el-form-item>
       </el-form>
@@ -180,6 +180,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'PackPageWizard',
@@ -278,12 +279,12 @@ export default {
             connector.buildProject(
                 this.projectInfo,
                 this.onPackFinished,
-                'Packing script ' + this.formData.entry
+                _t('Packing script ') + this.formData.entry
             )
         },
         onPackFinished(output) {
-            this.$message( 'Pack the obfuscated script successfully, ' +
-                           'the final bundle is saved to ' + output )
+            this.$message( _t('Pack obfuscated scripts successfully, the final bundle is saved to ',
+                              output ) )
         },
     }
 }

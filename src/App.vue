@@ -31,8 +31,8 @@
       <el-container>
         <el-header style="text-align: right">
           <el-dropdown v-on:command="changeLanguage">
-            <span class="el-dropdown-link">
-              English <i class="el-icon-arrow-down el-icon--right"></i>
+            <span class="el-dropdown-link" style="cursor: pointer;">
+             {{ lang }} <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="en">English</el-dropdown-item>
@@ -84,10 +84,8 @@ import LicensePageEdit from './pages/LicensePageEdit.vue'
 import ObfuscatePageWizard from './pages/ObfuscatePageWizard.vue'
 import PackPageWizard from './pages/PackPageWizard.vue'
 
-import locale from 'element-ui/lib/locale'
-import enLocale from 'element-ui/lib/locale/lang/en'
-import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import connector from './connector.js'
+import { setLocale } from './plugins/gettext.js'
 
 export default {
     name: 'app',
@@ -103,6 +101,7 @@ export default {
     },
     data: function () {
         return {
+            lang: 'English',
             currentTabName: 'HomeTabIndex',
             currentPageName: '',
             currentPageProps: {},
@@ -183,7 +182,8 @@ export default {
             connector.connectServer()
         },
         changeLanguage: function (lang) {
-            locale.use(lang === 'en' ? enLocale : zhLocale)
+            this.lang = lang === 'en' ? 'English' : '简体中文'
+            setLocale(lang)
         }
     },
 }

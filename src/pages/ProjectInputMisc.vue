@@ -1,14 +1,14 @@
 <template>
   <div class="project-misc">
-    <el-form-item label="Restrict Mode">
-      <span slot="label">Restrict Mode
+    <el-form-item :label="$('Restrict Mode')">
+      <span slot="label">{{ $t('Restrict Mode') }}
         <el-link :underline="false"
                  target="_blank"
-                 href="https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode">
+                 :href="$t('https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode')">
           <i class="el-icon-question"></i></el-link>
       </span>
       <el-select
-        placeholder="Select restrict mode"
+        :placeholder="$t('Select restrict mode')"
         v-model="projectInfo.restrictMode">
         <el-option
           v-for="item in restrictModes"
@@ -18,11 +18,11 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Bootstrap Code">
+    <el-form-item :label="$t('Bootstrap Code')">
       <el-select
         :disabled="isPackProject"
         class="w-50"
-        placeholder="Select entry mode"
+        :placeholder="$t('Select entry mode')"
         v-model="projectInfo.bootstrapCode">
         <el-option
           v-for="item in bootstrapModes"
@@ -32,10 +32,10 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Enable Suffix">
+    <el-form-item :label="$t('Enable Suffix')">
       <el-switch
         :disabled="isPackProject"
-        active-text="Generate runtime package with an unique suffix"
+        :active-text="$t('Generate runtime package with an unique suffix')"
         v-model="projectInfo.enableSuffix">
       </el-switch>
     </el-form-item>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import { _t } from '../plugins/gettext.js'
+
 export default {
     name: 'ProjectInputMisc',
     props: ['projectInfo'],
@@ -55,41 +57,41 @@ export default {
         return {
             bootstrapModes: [
                 {
-                    label: 'DO NOT insert bootstrap code into entry scripts',
+                    label: _t('DO NOT insert bootstrap code into entry scripts'),
                     value: 0,
                 },
                 {
-                    label: 'Insert bootstrap code into entry scripts after obfuscated',
+                    label: _t('Insert bootstrap code into entry scripts'),
                     value: 1,
                 },
                 {
-                    label: 'Generate bootstrap code always without leading dot (absolute import)',
+                    label: _t('Generate bootstrap code without leading dot (absolute import)'),
                     value: 2,
                 },
                 {
-                    label: 'Generate bootstrap code always with leading dot (relative import)',
+                    label: _t('Generate bootstrap code with leading dot (relative import)'),
                     value: 3,
                 },
             ],
             restrictModes: [
                 {
-                    label: 'Mode 0, disable all the restricts for the obfuscated scripts',
+                    label: _t('Mode 0, disable all the restricts for the obfuscated scripts'),
                     value: 0,
                 },
                 {
-                    label: 'Mode 1',
+                    label: _t('Mode 1'),
                     value: 1,
                 },
                 {
-                    label: 'Mode 2',
+                    label: _t('Mode 2'),
                     value: 2,
                 },
                 {
-                    label: 'Mode 3',
+                    label: _t('Mode 3'),
                     value: 3,
                 },
                 {
-                    label: 'Mode 4',
+                    label: _t('Mode 4'),
                     value: 4,
                 },
             ],

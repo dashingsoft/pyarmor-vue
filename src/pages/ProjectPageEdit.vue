@@ -3,10 +3,10 @@
     <el-page-header
       style="margin-bottom: 16px"
       v-on:back="goBack"
-      v-bind:content="isEdit ? 'Edit Project' : 'New Project'">
+      v-bind:content="isEdit ? $t('Edit Project') : $t('New Project')">
       <div slot="content">
-        <span v-if="isEdit">Edit Project</span>
-        <span v-else>New Project</span>
+        <span v-if="isEdit">{{ $t('Edit Project') }}</span>
+        <span v-else>{{ $t('New Project') }}</span>
         <span v-if="projectInfo.title"> - {{ projectInfo.title }}</span>
         <el-button
           v-if="isEdit"
@@ -23,37 +23,37 @@
       label-width="180px"
       label-position="left">
       <el-tabs type="border-card">
-        <el-tab-pane label="Basic">
-          <el-form-item label="Type">
+        <el-tab-pane :label="$t('Basic')">
+          <el-form-item :label="$t('Type')">
             <el-select
               class="w-50"
               v-model="projectInfo.buildTarget">
               <el-option
-                label="Obfuscate"
+                :label="$t('Obfuscate')"
                 :value="0"></el-option>
               <el-option
-                label="Pack all to one folder"
+                :label="$t('Pack all to one folder')"
                 :value="1"></el-option>
               <el-option
-                label="Pack all to one file"
+                :label="$t('Pack all to one file')"
                 :value="2"></el-option>
               <el-option
-                label="Pack all to one file with outer license"
+                :label="$t('Pack all to one file with outer license')"
                 :value="3"></el-option>
             </el-select>
           </el-form-item>
           <project-input-file v-bind:project-info="projectInfo"></project-input-file>
         </el-tab-pane>
-        <el-tab-pane label="Output">
+        <el-tab-pane :label="$t('Output')">
             <project-input-target v-bind:project-info="projectInfo"></project-input-target>
         </el-tab-pane>
-        <el-tab-pane label="Obfuscate Mode">
+        <el-tab-pane :label="$t('Obfuscate Mode')">
           <project-input-mode v-bind:project-info="projectInfo"></project-input-mode>
         </el-tab-pane>
-        <el-tab-pane label="Advanced Options">
+        <el-tab-pane :label="$t('Advanced Options')">
           <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
           <el-form-item
-            label="Runtime Files">
+            :label="$t('Runtime Files')">
             <el-select
               class="w-50"
               :disabled="projectInfo.buildTarget > 0"
@@ -91,6 +91,7 @@ import ProjectInputTarget from './ProjectInputTarget.vue'
 import ProjectInputMisc from './ProjectInputMisc.vue'
 
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'ProjectPageEdit',
@@ -139,15 +140,15 @@ export default {
         return {
             runtimeOptions: [
                 {
-                    label: 'DO NOT generate runtime files',
+                    label: _t('DO NOT generate runtime files'),
                     value: -1,
                 },
                 {
-                    label: 'Generate runtime files as a module "pytransform.py"',
+                    label: _t('Generate runtime files as a module "pytransform.py"'),
                     value: 0,
                 },
                 {
-                    label: 'Generate runtime files as a package "pytransform"',
+                    label: _t('Generate runtime files as a package "pytransform"'),
                     value: 1,
                 },
             ],
@@ -177,12 +178,12 @@ export default {
                 this.projectInfo,
                 (output) => {
                     this.$message( {
-                        message: 'Build successfully, the results saved in: ' + output,
+                        message: _t('Build successfully, the results saved in: %1', output),
                         duration: 0,
                         showClose: true,
                     } )
                 },
-                'Building ' + this.projectInfo.title
+                _t('Building ') + this.projectInfo.title
             )
         },
         onDiagnose() {
@@ -190,12 +191,12 @@ export default {
                 this.projectInfo,
                 (output) => {
                     this.$message( {
-                        message: 'Build successfully, the results saved in: ' + output,
+                        message: _t('Build successfully, the results saved in: ', output),
                         duration: 0,
                         showClose: true,
                     } )
                 },
-                'Diagnosing project ' + this.projectInfo.title
+                _t('Diagnosing project ') + this.projectInfo.title
             )
         },
         onSubmit() {
@@ -208,16 +209,14 @@ export default {
             } )
         },
         onProjectUpdated(data) {
-            this.$message('The project "' + data.name + '" has been ' +
-                          (this.isEdit ? 'updated' : 'created'))
+            this.$message(_t('The project "%1" has been %2', data.name,
+                             (this.isEdit ? _t('updated') : _t('created'))))
             if (!this.isEdit)
                 this.goBack()
         },
         changeProjectTitle() {
-            this.$prompt('Please input project title', 'Input', {
+            this.$prompt(_t('Please input project title'), _t('Input'), {
                 inputValue: this.projectInfo.title,
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
             }).then(({ value }) => {
                 this.projectInfo.title = value
             })

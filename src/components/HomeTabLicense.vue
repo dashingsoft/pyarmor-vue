@@ -1,9 +1,9 @@
 <template>
   <div class="license-tab">
     <el-button v-on:click="newLicense"
-               size="small">New</el-button>
+               size="small">{{ $t('New') }}</el-button>
     <el-button v-on:click="refreshData"
-               size="small">Refresh</el-button>
+               size="small">{{ $t('Refresh') }}</el-button>
     <el-table
       v-bind:data="tableData"
       stripe
@@ -14,25 +14,25 @@
                    label-position="left"
                    class="home-table-expand"
                    size="mini">
-            <el-form-item label="Expired">
+            <el-form-item :label="$t('Expired')">
               <span>{{ props.row.expired }}</span>
             </el-form-item>
-            <el-form-item label="Harddisk">
+            <el-form-item :label="$t('Harddisk')">
               <span>{{ props.row.harddisk }}</span>
             </el-form-item>
-            <el-form-item label="IPv4">
+            <el-form-item :label="$t('IPv4')">
               <span>{{ props.row.ipv4 }}</span>
             </el-form-item>
-            <el-form-item label="Mac Address">
+            <el-form-item :label="$t('Mac Address')">
               <span>{{ props.row.mac }}</span>
             </el-form-item>
-            <el-form-item v-if="0" label="Disable Restrict Mode">
+            <el-form-item v-if="0" :label="$t('Disable Restrict Mode')">
               <span>{{ props.row.disableRestrictMode }}</span>
             </el-form-item>
-            <el-form-item label="Extra Data">
+            <el-form-item :label="$t('Extra Data')">
               <span>{{ props.row.extraData }}</span>
             </el-form-item>
-            <el-form-item label="Filename">
+            <el-form-item :label="$t('Filename')">
               <span>{{ props.row.filename }}</span>
             </el-form-item>
           </el-form>
@@ -41,19 +41,19 @@
       <el-table-column
         sortable
         prop="rcode"
-        label="Name">
+        :label="$t('Name')">
       </el-table-column>
       <el-table-column
         prop="summary"
         show-overflow-tooltip
-        label="Summary">
+        :label="$t('Summary')">
       </el-table-column>
       <el-table-column
         align="right">
         <template slot-scope="scope">
           <el-button @click="editLicense(scope.row)"
                      type="text"
-                     title="Edit this license"
+                     :title="$t('Edit this license')"
                      icon="el-icon-edit"
                      size="medium"></el-button>
           <el-button @click="cloneLicense(scope.row)"
@@ -63,7 +63,7 @@
                      size="medium"></el-button>
           <el-button @click="removeLicense(scope.row)"
                      type="text"
-                     title="Remove this license"
+                     :title="$t('Remove this license')"
                      icon="el-icon-delete"
                      size="medium"></el-button>
         </template>
@@ -74,6 +74,7 @@
 
 <script>
 import connector from '../connector.js'
+import { _t } from '../plugins/gettext.js'
 
 export default {
     name: 'HomeTabLicense',
@@ -101,9 +102,7 @@ export default {
                        { licenseInfo: JSON.parse( JSON.stringify( data ) ) })
         },
         removeLicense: function (data) {
-            this.$confirm('Are you sure remove this license: ' + data.rcode + '?', 'Confirm', {
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel',
+            this.$confirm(_t('Are you sure remove this license: %1 ?', data.rcode), _t('Confirm'), {
                 type: 'warning'
             }).then(() => {
                 connector.removeLicense(data)
