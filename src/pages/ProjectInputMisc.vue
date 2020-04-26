@@ -4,7 +4,7 @@
       <span slot="label">{{ $t('Restrict Mode') }}
         <el-link :underline="false"
                  target="_blank"
-                 :href="$t('https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode')">
+                 :href="$t('https://pyarmor.readthedocs.io/en/stable/mode.html#restrict-mode')">
           <i class="el-icon-question"></i></el-link>
       </span>
       <el-select

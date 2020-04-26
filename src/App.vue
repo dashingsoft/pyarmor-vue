@@ -121,6 +121,9 @@ export default {
     mounted: function () {
         connector.$on('connect-changed', this.onServerChanged)
         this.connectServer()
+
+        if ( localStorage.getItem( 'language' ) === 'zh-cn' )
+            this.changeLanguage( 'zh-cn' )
     },
     computed: {
         currentTabComponent: function () {
@@ -190,6 +193,7 @@ export default {
                 obj.$children.forEach( child => update( child ) )
             }
             update( this )
+            localStorage.setItem( 'language', lang )
         }
     },
 }

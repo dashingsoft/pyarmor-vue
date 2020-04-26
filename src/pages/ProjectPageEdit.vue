@@ -69,7 +69,7 @@
         </el-tab-pane>
         <el-form-item style="margin-top: 30px">
           <el-button type="primary" v-on:click="onSubmit">
-            {{ isEdit ? "Update" : "Create" }}
+            {{ isEdit ? $t('Update') : $t('Create') }}
           </el-button>
           <el-button type="default" v-show="isEdit" v-on:click="onBuild">
             Build
@@ -144,11 +144,11 @@ export default {
                     value: -1,
                 },
                 {
-                    label: _t('Generate runtime files as a module `pytransform.py`'),
+                    label: _t('Generate runtime files as a module pytransform.py'),
                     value: 0,
                 },
                 {
-                    label: _t('Generate runtime files as a package `pytransform`'),
+                    label: _t('Generate runtime files as a package pytransform'),
                     value: 1,
                 },
             ],
@@ -191,7 +191,7 @@ export default {
                 this.projectInfo,
                 (output) => {
                     this.$message( {
-                        message: _t('Build successfully, the results saved in: ', output),
+                        message: _t('Build successfully, the results saved in: %1', output),
                         duration: 0,
                         showClose: true,
                     } )

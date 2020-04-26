@@ -126,7 +126,7 @@ export default {
                 data,
                 (output) => {
                     this.$message( {
-                        message: _t('Build successfully, the results saved in: ', output),
+                        message: _t('Build successfully, the results saved in: %1', output),
                         duration: 0,
                         showClose: true,
                     } )

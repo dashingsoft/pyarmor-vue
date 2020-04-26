@@ -19,7 +19,7 @@
           :disabled="!!licenseInfo.id"
           maxlength="60"
           show-word-limit
-          :placeholder="$t('Leave it blank to set default name like `reg-xxxxxx`')"
+          :placeholder="$t('Leave it blank to set default name like reg-xxxxxx')"
           v-model="licenseInfo.rcode"></el-input>
       </el-form-item>
       <el-form-item

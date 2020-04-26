@@ -23,7 +23,7 @@
         <div class="item-card" v-show="isItemVisible( 'start' )">
           <el-form-item
             prop="src"
-            label="Src">
+            :label="$t('Src')">
             <select-folder
               :placeholder="$t('Base path for entry script, data files, binary files etc.')"
               v-model="formData.src">
@@ -41,7 +41,7 @@
               v-model="formData.entry">
             </select-path-script>
           </el-form-item>
-          <el-form-item label="Exclude">
+          <el-form-item :label="$t('Exclude')">
             <select-path-script
               :placeholder="$t('No obfuscated scripts in these paths')"
               :root-path="formData.src"
@@ -51,7 +51,7 @@
           </el-form-item>
         </div>
         <div class="item-card" v-show="isItemVisible( 'data' )">
-          <el-form-item label="Hidden Imports">
+          <el-form-item :label="$t('Hidden Imports')">
             <el-select
               multiple
               filterable
@@ -63,7 +63,7 @@
               v-model="formData.hiddenImport">
             </el-select>
           </el-form-item>
-          <el-form-item label="Data Files">
+          <el-form-item :label="$t('Data Files')">
             <el-select
               multiple
               filterable
@@ -75,7 +75,7 @@
               v-model="formData.dataFile">
             </el-select>
           </el-form-item>
-          <el-form-item label="Binary Files">
+          <el-form-item :label="$t('Binary Files')">
             <el-select
               multiple
               filterable
@@ -95,7 +95,7 @@
               v-model="formData.noConsole">
             </el-switch>
           </el-form-item>
-          <el-form-item label="Icon">
+          <el-form-item :label="$t('Icon')">
             <el-input
               :placeholder="$t('Apply icon to a Windows executable or the bundle on Mac OS X')"
               v-model="formData.icon">
@@ -129,14 +129,14 @@
                 style="width: 260px"
                 slot="prepend"
                 v-model="formData.target">
-                <el-option label="$t('all to one folder')" :value="1"></el-option>
-                <el-option label="$t('all to one file')" :value="2"></el-option>
-                <el-option label="$t('all to one file with outer license')" :value="3"></el-option>
+                <el-option :label="$t('all to one folder')" :value="1"></el-option>
+                <el-option :label="$t('all to one file')" :value="2"></el-option>
+                <el-option :label="$t('all to one file with outer license')" :value="3"></el-option>
               </el-select>
             </el-input>
           </el-form-item>
           <el-form-item
-            label="License">
+            :label="$t('License')">
             <select-license-file
               :disabled="formData.target === 3"
               v-model="formData.licenseFile">
@@ -283,7 +283,7 @@ export default {
             )
         },
         onPackFinished(output) {
-            this.$message( _t('Pack obfuscated scripts successfully, the final bundle is saved to ',
+            this.$message( _t('Pack obfuscated scripts successfully, the final bundle is saved: %1',
                               output ) )
         },
     }

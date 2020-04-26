@@ -16,7 +16,7 @@ import sys
 
 def build_message_table(files):
     messages = {}
-    pat = re.compile(r'''[_$]t\(\s*[']([^']+)[']\s*\)''')
+    pat = re.compile(r'''[_$]t\(\s*[']([^']+)[']\s*[,)]''')
     for name in files:
         print('Searching %s ...' % name)
         with open(name) as f:

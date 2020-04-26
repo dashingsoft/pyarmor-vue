@@ -8,17 +8,17 @@ const messages = {
 
     "My Projects": "我的工程",
     "My Licenses": "我的许可证",
-    "Please type pyarmor server url:": "输入 pyarmor 服务地址：",
+    "Please type pyarmor server url:": "输入 pyarmor 后台服务地址：",
     "Connect": "连接",
 
     // src/components/SelectLicenseFile.vue 13
     "Select one license file to restrict the obfuscated script": "选择加密脚本的许可证",
 
     // src/components/SelectLicenseFile.vue 73
-    "Default license, no any restrict": "默认许可证（无限制）",
+    "Default license, no any restrict": "使用默认许可证",
 
     // src/components/SelectLicenseFile.vue 77
-    "Do not include license file": "不要为加密脚本生成默认许可文件",
+    "Do not include license file": "不使用许可证",
 
     // src/components/HomeTabIndex.vue 3
     "Home": "首页",
@@ -32,334 +32,343 @@ const messages = {
 
     // src/components/HomeTabIndex.vue 34
     // src/pages/PackPageWizard.vue 5
-    "Pack Script Wizard": "打包加密脚本向导",
+    "Pack Script Wizard": "加密打包向导",
 
     // src/components/HomeTabIndex.vue 45
     "Pack With Project": "使用工程打包",
 
     // src/components/HomeTabIndex.vue 56
-    "Generate Expired License": "创建有效期限制许可证",
+    "Generate Expired License": "时间限制许可证",
 
     // src/components/HomeTabIndex.vue 67
-    "Fixed Machine License": "创建指定设备的许可证",
+    "Fixed Machine License": "指定设备许可证",
 
     // src/components/HomeTabIndex.vue 78
-    "Full Features License": "创建全特征的许可证",
+    "Full Features License": "全部特征许可证",
 
     // src/components/HomeTabIndex.vue 89
     "Register PyArmor": "注册 PyArmor",
 
     // src/components/HomeTabIndex.vue 97
-    "Please select one regfile, for example, pyarmor-regfile-1.zip": "",
+    "Please select one regfile, for example, pyarmor-regfile-1.zip": "请选择注册文件，一般为 pyarmor-regfile-1.zip",
 
     // src/components/HomeTabIndex.vue 103
-    "No this file?": "",
+    "No this file?": "还没有注册文件？",
 
     // src/components/HomeTabIndex.vue 108
-    "https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1": "",
+    "https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1": "http://pyarmor.dashingsoft.com/cart/order.html",
 
     // src/components/HomeTabIndex.vue 109
-    "Click here to purchase one": "",
+    "Click here to purchase one": "点击这里购买",
 
     // src/components/HomeTabIndex.vue 112
-    "Cancel": "",
+    "Cancel": "取消",
 
     // src/components/HomeTabIndex.vue 113
-    "Register": "",
+    "Register": "注册",
 
     // src/components/HomeTabIndex.vue 153
-    "Register PyArmor successfully": "",
+    "Register PyArmor successfully": "PyArmor 注册成功",
 
     // src/components/HomeTabIndex.vue 157
-    "regfile is empty": "",
+    "regfile is empty": "没有注册文件",
 
     // src/components/SelectPlatform.vue 9
-    "High Security": "",
+    "High Security": "高安全性",
 
     // src/components/SelectPlatform.vue 12
-    "High Speed": "",
+    "High Speed": "高性能",
 
     // src/components/SelectPlatform.vue 25
-    "Cross platform, select one or more platforms to run obfuscated scripts": "",
+    "Cross platform, select one or more platforms to run obfuscated scripts": "用于跨平台发布，选择运行加密脚本的目标平台",
 
     // src/components/HomeTabAbout.vue 3
     "About": "关于",
 
     // src/components/HomeTabAbout.vue 15
-    "PyArmor server is not running on": "",
+    "PyArmor server is not running on": "PyArmor 后台服务没有启动",
 
     // src/components/HomeTabAbout.vue 15
-    "Make sure the server is running, or click here to": "",
+    "Make sure the server is running, or click here to": "请确认后台服务已经启动，或者点击这里",
 
     // src/components/HomeTabAbout.vue 19
-    "connect another server url": "",
+    "connect another server url": "连接其他地址的后台服务",
 
     // src/components/HomeTabAbout.vue 23
-    "PyArmor is a powerful tool in the field of protecting and distributing python scripts.": "",
+    "PyArmor is a powerful tool in the field of protecting and distributing python scripts.": "PyArmor 是一个用于加密保护和发布 Python 脚本的强大工具。",
 
     // src/components/HomeTabAbout.vue 24
-    "The goal of PyArmor is to make Python applied to commercial application easily.": "",
+    "The goal of PyArmor is to make Python applied to commercial application easily.": "PyArmor 的目标是让 Python 可以更广泛和应用于商业软件。",
 
     // src/components/HomeTabAbout.vue 32
     "Homepage": "主页",
 
     // src/components/HomeTabAbout.vue 39
-    "https://pyarmor.readthedocs.io/en/latest/": "",
+    "https://pyarmor.readthedocs.io/en/stable/": "https://pyarmor.readthedocs.io/zh/stable/",
 
     // src/components/HomeTabAbout.vue 39
-    "Documentation": "",
+    "Documentation": "文档",
 
     // src/components/HomeTabAbout.vue 46
-    "https://pyarmor.readthedocs.io/en/latest/license.html": "",
+    "https://pyarmor.readthedocs.io/en/stable/license.html": "https://pyarmor.readthedocs.io/zh/stable/license.html",
 
     // src/components/HomeTabAbout.vue 46
-    "License &amp; Purchase": "",
+    "License & Purchase": "许可和购买",
 
     // src/components/HomeTabAbout.vue 53
-    "Report Issues": "",
+    "Report Issues": "报告问题",
 
     // src/components/HomeTabAbout.vue 60
-    "Concat": "",
+    "Concat": "联系方式",
 
     // src/components/HomeTabAbout.vue 63
-    "Copyright @ 2008 - 2020 Dashingsoft Corp.": "",
+    "Copyright @ 2008 - 2020 Dashingsoft Corp.": "版权所有 @ 2008 - 2020 西安德新软件",
 
     // src/components/SelectFolder.vue 41
-    "Parent directory": "",
+    "Parent directory": "上一级目录",
 
     // src/components/SelectFolder.vue 45
-    "Restore init value": "",
+    "Restore init value": "恢复初始值",
 
     // src/components/SelectFolder.vue 49
-    "Root path and favorite paths": "",
+    "Root path and favorite paths": "根目录和常用目录",
 
     // src/components/SelectFolder.vue 53
-    "Create new path": "",
+    "Create new path": "创建新目录",
 
     // src/components/SelectFolder.vue 57
-    "Delete an empty path": "",
+    "Delete an empty path": "删除空目录",
 
     // src/components/SelectFolder.vue 61
-    "Accept path": "",
+    "Accept path": "接受当前选中的目录",
 
     // src/components/SelectFolder.vue 172
-    "This is top path": "",
+    "This is top path": "已经是最上层目录",
 
     // src/components/SelectFolder.vue 186
     // src/pages/ProjectPageEdit.vue 218
-    "Input": "",
+    "Input": "输入",
 
     // src/components/SelectFolder.vue 198
     // src/components/HomeTabLicense.vue 105
     // src/components/HomeTabProject.vue 142
-    "Confirm": "",
+    "Confirm": "确认",
 
     // src/components/HomeTabLicense.vue 4
     // src/components/HomeTabProject.vue 4
-    "New": "",
+    "New": "创建",
 
     // src/components/HomeTabLicense.vue 6
     // src/components/HomeTabProject.vue 6
-    "Refresh": "",
+    "Refresh": "刷新",
 
     // src/components/HomeTabLicense.vue 17
     // src/pages/LicensePageEdit.vue 27
-    "Expired": "",
+    "Expired": "有效期",
 
     // src/components/HomeTabLicense.vue 20
-    "Harddisk": "",
+    "Harddisk": "硬盘序列号",
 
     // src/components/HomeTabLicense.vue 23
-    "IPv4": "",
+    "IPv4": "IPv4",
 
     // src/components/HomeTabLicense.vue 26
-    "Mac Address": "",
+    "Mac Address": "网卡MAC地址",
 
     // src/components/HomeTabLicense.vue 29
     // src/pages/LicensePageEdit.vue 43
-    "Disable Restrict Mode": "",
+    "Disable Restrict Mode": "禁用约束模式",
 
     // src/components/HomeTabLicense.vue 32
     // src/pages/LicensePageEdit.vue 57
-    "Extra Data": "",
+    "Extra Data": "自定义数据",
 
     // src/components/HomeTabLicense.vue 35
-    "Filename": "",
+    "Filename": "文件名称",
 
     // src/components/HomeTabLicense.vue 44
     // src/components/HomeTabProject.vue 38
     // src/pages/LicensePageEdit.vue 16
-    "Name": "",
+    "Name": "名称",
 
     // src/components/HomeTabLicense.vue 49
-    "Summary": "",
+    "Summary": "说明",
 
     // src/components/HomeTabLicense.vue 56
-    "Edit this license": "",
+    "Edit this license": "修改许可",
 
     // src/components/HomeTabLicense.vue 66
-    "Remove this license": "",
+    "Remove this license": "删除许可",
 
     // src/components/HomeTabProject.vue 18
     // src/pages/ProjectInputFile.vue 6
-    "Src": "",
+    "Src": "源路径",
 
     // src/components/HomeTabProject.vue 21
-    "Entry": "",
+    "Entry": "主脚本",
 
     // src/components/HomeTabProject.vue 24
     // src/pages/PackPageWizard.vue 116
     // src/pages/ObfuscatePageWizard.vue 35
     // src/pages/ProjectInputTarget.vue 4
     // src/pages/ProjectPageEdit.vue 47
-    "Output": "",
+    "Output": "输出",
 
     // src/components/HomeTabProject.vue 27
-    "Target": "",
+    "Target": "构建方式",
 
     // src/components/HomeTabProject.vue 30
-    "Path": "",
+    "Path": "工程路径",
 
     // src/components/HomeTabProject.vue 47
-    "Title": "",
+    "Title": "标题",
 
     // src/components/HomeTabProject.vue 54
-    "Build this project": "",
+    "Build this project": "构建这个工程",
 
     // src/components/HomeTabProject.vue 59
-    "Build with debug information in case something is wrong": "",
+    "Build with debug information in case something is wrong": "打开调试开关进行构建",
 
     // src/components/HomeTabProject.vue 64
-    "Remove this project": "",
+    "Remove this project": "删除这个工程",
 
     // src/components/HomeTabProject.vue 69
-    "Edit this project": "",
+    "Edit this project": "编辑这个工程",
 
     // src/components/HomeTabProject.vue 98
     // src/pages/ProjectPageEdit.vue 32
-    "Obfuscate": "",
+    "Obfuscate": "加密",
 
     // src/components/HomeTabProject.vue 98
-    "One folder bundle": "",
+    "One folder bundle": "打包为单个目录",
 
     // src/components/HomeTabProject.vue 99
-    "One file bundle": "",
+    "One file bundle": "打包为单个文件",
 
     // src/components/HomeTabProject.vue 99
-    "One file bundle with outer license": "",
+    "One file bundle with outer license": "打包为单个文件（不包含许可证）",
 
     // src/components/HomeTabProject.vue 121
     // src/pages/ProjectPageEdit.vue 186
-    "Building ": "",
+    "Building ": "构建",
 
     // src/components/HomeTabProject.vue 134
     // src/pages/ProjectPageEdit.vue 199
-    "Diagnosing project ": "",
+    "Diagnosing project ": "诊断",
 
     // src/pages/PackPageWizard.vue 10
     // src/pages/ObfuscatePageWizard.vue 10
-    "Start": "",
+    "Start": "开始",
 
     // src/pages/PackPageWizard.vue 12
-    "Data Files": "",
+    "Data Files": "数据文件",
 
+    // src/pages/PackPageWizard.vue 54
+    "Hidden Imports": "隐含模块",
+
+    // src/pages/PackPageWizard.vue 54
+    "Binary Files": "动态库文件",
+    
+    // src/pages/PackPageWizard.vue 44
+    "Icon": "图标",
+    
     // src/pages/PackPageWizard.vue 14
     // src/pages/PackPageWizard.vue 104
-    "Extra Options": "",
+    "Extra Options": "其他选项",
 
     // src/pages/PackPageWizard.vue 16
     // src/pages/ObfuscatePageWizard.vue 14
-    "Finish": "",
+    "Finish": "结束",
 
     // src/pages/PackPageWizard.vue 28
-    "Base path for entry script, data files, binary files etc.": "",
+    "Base path for entry script, data files, binary files etc.": "所有其他文件名称的相对路径",
 
     // src/pages/PackPageWizard.vue 34
     // src/pages/ProjectInputFile.vue 27
-    "Script": "",
+    "Script": "主脚本",
 
     // src/pages/PackPageWizard.vue 36
-    "The entry script": "",
+    "The entry script": "选择相对于源路径的脚本文件",
 
     // src/pages/PackPageWizard.vue 46
-    "No obfuscated scripts in these paths": "",
+    "No obfuscated scripts in these paths": "排除不需要加密的路径，例如 venv，test 等",
 
     // src/pages/PackPageWizard.vue 61
-    "Type module or package name, then press ENTER": "",
+    "Type module or package name, then press ENTER": "输入模块名称，然后按下回车键",
 
     // src/pages/PackPageWizard.vue 62
-    "Name an import not visible in the code of the script(s)": "",
+    "Name an import not visible in the code of the script(s)": "输入脚本中隐式导入的模块名称",
 
     // src/pages/PackPageWizard.vue 73
-    "Additional data files or folders to be added to the executable": "",
+    "Additional data files or folders to be added to the executable": "需要打包的数据文件",
 
     // src/pages/PackPageWizard.vue 74
-    "Type file name or path name relative to src, then press ENTER": "",
+    "Type file name or path name relative to src, then press ENTER": "输入相对于源路径的文件名称，然后按下回车键",
 
     // src/pages/PackPageWizard.vue 85
-    "Additional binary files to be added to the executable": "",
+    "Additional binary files to be added to the executable": "需要打包的二进制动态库",
 
     // src/pages/PackPageWizard.vue 86
-    "Type binary filename relative to src, then press ENTER": "",
+    "Type binary filename relative to src, then press ENTER": "输入相对于源路径的二进制文件名称，然后按下回车键",
 
     // src/pages/PackPageWizard.vue 92
-    "No Console": "",
+    "No Console": "控制台",
 
     // src/pages/PackPageWizard.vue 94
-    "Do not provide a console window for standard I/O": "",
+    "Do not provide a console window for standard I/O": "最终的可执行文件在运行时候是否显示控制台",
 
     // src/pages/PackPageWizard.vue 100
-    "Apply icon to a Windows executable or the bundle on Mac OS X": "",
+    "Apply icon to a Windows executable or the bundle on Mac OS X": "输入相对于源路径的图标文件（Windows 和 MacOS）",
 
     // src/pages/PackPageWizard.vue 109
-    "Any other PyInstaller options to append command line": "",
+    "Any other PyInstaller options to append command line": "输入其他 PyInstaller 支持的选项",
 
     // src/pages/PackPageWizard.vue 118
     // src/pages/ObfuscatePageWizard.vue 37
     // src/pages/ProjectInputTarget.vue 6
-    "The default output path is $src/dist": "",
+    "The default output path is $src/dist": "默认的输出路径是相对于 $src/dist",
 
     // src/pages/PackPageWizard.vue 124
-    "Bundle": "",
+    "Bundle": "打包成",
 
     // src/pages/PackPageWizard.vue 126
-    "Name to the bundled app (default: basename of entry script)": "",
+    "Name to the bundled app (default: basename of entry script)": "输入最终打包好的文件名称，默认是主脚本的名称",
 
     // src/pages/PackPageWizard.vue 132
-    "all to one folder": "",
+    "all to one folder": "一个目录",
 
     // src/pages/PackPageWizard.vue 133
-    "all to one file": "",
+    "all to one file": "一个文件",
 
     // src/pages/PackPageWizard.vue 134
-    "all to one file with outer license": "",
+    "all to one file with outer license": "一个文件（无许可证）",
 
     // src/pages/PackPageWizard.vue 153
-    "Pack": "",
+    "Pack": "打包",
 
     // src/pages/PackPageWizard.vue 161
-    "Close": "",
+    "Close": "关闭",
 
     // src/pages/PackPageWizard.vue 168
-    "Prev": "",
+    "Prev": "上一步",
 
     // src/pages/PackPageWizard.vue 174
-    "Next": "",
+    "Next": "下一步",
 
     // src/pages/PackPageWizard.vue 282
-    "Packing script ": "",
+    "Packing script ": "正在打包脚本 ",
 
     // src/pages/ProjectInputMisc.vue 4
-    "Restrict Mode": "",
+    "Restrict Mode": "约束模式",
 
     // src/pages/ProjectInputMisc.vue 7
-    "https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode": "",
+    "https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode": "https://pyarmor.readthedocs.io/zh/stable/mode.html#restrict-mode",
 
     // src/pages/ProjectInputMisc.vue 11
-    "Select restrict mode": "",
+    "Select restrict mode": "选择约束模式",
 
     // src/pages/ProjectInputMisc.vue 21
-    "Bootstrap Code": "",
+    "Bootstrap Code": "引导代码",
 
     // src/pages/ProjectInputMisc.vue 25
     "Select entry mode": "",
@@ -429,7 +438,7 @@ const messages = {
 
     // src/pages/ObfuscatePageWizard.vue 63
     // src/pages/ProjectInputTarget.vue 25
-    "License": "",
+    "License": "许可证",
 
     // src/pages/ObfuscatePageWizard.vue 193
     "Obfuscate scripts: ": "",
@@ -491,7 +500,7 @@ const messages = {
     "Basic": "",
 
     // src/pages/ProjectPageEdit.vue 27
-    "Type": "",
+    "Type": "类型",
 
     // src/pages/ProjectPageEdit.vue 35
     "Pack all to one folder": "",
@@ -510,15 +519,21 @@ const messages = {
 
     // src/pages/ProjectPageEdit.vue 56
     "Runtime Files": "",
+    
+    // src/pages/ProjectPageEdit.vue 72
+    "Create": "创建",
 
+    // src/pages/ProjectPageEdit.vue 72
+    "Update": "更新",
+    
     // src/pages/ProjectPageEdit.vue 143
     "DO NOT generate runtime files": "",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module `pytransform.py`": "",
+    "Generate runtime files as a module pytransform.py": "",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package `pytransform`": "",
+    "Generate runtime files as a package pytransform": "",
 
     // src/pages/ProjectPageEdit.vue 213
     "updated": "",
@@ -545,16 +560,16 @@ const messages = {
     "Include": "",
 
     // src/pages/ProjectInputFile.vue 51
-    "Exclude": "",
+    "Exclude": "排除路径",
 
     // src/pages/ProjectInputFile.vue 53
-    "Ignore the path and the .py files list here": "",
+    "Ignore the path and the .py files list here": "这些路径下面的所有脚本不会被加密",
 
     // src/pages/ProjectInputFile.vue 71
     "Only the scripts list above": "",
 
     // src/pages/ProjectInputFile.vue 75
-    "Only the `.py` files in the src path": "",
+    "Only the .py files in the src path": "",
 
     // src/pages/ProjectInputFile.vue 79
     "All the scripts in the src path recursively": "",
@@ -566,7 +581,7 @@ const messages = {
     "New License": "",
 
     // src/pages/LicensePageEdit.vue 22
-    "Leave it blank to set default name like `reg-xxxxxx`": "",
+    "Leave it blank to set default name like reg-xxxxxx": "",
 
     // src/pages/LicensePageEdit.vue 33
     "Expired the obfuscated scripts": "",
@@ -580,6 +595,38 @@ const messages = {
     // src/pages/LicensePageEdit.vue 115
     "Invalid input": "",
 
+    // src/components/SelectFolder.vue 186
+    "Please type path to create in %1": "",
+
+    // src/components/SelectFolder.vue 192
+    "This path has been created: %1": "",
+
+    // src/components/SelectFolder.vue 198
+    "Are you sure to remove this path: %1 ?": "",
+
+    // src/components/HomeTabLicense.vue 105
+    "Are you sure remove this license: %1 ?": "",
+
+    // src/components/HomeTabProject.vue 116
+    // src/components/HomeTabProject.vue 129
+    // src/pages/ProjectPageEdit.vue 181
+    // src/pages/ProjectPageEdit.vue 194
+    "Build successfully, the results saved in: %1": "",
+
+    // src/components/HomeTabProject.vue 142
+    "Are you sure remove this project: %1 ?": "",
+
+    // src/pages/PackPageWizard.vue 286
+    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "",
+
+    // src/pages/ObfuscatePageWizard.vue 197
+    "Obfuscate the scripts successfully, the result is saved to %1": "",
+
+    // src/pages/ProjectPageEdit.vue 212
+    "The project \"%1\" has been %2": "",
+
+    // src/pages/LicensePageEdit.vue 161
+    "The license has been saved to %1": "",    
 }
 
 export default messages

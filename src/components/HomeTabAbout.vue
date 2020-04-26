@@ -36,14 +36,14 @@
             :underline="false"
             target="_blank"
             type="primary"
-            :href="$t('https://pyarmor.readthedocs.io/en/latest/')">{{ $t('Documentation') }}</el-link>
+            :href="$t('https://pyarmor.readthedocs.io/en/stable/')">{{ $t('Documentation') }}</el-link>
         </li>
         <li>
           <el-link
             :underline="false"
             target="_blank"
             type="primary"
-            :href="$t('https://pyarmor.readthedocs.io/en/latest/license.html')">{{ $t('License &amp; Purchase') }}</el-link>
+            :href="$t('https://pyarmor.readthedocs.io/en/stable/license.html')">{{ $t('License &amp; Purchase') }}</el-link>
         </li>
         <li>
           <el-link
