@@ -7,42 +7,42 @@ const messages = {
     "Could not connect to pyarmor server, make sure it runs on %1": "无法连接到后台服务：%1",
 
     // src/components/SelectLicenseFile.vue 13
-    "Select one license file to restrict the obfuscated script": "",
+    "Select one license file to restrict the obfuscated script": "选择加密脚本的许可证",
 
     // src/components/SelectLicenseFile.vue 73
-    "Default license, no any restrict": "",
+    "Default license, no any restrict": "默认许可证（无限制）",
 
     // src/components/SelectLicenseFile.vue 77
-    "Do not include license file": "",
+    "Do not include license file": "不要为加密脚本生成默认许可文件",
 
     // src/components/HomeTabIndex.vue 3
-    "Home": "",
+    "Home": "首页",
 
     // src/components/HomeTabIndex.vue 12
     // src/pages/ObfuscatePageWizard.vue 5
-    "Obfuscate Script Wizard": "",
+    "Obfuscate Script Wizard": "加密脚本向导",
 
     // src/components/HomeTabIndex.vue 23
-    "Obfuscate With Project": "",
+    "Obfuscate With Project": "使用工程加密",
 
     // src/components/HomeTabIndex.vue 34
     // src/pages/PackPageWizard.vue 5
-    "Pack Script Wizard": "",
+    "Pack Script Wizard": "打包加密脚本向导",
 
     // src/components/HomeTabIndex.vue 45
-    "Pack With Project": "",
+    "Pack With Project": "使用工程打包",
 
     // src/components/HomeTabIndex.vue 56
-    "Generate Expired License": "",
+    "Generate Expired License": "创建有效期限制许可证",
 
     // src/components/HomeTabIndex.vue 67
-    "Fixed Machine License": "",
+    "Fixed Machine License": "创建指定设备的许可证",
 
     // src/components/HomeTabIndex.vue 78
-    "Full Features License": "",
+    "Full Features License": "创建全特征的许可证",
 
     // src/components/HomeTabIndex.vue 89
-    "Register PyArmor": "",
+    "Register PyArmor": "注册 PyArmor",
 
     // src/components/HomeTabIndex.vue 97
     "Please select one regfile, for example, pyarmor-regfile-1.zip": "",
@@ -510,10 +510,10 @@ const messages = {
     "DO NOT generate runtime files": "",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module "pytransform.py"": "",
+    "Generate runtime files as a module `pytransform.py`": "",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package "pytransform"": "",
+    "Generate runtime files as a package `pytransform`": "",
 
     // src/pages/ProjectPageEdit.vue 213
     "updated": "",
@@ -549,7 +549,7 @@ const messages = {
     "Only the scripts list above": "",
 
     // src/pages/ProjectInputFile.vue 75
-    "Only the ".py" files in the src path": "",
+    "Only the `.py` files in the src path": "",
 
     // src/pages/ProjectInputFile.vue 79
     "All the scripts in the src path recursively": "",

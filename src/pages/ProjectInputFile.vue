@@ -72,7 +72,7 @@ export default {
                     value: 'exact',
                 },
                 {
-                    label: _t('Only the ".py" files in the src path'),
+                    label: _t('Only the `.py` files in the src path'),
                     value: 'list'
                 },
                 {
