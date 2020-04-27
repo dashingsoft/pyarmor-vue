@@ -268,10 +268,10 @@ const messages = {
 
     // src/pages/PackPageWizard.vue 54
     "Binary Files": "动态库文件",
-    
+
     // src/pages/PackPageWizard.vue 44
     "Icon": "图标",
-    
+
     // src/pages/PackPageWizard.vue 14
     // src/pages/PackPageWizard.vue 104
     "Extra Options": "其他选项",
@@ -332,6 +332,7 @@ const messages = {
     "Bundle": "打包成",
 
     // src/pages/PackPageWizard.vue 126
+    // src/pages/ProjectInputTarget.vue 86
     "Name to the bundled app (default: basename of entry script)": "输入最终打包好的文件名称，默认是主脚本的名称",
 
     // src/pages/PackPageWizard.vue 132
@@ -368,196 +369,187 @@ const messages = {
     "Select restrict mode": "选择约束模式",
 
     // src/pages/ProjectInputMisc.vue 21
-    "Bootstrap Code": "引导代码",
+    "Bootstrap Code": "引导模式",
 
     // src/pages/ProjectInputMisc.vue 25
-    "Select entry mode": "",
+    "Select entry mode": "选择引导代码插入模式",
 
     // src/pages/ProjectInputMisc.vue 35
-    "Enable Suffix": "",
+    "Enable Suffix": "后缀模式",
 
     // src/pages/ProjectInputMisc.vue 38
-    "Generate runtime package with an unique suffix": "",
+    "Generate runtime package with an unique suffix": "创建包含唯一后缀的运行辅助包，解决导入其他用户的加密包冲突问题",
 
     // src/pages/ProjectInputMisc.vue 60
-    "DO NOT insert bootstrap code into entry scripts": "",
+    "DO NOT insert bootstrap code into entry scripts": "不要插入引导代码到主脚本",
 
     // src/pages/ProjectInputMisc.vue 64
-    "Insert bootstrap code into entry scripts": "",
+    "Insert bootstrap code into entry scripts": "自动插入引导代码到主脚本（默认）",
 
     // src/pages/ProjectInputMisc.vue 68
-    "Generate bootstrap code without leading dot (absolute import)": "",
+    "Generate bootstrap code without leading dot (absolute import)": "引导代码使用绝对导入方式（没有前置的点）",
 
     // src/pages/ProjectInputMisc.vue 72
-    "Generate bootstrap code with leading dot (relative import)": "",
+    "Generate bootstrap code with leading dot (relative import)": "引导代码使用包含前置点的相对导入方式",
 
     // src/pages/ProjectInputMisc.vue 78
-    "Mode 0, disable all the restricts for the obfuscated scripts": "",
+    "Mode 0: disable all the restricts for the obfuscated scripts": "模式 0：禁用所有约束功能",
 
     // src/pages/ProjectInputMisc.vue 82
-    "Mode 1": "",
+    "Mode 1: the obfuscated scripts can not be changed": "模式 1：加密后的脚本不可以被修改",
 
     // src/pages/ProjectInputMisc.vue 86
-    "Mode 2": "",
+    "Mode 2: mode 1 plus the entry script must be obfuscated": "模式 2：同模式 1 并且主脚本必须是加密脚本",
 
     // src/pages/ProjectInputMisc.vue 90
-    "Mode 3": "",
+    "Mode 3: mode 2 plus the obufscated script can not be imported by others": "模式 3：同模式 2 并且加密脚本不可以被其他脚本导入",
 
     // src/pages/ProjectInputMisc.vue 94
-    "Mode 4": "",
+    "Mode 4: mode 3 but the entry script can be plain script": "模式 4：同模式 3 但主脚本可以是普通脚本",
 
     // src/pages/LicenseInputMachine.vue 6
-    "Bind obfuscated scripts to this serial number of harddisk": "",
+    "Bind obfuscated scripts to this serial number of harddisk": "绑定加密脚本到硬盘序列号",
 
     // src/pages/LicenseInputMachine.vue 13
-    "Bind obfuscated scripts to this IPv4 address": "",
+    "Bind obfuscated scripts to this IPv4 address": "绑定加密脚本到 IPv4 地址",
 
     // src/pages/LicenseInputMachine.vue 20
-    "Bind obfuscated scripts to this MAC address": "",
+    "Bind obfuscated scripts to this MAC address": "绑定加密脚本到网卡 Mac 地址",
 
     // src/pages/ObfuscatePageWizard.vue 12
-    "Advanced": "",
+    "Advanced": "高级",
 
     // src/pages/ObfuscatePageWizard.vue 26
     // src/pages/ProjectInputMode.vue 9
-    "Cross Protection": "",
+    "Cross Protection": "交叉保护",
 
     // src/pages/ObfuscatePageWizard.vue 28
     // src/pages/ProjectInputMode.vue 11
-    "Inject cross protection code into entry scripts before obfuscating": "",
+    "Inject cross protection code into entry scripts before obfuscating": "加密时注入交叉保护代码到主脚本以提高安全性",
 
     // src/pages/ObfuscatePageWizard.vue 44
-    "Package Name": "",
+    "Package Name": "包名称",
 
     // src/pages/ObfuscatePageWizard.vue 48
-    "Append this name to output path": "",
+    "Append this name to output path": "输出目录中包含包的名称",
 
     // src/pages/ObfuscatePageWizard.vue 57
     // src/pages/ProjectInputTarget.vue 32
-    "Platforms": "",
+    "Platforms": "运行平台",
 
     // src/pages/ObfuscatePageWizard.vue 63
     // src/pages/ProjectInputTarget.vue 25
     "License": "许可证",
 
     // src/pages/ObfuscatePageWizard.vue 193
-    "Obfuscate scripts: ": "",
+    "Obfuscate scripts: ": "加密脚本",
 
     // src/pages/ProjectInputMode.vue 3
-    "Advanced Mode": "",
+    "Advanced Mode": "高级模式",
 
     // src/pages/ProjectInputMode.vue 5
-    "Change code object structure to improve security (only for x86/64 arch)": "",
+    "Change code object structure to improve security (only for x86/64 arch)": "修改代码结构以提高安全性（仅 x86/64 可用）",
 
     // src/pages/ProjectInputMode.vue 15
-    "Obfuscate Module": "",
+    "Obfuscate Module": "模块加密模式",
 
     // src/pages/ProjectInputMode.vue 17
-    "Obfuscate the whole module": "",
+    "Obfuscate the whole module": "加密整个模块对象",
 
     // src/pages/ProjectInputMode.vue 21
-    "Obfuscate Code Object": "",
+    "Obfuscate Code Object": "函数加密模式",
 
     // src/pages/ProjectInputMode.vue 23
-    "Obfuscate each function (code object) in the module": "",
+    "Obfuscate each function (code object) in the module": "对模块中的每一个函数分别进行加密",
 
     // src/pages/ProjectInputMode.vue 27
-    "Wrap Code Object": "",
+    "Wrap Code Object": "动态加密模式",
 
     // src/pages/ProjectInputMode.vue 29
-    "Obfuscate each function (code object) in runtime": "",
+    "Obfuscate each function (code object) in runtime": "函数运行结束之后再次加密",
 
     // src/pages/ProjectInputTarget.vue 13
-    "Bundle Name": "",
+    "Bundle Name": "输出包名称",
 
     // src/pages/ProjectInputTarget.vue 39
-    "Plugins": "",
+    "Plugins": "插件",
 
     // src/pages/ProjectInputTarget.vue 52
-    "Type plugin name, then press ENTER": "",
+    "Type plugin name, then press ENTER": "输入插件名称，然后按下回车键",
 
     // src/pages/ProjectInputTarget.vue 61
-    "Pack Options": "",
+    "Pack Options": "打包选项",
 
     // src/pages/ProjectInputTarget.vue 66
-    "Please input any pyinstaller option": "",
-
-    // src/pages/ProjectInputTarget.vue 86
-    "Name to assign to the bundled app (default: entry script’s basename)": "",
+    "Please input any pyinstaller option": "输入 PyInstaller 支持的其他选项",
 
     // src/pages/ProjectInputTarget.vue 87
-    "Append this name to output path for package": "",
+    "Append this name to output path for package": "在输出目录中包含这里输入的名称",
 
     // src/pages/ProjectPageEdit.vue 6
     // src/pages/ProjectPageEdit.vue 8
-    "Edit Project": "",
+    "Edit Project": "编辑工程",
 
     // src/pages/ProjectPageEdit.vue 6
     // src/pages/ProjectPageEdit.vue 9
-    "New Project": "",
+    "New Project": "新增工程",
 
     // src/pages/ProjectPageEdit.vue 26
-    "Basic": "",
+    "Basic": "基本",
 
     // src/pages/ProjectPageEdit.vue 27
     "Type": "类型",
 
     // src/pages/ProjectPageEdit.vue 35
-    "Pack all to one folder": "",
+    "Pack all to one folder": "打包成为一个目录",
 
     // src/pages/ProjectPageEdit.vue 38
-    "Pack all to one file": "",
+    "Pack all to one file": "打包成为单文件",
 
     // src/pages/ProjectPageEdit.vue 41
-    "Pack all to one file with outer license": "",
+    "Pack all to one file with outer license": "打包成为单文件（不包含许可证）",
 
     // src/pages/ProjectPageEdit.vue 50
-    "Obfuscate Mode": "",
+    "Obfuscate Mode": "加密模式",
 
     // src/pages/ProjectPageEdit.vue 53
-    "Advanced Options": "",
+    "Advanced Options": "高级选项",
 
     // src/pages/ProjectPageEdit.vue 56
-    "Runtime Files": "",
-    
+    "Runtime Files": "运行辅助文件",
+
     // src/pages/ProjectPageEdit.vue 72
     "Create": "创建",
 
     // src/pages/ProjectPageEdit.vue 72
     "Update": "更新",
-    
+
     // src/pages/ProjectPageEdit.vue 143
-    "DO NOT generate runtime files": "",
+    "DO NOT generate runtime files": "不生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module pytransform.py": "",
+    "Generate runtime files as a module pytransform.py": "生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package pytransform": "",
-
-    // src/pages/ProjectPageEdit.vue 213
-    "updated": "",
-
-    // src/pages/ProjectPageEdit.vue 213
-    "created": "",
+    "Generate runtime files as a package pytransform": "生成运行辅助包（默认）",
 
     // src/pages/ProjectPageEdit.vue 218
-    "Please input project title": "",
+    "Please input project title": "输入工程标题",
 
     // src/pages/ProjectInputFile.vue 8
-    "Base path for scripts, include and exclude": "",
+    "Base path for scripts, include and exclude": "源路径，是工程其他文件和目录的相对路径",
 
     // src/pages/ProjectInputFile.vue 14
-    "Scripts": "",
+    "Scripts": "脚本",
 
     // src/pages/ProjectInputFile.vue 16
-    "Select one or more entry scripts": "",
+    "Select one or more entry scripts": "选择一个或者多个入口脚本",
 
     // src/pages/ProjectInputFile.vue 29
-    "Select one entry script": "",
+    "Select one entry script": "选择一个入口脚本",
 
     // src/pages/ProjectInputFile.vue 38
-    "Include": "",
+    "Include": "搜索模式",
 
     // src/pages/ProjectInputFile.vue 51
     "Exclude": "排除路径",
@@ -566,67 +558,68 @@ const messages = {
     "Ignore the path and the .py files list here": "这些路径下面的所有脚本不会被加密",
 
     // src/pages/ProjectInputFile.vue 71
-    "Only the scripts list above": "",
+    "Only the scripts list above": "仅仅加密列出的这些脚本文件",
 
     // src/pages/ProjectInputFile.vue 75
-    "Only the .py files in the src path": "",
+    "Only the .py files in the src path": "仅仅加密源路径下面的脚本文件",
 
     // src/pages/ProjectInputFile.vue 79
-    "All the scripts in the src path recursively": "",
+    "All the scripts in the src path recursively": "递归加密源路径下面的所有脚本文件",
 
     // src/pages/LicensePageEdit.vue 5
-    "Edit License": "",
+    "Edit License": "编辑许可证",
 
     // src/pages/LicensePageEdit.vue 5
-    "New License": "",
+    "New License": "创建许可证",
 
     // src/pages/LicensePageEdit.vue 22
-    "Leave it blank to set default name like reg-xxxxxx": "",
+    "Leave it blank to set default name like reg-xxxxxx": "默认名称是 reg-xxxxxx",
 
     // src/pages/LicensePageEdit.vue 33
-    "Expired the obfuscated scripts": "",
+    "Expired the obfuscated scripts": "设置加密脚本有效期",
 
     // src/pages/LicensePageEdit.vue 50
-    "Enable Period Mode": "",
+    "Enable Period Mode": "启用周期模式",
 
     // src/pages/LicensePageEdit.vue 59
-    "Any ascii string data to store in the license file": "",
+    "Any ascii string data to store in the license file": "自定义的任何字符串数据",
 
     // src/pages/LicensePageEdit.vue 115
-    "Invalid input": "",
+    "Invalid input": "非法输入",
 
     // src/components/SelectFolder.vue 186
-    "Please type path to create in %1": "",
+    "Please type path to create in %1": "在 %1 下面创建下面输入的路径：",
 
     // src/components/SelectFolder.vue 192
-    "This path has been created: %1": "",
+    "This path has been created: %1": "路径 %1 已经被创建",
 
     // src/components/SelectFolder.vue 198
-    "Are you sure to remove this path: %1 ?": "",
+    "Are you sure to remove this path: %1 ?": "你确认要删除这个路径 %1 吗？",
 
     // src/components/HomeTabLicense.vue 105
-    "Are you sure remove this license: %1 ?": "",
+    "Are you sure remove this license: %1 ?": "你确认要删除这个许可证 %1 吗？",
 
     // src/components/HomeTabProject.vue 116
     // src/components/HomeTabProject.vue 129
     // src/pages/ProjectPageEdit.vue 181
     // src/pages/ProjectPageEdit.vue 194
-    "Build successfully, the results saved in: %1": "",
+    "Build successfully, the results saved in: %1": "构建成功，输出目录：%1",
 
     // src/components/HomeTabProject.vue 142
-    "Are you sure remove this project: %1 ?": "",
+    "Are you sure remove this project: %1 ?": "你确认要删除这个工程 %1 吗？",
 
     // src/pages/PackPageWizard.vue 286
-    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "",
+    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "加密打包成功，输出结果：%1",
 
     // src/pages/ObfuscatePageWizard.vue 197
-    "Obfuscate the scripts successfully, the result is saved to %1": "",
+    "Obfuscate the scripts successfully, the result is saved to %1": "加密脚本成功，输出目录：%1",
 
     // src/pages/ProjectPageEdit.vue 212
-    "The project \"%1\" has been %2": "",
+    "The project %1 has been created": "工程 %1 已经被成功创建",
+    "The project %1 has been updated": "工程 %1 已经被更新",
 
     // src/pages/LicensePageEdit.vue 161
-    "The license has been saved to %1": "",    
+    "The license has been saved to %1": "许可证已经被保存在 %1",
 }
 
 export default messages

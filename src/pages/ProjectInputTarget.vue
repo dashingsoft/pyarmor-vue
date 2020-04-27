@@ -83,7 +83,7 @@ export default {
         },
         bundlePlaceholder() {
             return this.projectInfo.buildTarget
-                ? _t('Name to assign to the bundled app (default: entry script’s basename)')
+                ? _t('Name to the bundled app (default: basename of entry script)')
                 : _t('Append this name to output path for package')
         },
         autoOutputSuffix: {

@@ -209,8 +209,8 @@ export default {
             } )
         },
         onProjectUpdated(data) {
-            this.$message(_t('The project "%1" has been %2', data.name,
-                             (this.isEdit ? _t('updated') : _t('created'))))
+            this.$message(this.isEdit ? _t('The project %1 has been updated', data.name)
+                          : _t('The project %1 has been created', data.name))
             if (!this.isEdit)
                 this.goBack()
         },

@@ -1,6 +1,6 @@
 <template>
   <div class="project-misc">
-    <el-form-item :label="$('Restrict Mode')">
+    <el-form-item :label="$t('Restrict Mode')">
       <span slot="label">{{ $t('Restrict Mode') }}
         <el-link :underline="false"
                  target="_blank"
@@ -9,6 +9,7 @@
       </span>
       <el-select
         :placeholder="$t('Select restrict mode')"
+        class="w-50"
         v-model="projectInfo.restrictMode">
         <el-option
           v-for="item in restrictModes"
@@ -75,23 +76,23 @@ export default {
             ],
             restrictModes: [
                 {
-                    label: _t('Mode 0, disable all the restricts for the obfuscated scripts'),
+                    label: _t('Mode 0: disable all the restricts for the obfuscated scripts'),
                     value: 0,
                 },
                 {
-                    label: _t('Mode 1'),
+                    label: _t('Mode 1: the obfuscated scripts can not be changed'),
                     value: 1,
                 },
                 {
-                    label: _t('Mode 2'),
+                    label: _t('Mode 2: mode 1 plus the entry script must be obfuscated'),
                     value: 2,
                 },
                 {
-                    label: _t('Mode 3'),
+                    label: _t('Mode 3: mode 2 plus the obufscated script can not be imported by others'),
                     value: 3,
                 },
                 {
-                    label: _t('Mode 4'),
+                    label: _t('Mode 4: mode 3 but the entry script can be plain script'),
                     value: 4,
                 },
             ],
