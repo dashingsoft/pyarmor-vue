@@ -98,7 +98,7 @@ const messages = {
     "PyArmor is a powerful tool in the field of protecting and distributing python scripts.": "PyArmor 是一个用于加密保护和发布 Python 脚本的强大工具。",
 
     // src/components/HomeTabAbout.vue 24
-    "The goal of PyArmor is to make Python applied to commercial application easily.": "PyArmor 的目标是让 Python 可以更广泛和应用于商业软件。",
+    "The goal of PyArmor is to make Python applied to commercial application easily.": "PyArmor 的目标是让 Python 可以更广泛的应用于商业软件。",
 
     // src/components/HomeTabAbout.vue 32
     "Homepage": "主页",
@@ -167,6 +167,7 @@ const messages = {
     "Expired": "有效期",
 
     // src/components/HomeTabLicense.vue 20
+    // src/pages/LicenseInputMachine.vue 4
     "Harddisk": "硬盘序列号",
 
     // src/components/HomeTabLicense.vue 23
@@ -195,10 +196,10 @@ const messages = {
     "Summary": "说明",
 
     // src/components/HomeTabLicense.vue 56
-    "Edit this license": "修改许可",
+    "Edit this license": "编辑许可证",
 
     // src/components/HomeTabLicense.vue 66
-    "Remove this license": "删除许可",
+    "Remove this license": "删除许可证",
 
     // src/components/HomeTabProject.vue 18
     // src/pages/ProjectInputFile.vue 6
@@ -211,11 +212,10 @@ const messages = {
     // src/pages/PackPageWizard.vue 116
     // src/pages/ObfuscatePageWizard.vue 35
     // src/pages/ProjectInputTarget.vue 4
-    // src/pages/ProjectPageEdit.vue 47
-    "Output": "输出",
+    "Output": "输出路径",
 
-    // src/components/HomeTabProject.vue 27
-    "Target": "构建方式",
+    // src/pages/ProjectPageEdit.vue 47
+    "Target": "输出",
 
     // src/components/HomeTabProject.vue 30
     "Path": "工程路径",
@@ -237,16 +237,7 @@ const messages = {
 
     // src/components/HomeTabProject.vue 98
     // src/pages/ProjectPageEdit.vue 32
-    "Obfuscate": "加密",
-
-    // src/components/HomeTabProject.vue 98
-    "One folder bundle": "打包为单个目录",
-
-    // src/components/HomeTabProject.vue 99
-    "One file bundle": "打包为单个文件",
-
-    // src/components/HomeTabProject.vue 99
-    "One file bundle with outer license": "打包为单个文件（不包含许可证）",
+    "Obfuscate all scripts in project": "加密工程中的所有脚本",
 
     // src/components/HomeTabProject.vue 121
     // src/pages/ProjectPageEdit.vue 186
@@ -441,6 +432,9 @@ const messages = {
     // src/pages/ProjectInputTarget.vue 25
     "License": "许可证",
 
+    // src/pages/ObfuscatePageWizard.vue 75
+    "Obfuscate": "加密",
+
     // src/pages/ObfuscatePageWizard.vue 193
     "Obfuscate scripts: ": "加密脚本",
 
@@ -497,15 +491,19 @@ const messages = {
     // src/pages/ProjectPageEdit.vue 26
     "Basic": "基本",
 
+    // src/components/HomeTabProject.vue 27
     // src/pages/ProjectPageEdit.vue 27
     "Type": "类型",
 
+    // src/components/HomeTabProject.vue 98
     // src/pages/ProjectPageEdit.vue 35
     "Pack all to one folder": "打包成为一个目录",
 
+    // src/components/HomeTabProject.vue 99
     // src/pages/ProjectPageEdit.vue 38
     "Pack all to one file": "打包成为单文件",
 
+    // src/components/HomeTabProject.vue 99
     // src/pages/ProjectPageEdit.vue 41
     "Pack all to one file with outer license": "打包成为单文件（不包含许可证）",
 

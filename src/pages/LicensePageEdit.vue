@@ -67,9 +67,9 @@
         <el-button
           type="primary"
           v-on:click="onSubmit">
-          {{ licenseInfo.id ? "Update" : "Create" }}
+          {{ licenseInfo.id ? $t('Update') : $t('Create') }}
         </el-button>
-        <el-button v-on:click="goBack">Cancel</el-button>
+        <el-button v-on:click="goBack">{{ $t('Cancel') }}</el-button>
       </el-form-item>
     </el-form>
   </el-card>

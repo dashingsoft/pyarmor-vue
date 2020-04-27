@@ -24,7 +24,7 @@
           <el-form-item :label="$t('Output')">
             <span>{{ getProjectOutput( props.row ) }}</span>
           </el-form-item>
-          <el-form-item :label="$t('Target')">
+          <el-form-item :label="$t('Type')">
             <span>{{ getTargetName( props.row.buildTarget ) }}</span>
           </el-form-item>
           <el-form-item :label="$t('Path')">
@@ -95,8 +95,10 @@ export default {
     },
     methods: {
         getTargetName( target ) {
-            return target === 0 ? _t('Obfuscate') : target === 1 ? _t('One folder bundle')
-                : target === 2 ? _t('One file bundle') : _t('One file bundle with outer license')
+            return target === 0 ? _t('Obfuscate all scripts in project')
+                : target === 1 ? _t('Pack all to one folder')
+                : target === 2 ? _t('Pack all to one file')
+                : _t('Pack all to one file with outer license')
         },
         getProjectOutput( data ) {
             let suffix = data.bundleName && data.bundleName.length ? '/' + data.bundleName : ''

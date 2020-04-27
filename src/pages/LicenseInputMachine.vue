@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form-item
-      label="Harddisk">
+      :label="$t('Harddisk')">
       <el-input
         :placeholder="$t('Bind obfuscated scripts to this serial number of harddisk')"
         v-model="licenseInfo.harddisk"></el-input>

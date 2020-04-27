@@ -29,7 +29,7 @@
               class="w-50"
               v-model="projectInfo.buildTarget">
               <el-option
-                :label="$t('Obfuscate')"
+                :label="$t('Obfuscate all scripts in project')"
                 :value="0"></el-option>
               <el-option
                 :label="$t('Pack all to one folder')"
@@ -44,7 +44,7 @@
           </el-form-item>
           <project-input-file v-bind:project-info="projectInfo"></project-input-file>
         </el-tab-pane>
-        <el-tab-pane :label="$t('Output')">
+        <el-tab-pane :label="$t('Target')">
             <project-input-target v-bind:project-info="projectInfo"></project-input-target>
         </el-tab-pane>
         <el-tab-pane :label="$t('Obfuscate Mode')">
@@ -77,7 +77,7 @@
           <el-button type="default" v-show="isEdit" v-on:click="onDiagnose">
             Diagnose
           </el-button>
-          <el-button v-on:click="goBack">Close</el-button>
+          <el-button v-on:click="goBack">{{ $t('Close') }}</el-button>
         </el-form-item>
       </el-tabs>
     </el-form>

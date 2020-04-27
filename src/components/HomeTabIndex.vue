@@ -92,7 +92,7 @@
       </el-col>
     </el-row>
     <el-dialog
-      title="Register PyArmor"
+      :title="$t('Register PyArmor')"
       :visible.sync="dialogVisible">
       <p>{{ $t('Please select one regfile, for example, pyarmor-regfile-1.zip') }}</p>
       <select-folder

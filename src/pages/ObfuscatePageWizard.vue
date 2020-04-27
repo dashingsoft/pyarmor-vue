@@ -72,7 +72,7 @@
           type="primary"
           icon="el-icon-position"
           @click="finish">
-          Obfuscate
+          {{ $t('Obfuscate') }}
         </el-button>
           <el-button
             round
@@ -80,20 +80,20 @@
             type="info"
             icon="el-icon-close"
             @click="goBack">
-            Close
+            {{ $t('Close') }}
           </el-button>
           <el-button
             round
             :disabled="active === 0"
             icon="el-icon-arrow-left"
             @click="prev">
-            Prev
+            {{ $t('Prev') }}
           </el-button>
           <el-button
             round
             :disabled="active >= steps.length - 1"
             @click="next">
-            Next <i class="el-icon-arrow-right el-icon--right"></i>
+            {{ $t('Next') }} <i class="el-icon-arrow-right el-icon--right"></i>
           </el-button>
         </el-form-item>
       </el-form>
