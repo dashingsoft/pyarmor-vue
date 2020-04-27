@@ -147,7 +147,7 @@ const messages = {
 
     // src/components/SelectFolder.vue 186
     // src/pages/ProjectPageEdit.vue 218
-    "Input": "输入",
+    "Input": "输入对话框",
 
     // src/components/SelectFolder.vue 198
     // src/components/HomeTabLicense.vue 105
@@ -241,11 +241,17 @@ const messages = {
 
     // src/components/HomeTabProject.vue 121
     // src/pages/ProjectPageEdit.vue 186
-    "Building ": "构建",
+    "Building ": "构建工程 ",
+
+    // src/pages/ProjectPageEdit.vue 75
+    "Build": "构建 ",
+
+    // src/pages/ProjectPageEdit.vue 78
+    "Diagnose": "构建（调试） ",
 
     // src/components/HomeTabProject.vue 134
     // src/pages/ProjectPageEdit.vue 199
-    "Diagnosing project ": "诊断",
+    "Diagnosing project ": "使用调试模式构建工程 ",
 
     // src/pages/PackPageWizard.vue 10
     // src/pages/ObfuscatePageWizard.vue 10
@@ -317,7 +323,7 @@ const messages = {
     // src/pages/PackPageWizard.vue 118
     // src/pages/ObfuscatePageWizard.vue 37
     // src/pages/ProjectInputTarget.vue 6
-    "The default output path is $src/dist": "默认的输出路径是相对于 $src/dist",
+    "The default output path is $src/dist": "默认的输出路径是源路径下面的 dist 目录",
 
     // src/pages/PackPageWizard.vue 124
     "Bundle": "打包成",
@@ -529,13 +535,13 @@ const messages = {
     "Generate runtime files as a module pytransform.py": "生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package pytransform": "生成运行辅助包（默认）",
+    "Generate runtime files as a package pytransform": "生成运行辅助包 pytransform（默认）",
 
     // src/pages/ProjectPageEdit.vue 218
-    "Please input project title": "输入工程标题",
+    "Please input project title": "新的工程标题",
 
     // src/pages/ProjectInputFile.vue 8
-    "Base path for scripts, include and exclude": "源路径，是工程其他文件和目录的相对路径",
+    "Base path for scripts, include and exclude": "源路径是其他文件和目录的相对路径",
 
     // src/pages/ProjectInputFile.vue 14
     "Scripts": "脚本",

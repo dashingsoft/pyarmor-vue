@@ -72,10 +72,10 @@
             {{ isEdit ? $t('Update') : $t('Create') }}
           </el-button>
           <el-button type="default" v-show="isEdit" v-on:click="onBuild">
-            Build
+            {{ $t('Build') }}
           </el-button>
           <el-button type="default" v-show="isEdit" v-on:click="onDiagnose">
-            Diagnose
+            {{ $t('Diagnose') }}
           </el-button>
           <el-button v-on:click="goBack">{{ $t('Close') }}</el-button>
         </el-form-item>
