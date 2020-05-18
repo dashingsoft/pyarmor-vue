@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { _t } from '../plugins/gettext.js'
 export default {
     name: 'ProjectInputFile',
     props: ['projectInfo'],
