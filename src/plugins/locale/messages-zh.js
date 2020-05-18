@@ -446,9 +446,13 @@ const messages = {
 
     // src/pages/ProjectInputMode.vue 3
     "Advanced Mode": "高级模式",
+    "Disable or select advanced mode": "禁用或者选择一种高级模式",
 
     // src/pages/ProjectInputMode.vue 5
     "Change code object structure to improve security (only for x86/64 arch)": "修改代码结构以提高安全性（仅 x86/64 可用）",
+    "Disable advanced mode": "禁用高级模式",
+    "Enable advanced mode (only for x86/64 arch)": "启用高级模式（仅 x86/64 平台可用）",
+    "Enable super mode (only for Python 27, 37, 38)": "启用超级模式（仅 Python 27，37，38 支持）",
 
     // src/pages/ProjectInputMode.vue 15
     "Obfuscate Module": "模块加密模式",

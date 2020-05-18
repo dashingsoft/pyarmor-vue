@@ -129,7 +129,7 @@ export default {
                     obfMod: true,
                     obfCode: true,
                     wrapMode: true,
-                    advancedMode: false,
+                    advancedMode: 0,
                     licenseFile: 'true',
                     plugins: []
                 }

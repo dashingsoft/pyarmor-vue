@@ -1,10 +1,17 @@
 <template>
   <div class="project-file">
     <el-form-item :label="$t('Advanced Mode')">
-      <el-switch
-        :active-text="$t('Change code object structure to improve security (only for x86/64 arch)')"
+      <el-select
+        :placeholder="$t('Disable or select advanced mode')"
+        class="w-50"
         v-model="projectInfo.advancedMode">
-      </el-switch>
+        <el-option
+          v-for="item in advancedModes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </el-form-item>
     <el-form-item :label="$t('Cross Protection')">
       <el-switch
@@ -39,6 +46,20 @@ export default {
     props: ['projectInfo'],
     data() {
         return {
+            advancedModes: [
+                {
+                    label: _t('Disable advanced mode'),
+                    value: 0,
+                },
+                {
+                    label: _t('Enable advanced mode (only for x86/64 arch)'),
+                    value: 1,
+                },
+                {
+                    label: _t('Enable super mode (only for Python 27, 37, 38)'),
+                    value: 2,
+                }
+            ]
         }
     },
 }
