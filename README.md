@@ -2,7 +2,11 @@
 
 ## Project setup
 ```
+vue create .
+vue add element
+
 npm install
+npm install -S gettext.js
 ```
 
 ### Compiles and hot-reloads for development
