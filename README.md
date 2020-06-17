@@ -29,7 +29,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Change logs
 
-### v0.2.1 (devep)
+### v0.2.3
+* Add new obfCode mode 2
+
+### v0.2.2
+* Add super mode
+
+### v0.2.1
 * Add hints for some fields
 
 ### v0.2.0

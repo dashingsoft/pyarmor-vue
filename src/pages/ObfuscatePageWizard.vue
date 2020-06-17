@@ -140,7 +140,7 @@ export default {
                 platforms: [],
                 restrictMode: 1,
                 obfMod: true,
-                obfCode: true,
+                obfCode: 1,
                 wrapMode: true,
                 advancedMode: 0,
                 licenseFile: 'true',

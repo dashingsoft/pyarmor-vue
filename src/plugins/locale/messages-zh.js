@@ -465,6 +465,9 @@ const messages = {
 
     // src/pages/ProjectInputMode.vue 23
     "Obfuscate each function (code object) in the module": "对模块中的每一个函数分别进行加密",
+    "Do not obfuscate functions": "不对函数进行单独加密",
+    "Obfuscate each function with quick algorithm": "使用快速加密算法加密模块中的每一个函数",
+    "Obfuscate each function with complex algorithm": "使用复杂加密算法加密模块中的每一个函数",
 
     // src/pages/ProjectInputMode.vue 27
     "Wrap Code Object": "动态加密模式",

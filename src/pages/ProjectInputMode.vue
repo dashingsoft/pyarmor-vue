@@ -26,10 +26,16 @@
       </el-switch>
     </el-form-item>
     <el-form-item :label="$t('Obfuscate Code Object')">
-      <el-switch
-        :active-text="$t('Obfuscate each function (code object) in the module')"
+      <el-select
+        class="w-50"
         v-model="projectInfo.obfCode">
-      </el-switch>
+        <el-option
+          v-for="item in obfCodeModes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </el-form-item>
     <el-form-item :label="$t('Wrap Code Object')">
       <el-switch
@@ -60,7 +66,22 @@ export default {
                     label: _t('Enable super mode (only for Python 27, 37, 38)'),
                     value: 2,
                 }
+            ],
+            obfCodeModes: [
+                {
+                    label: _t('Do not obfuscate functions'),
+                    value: 0,
+                },
+                {
+                    label: _t('Obfuscate each function with quick algorithm'),
+                    value: 1,
+                },
+                {
+                    label: _t('Obfuscate each function with complex algorithm'),
+                    value: 2,
+                }
             ]
+
         }
     },
 }
