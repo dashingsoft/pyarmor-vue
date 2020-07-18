@@ -65,6 +65,14 @@ export default {
                 {
                     label: _t('Enable super mode (only for Python 27, 37, 38)'),
                     value: 2,
+                },
+                {
+                    label: _t('Enable advanced mode plus vm protection (only for Windows)'),
+                    value: 3,
+                },
+                {
+                    label: _t('Enable super mode plus vm protection (only for Python 27, 37, 38 in Windows)'),
+                    value: 4,
                 }
             ],
             obfCodeModes: [
