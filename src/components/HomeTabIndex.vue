@@ -94,7 +94,7 @@
     <el-dialog
       :title="$t('Register PyArmor')"
       :visible.sync="dialogVisible">
-      <p>{{ $t('Please select one regfile, for example, pyarmor-regfile-1.zip') }}</p>
+      <p>{{ $t('Please click Register if there is pyarmor-regfile-1.zip in current path. Or select one from other path at first') }}</p>
       <select-folder
         select-pattern="pyarmor-*.zip"
         :only-folder="false"
@@ -146,16 +146,11 @@ export default {
             this.dialogVisible = true
         },
         handleRegister() {
-            if (this.regfile.length) {
-                connector.registerProduct(this.regfile, (data) => {
-                    connector.$emit('query-version', data)
-                    this.dialogVisible = false
-                    this.$message(_t('Register PyArmor successfully'))
-                } )
-            }
-            else {
-                this.$message(_t('regfile is empty'))
-            }
+            connector.registerProduct(this.regfile, (data) => {
+                connector.$emit('query-version', data)
+                this.dialogVisible = false
+                this.$message(_t('Register PyArmor successfully'))
+            } )
         }
     },
 }

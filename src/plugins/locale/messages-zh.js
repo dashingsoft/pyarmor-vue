@@ -50,7 +50,7 @@ const messages = {
     "Register PyArmor": "注册 PyArmor",
 
     // src/components/HomeTabIndex.vue 97
-    "Please select one regfile, for example, pyarmor-regfile-1.zip": "请选择注册文件，一般为 pyarmor-regfile-1.zip",
+    "Please click Register if there is pyarmor-regfile-1.zip in current path. Or select one from other path at first": "如果注册文件 pyarmor-regfile-1.zip 在当前路径，直接点击注册即可，否则请首先从其他目录选择一个注册文件",
 
     // src/components/HomeTabIndex.vue 103
     "No this file?": "还没有注册文件？",
