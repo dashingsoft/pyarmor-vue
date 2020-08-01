@@ -546,7 +546,7 @@ const messages = {
     "DO NOT generate runtime files": "不生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module pytransform.py": "生成运行辅助文件",
+    "Generate runtime files as a module pytransform": "生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 151
     "Generate runtime files as a package pytransform": "生成运行辅助包 pytransform（默认）",

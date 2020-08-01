@@ -144,7 +144,7 @@ export default {
                     value: -1,
                 },
                 {
-                    label: _t('Generate runtime files as a module pytransform.py'),
+                    label: _t('Generate runtime files as a module pytransform'),
                     value: 0,
                 },
                 {
