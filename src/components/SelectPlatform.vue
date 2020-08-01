@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { _t } from '../plugins/gettext.js'
+
 export default {
     name: 'SelectPlatform',
     model: {
@@ -45,7 +47,7 @@ export default {
             level: ( this.value2.length && this.value2[0][1].slice(-2) === '.0' ) ? 1 : 0,
             value: this.value2,
             platforms: [
-                [ { value: 'Common', children: [
+                [ { value: _t( 'Common' ), children: [
                     { value: 'windows.x86_64.7' },
                     { value: 'linux.x86_64.7' },
                     { value: 'darwin.x86_64.7' },
@@ -57,11 +59,15 @@ export default {
                       { value: 'linux.aarch32.3' },
                       { value: 'linux.aarch64.3' },
                   ] },
-                  { value: 'others', children: [
+                  { value: _t( 'Others' ), children: [
                       { value: 'centos6.x86_64.7' },
+                  ] },
+                  { value: _t( 'VM Protection' ), children: [
+                      { value: 'windows.x86_64.25' },
+                      { value: 'windows.x86.25' },
                   ] }
                 ],
-                [ { value: 'Common', children: [
+                [ { value: _t( 'Common' ), children: [
                     { value: 'windows.x86_64.0' },
                     { value: 'linux.x86_64.0' },
                     { value: 'darwin.x86_64.0' },
@@ -69,7 +75,7 @@ export default {
                     { value: 'linux.x86.0' },
                 ] },
                   { value: 'arm', children: [
-                      { value: 'alpine.arm.0' },
+                      { value: 'musl.arm.0' },
                       { value: 'linux.arm.0' },
                       { value: 'linux.armv6.0' },
                       { value: 'linux.armv7.0' },
@@ -78,14 +84,17 @@ export default {
                       { value: 'darwin.arm64.0' },
                       { value: 'uclibc.armv7.0' },
                   ] },
-                  { value: 'others', children: [
+                  { value: _t( 'Others' ), children: [
                       { value: 'vs2015.x86_64.0' },
                       { value: 'vs2015.x86.0' },
-                      { value: 'alpine.x86_64.0' },
+                      { value: 'musl.x86_64.0' },
                       { value: 'android.aarch64.0' },
                       { value: 'linux.ppc64.0' },
                       { value: 'freebsd.x86_64.0' },
                       { value: 'poky.x86.0' },
+                      { value: 'musl.mips32.0' },
+                      { value: 'linux.mips64.0' },
+                      { value: 'linux.mips64el.0' },
                   ] }
                 ]
             ]

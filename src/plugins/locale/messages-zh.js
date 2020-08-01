@@ -124,6 +124,11 @@ const messages = {
     // src/components/HomeTabAbout.vue 63
     "Copyright @ 2008 - 2020 Dashingsoft Corp.": "版权所有 @ 2008 - 2020 西安德新软件",
 
+    // src/components/SelectPlatform.vue
+    "Common": "常用",
+    "Others": "其它",
+    "VM Protection": "虚拟模式",
+
     // src/components/SelectFolder.vue 41
     "Parent directory": "上一级目录",
 
