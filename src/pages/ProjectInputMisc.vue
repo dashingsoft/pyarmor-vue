@@ -84,16 +84,20 @@ export default {
                     value: 1,
                 },
                 {
-                    label: _t('Mode 2: mode 1 plus the entry script must be obfuscated'),
+                    label: _t('Mode 2: mode 1 plus can not be imported by plain scripts'),
                     value: 2,
                 },
                 {
-                    label: _t('Mode 3: mode 2 plus the obufscated script can not be imported by others'),
+                    label: _t('Mode 3: mode 2 plus module attributes protection'),
                     value: 3,
                 },
                 {
-                    label: _t('Mode 4: mode 3 but the entry script can be plain script'),
+                    label: _t('Mode 4: mode 3 but for package'),
                     value: 4,
+                },
+                {
+                    label: _t('Mode 5: mode 4 plus frame globals protection'),
+                    value: 5,
                 },
             ],
         }

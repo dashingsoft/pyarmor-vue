@@ -401,13 +401,14 @@ const messages = {
     "Mode 1: the obfuscated scripts can not be changed": "模式 1：加密后的脚本不可以被修改",
 
     // src/pages/ProjectInputMisc.vue 86
-    "Mode 2: mode 1 plus the entry script must be obfuscated": "模式 2：同模式 1 并且主脚本必须是加密脚本",
+    "Mode 2: mode 1 plus can not be imported by plain scripts": "模式 2：模式 1 + 加密脚本不可以被非加密脚本导入",
 
     // src/pages/ProjectInputMisc.vue 90
-    "Mode 3: mode 2 plus the obufscated script can not be imported by others": "模式 3：同模式 2 并且加密脚本不可以被其他脚本导入",
+    "Mode 3: mode 2 plus module attributes protection": "模式 3：同模式 2 并且模块属性得到保护",
 
     // src/pages/ProjectInputMisc.vue 94
-    "Mode 4: mode 3 but the entry script can be plain script": "模式 4：同模式 3 但主脚本可以是普通脚本",
+    "Mode 4: mode 3 but for package": "模式 4：同模式 3 但可用于加密包",
+    "Mode 5: mode 4 plus frame globals protection": "模式 5：同模式 4 并且运行时全局变量得到保护",
 
     // src/pages/LicenseInputMachine.vue 6
     "Bind obfuscated scripts to this serial number of harddisk": "绑定加密脚本到硬盘序列号",
