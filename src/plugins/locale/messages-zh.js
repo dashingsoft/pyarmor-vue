@@ -51,10 +51,7 @@ const messages = {
 
     // src/components/HomeTabIndex.vue 97
     "Please click Register if there is pyarmor-regfile-1.zip in current path. Or select one from other path at first": "如果注册文件 pyarmor-regfile-1.zip 在当前路径，直接点击注册即可，否则请首先从其他目录选择一个注册文件",
-
-    "Please copy registration code here": "请把注册码拷贝到这里",
-    "By code": "使用注册码",
-    "By file": "使用注册文件",
+    "Please type registration code or full path filename": "请输入注册码或者全路径注册文件名称",
 
     // src/components/HomeTabIndex.vue 103
     "No registration code or file?": "还没有注册码或者注册文件？",

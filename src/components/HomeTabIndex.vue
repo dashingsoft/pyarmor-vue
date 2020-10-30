@@ -94,21 +94,18 @@
     <el-dialog
       :title="$t('Register PyArmor')"
       :visible.sync="dialogVisible">
-      <el-radio v-model="regtype" label="keycode">By code</el-radio>
-      <el-radio v-model="regtype" label="keyfile">By file</el-radio>
-      <p v-show="regtype == 'keyfile'">{{ $t('Please click Register if there is pyarmor-regfile-1.zip in current path. Or select one from other path at first') }}</p>
+      <p>{{ $t('Please type registration code or full path filename') }}</p>
       <select-folder
-        v-show="regtype == 'keyfile'"
+        v-show="false"
         select-pattern="pyarmor-*.zip"
         :only-folder="false"
         v-model="regvalue">
       </select-folder>
       <el-input
-        v-show="regtype == 'keycode'"
+        v-show="true"
         type="textarea"
         style="margin-top: 16px"
         :rows="3"
-        :placeholder="$t('Please copy registration code here')"
         v-model="regvalue">
       </el-input>
       <p>{{ $t('No registration code or file?') }}
@@ -135,8 +132,7 @@ export default {
     name: 'HomeTabIndex',
     data() {
         return {
-regtype: 'keycode',
-regvalue: '',
+            regvalue: '',
             dialogVisible: false,
         }
     },
