@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1 style="text-align: center">{{ $t('About') }}</h1>
-    <p>pyarmor-vue: 0.2.7</p>
+    <p>pyarmor-vue: 0.2.8</p>
     <div v-if="versionInfo.version">
       <p>pyarmor-server: {{ versionInfo.server }}</p>
       <p>Python: {{ versionInfo.python }}</p>
