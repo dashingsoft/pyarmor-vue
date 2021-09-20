@@ -411,6 +411,13 @@ const messages = {
     "Mode 4: mode 3 but for package": "模式 4：同模式 3 但可用于加密包",
     "Mode 5: mode 4 plus frame globals protection": "模式 5：同模式 4 并且运行时全局变量得到保护",
 
+    // src/pages/ProjectInputMisc.vue
+    "Mode 101: mode 1 plus module dictionary protection": "模式 101: 同模式 1 并且保护模字典",
+    "Mode 102: mode 2 plus module dictionary protection": "模式 102: 同模式 2 并且保护模字典",
+    "Mode 103: mode 3 plus module dictionary protection": "模式 103: 同模式 3 并且保护模字典",
+    "Mode 104: mode 4 plus module dictionary protection": "模式 104: 同模式 4 并且保护模字典",
+    "Mode 105: mode 5 plus module dictionary protection": "模式 105: 同模式 5 并且保护模字典",
+
     // src/pages/LicenseInputMachine.vue 6
     "Bind obfuscated scripts to this serial number of harddisk": "绑定加密脚本到硬盘序列号",
 

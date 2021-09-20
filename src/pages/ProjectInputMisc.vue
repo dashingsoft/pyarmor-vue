@@ -99,6 +99,26 @@ export default {
                     label: _t('Mode 5: mode 4 plus frame globals protection'),
                     value: 5,
                 },
+                {
+                    label: _t('Mode 101: mode 1 plus module dictionary protection'),
+                    value: 101,
+                },
+                {
+                    label: _t('Mode 102: mode 2 plus module dictionary protection'),
+                    value: 102,
+                },
+                {
+                    label: _t('Mode 103: mode 3 plus module dictionary protection'),
+                    value: 103,
+                },
+                {
+                    label: _t('Mode 104: mode 4 plus module dictionary protection'),
+                    value: 104,
+                },
+                {
+                    label: _t('Mode 105: mode 5 plus module dictionary protection'),
+                    value: 105,
+                },
             ],
         }
     }
