@@ -63,7 +63,7 @@ export default {
                     value: 1,
                 },
                 {
-                    label: _t('Enable super mode (only for Python 27, 37, 38)'),
+                    label: _t('Enable super mode (only for Python 27, 37, 38, 39)'),
                     value: 2,
                 },
                 {
@@ -71,7 +71,7 @@ export default {
                     value: 3,
                 },
                 {
-                    label: _t('Enable super mode plus vm protection (only for Python 27, 37, 38 in Windows)'),
+                    label: _t('Enable super mode plus vm protection (only for Python 27, 37, 38, 39 in Windows)'),
                     value: 4,
                 }
             ],
