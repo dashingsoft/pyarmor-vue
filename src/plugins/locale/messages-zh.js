@@ -469,6 +469,7 @@ const messages = {
     "Enable super mode (only for Python 27, 37, 38, 39)": "启用超级模式（仅 Python 27，37，38，39 支持）",
     "Enable advanced mode plus vm protection (only for Windows)": "同时启用高级模式和虚拟模式（仅 Windows 平台可用）",
     "Enable super mode plus vm protection (only for Python 27, 37, 38, 39 in Windows)": "同时启用超级模式和超级模式（仅 Windows 平台的 Python 27，37，38，39 支持）",
+    "Enable super plus mode (only for Python 37, 38, 39 and x86_64)": "启用终极模式（仅 x86_64 架构的 Python 37, 38, 39 可用）",
 
     // src/pages/ProjectInputMode.vue 15
     "Obfuscate Module": "模块加密模式",
