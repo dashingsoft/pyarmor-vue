@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1 style="text-align: center">{{ $t('About') }}</h1>
-    <p>pyarmor-vue: 0.2.9</p>
+    <p>pyarmor-vue: 0.2.10</p>
     <div v-if="versionInfo.version">
       <p>pyarmor-server: {{ versionInfo.server }}</p>
       <p>Python: {{ versionInfo.python }}</p>
@@ -57,7 +57,7 @@
             :underline="false"
             target="_blank"
             type="primary"
-            href="mailto:jondy.zhao@gmail.com">{{ $t('Concat') }}</el-link>
+            href="mailto:jondy.zhao@gmail.com">{{ $t('Contact') }}</el-link>
         </li>
       </ul>
       <p>{{ $t('Copyright @ 2008 - 2020 Dashingsoft Corp.') }}</p>
