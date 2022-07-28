@@ -384,8 +384,8 @@ const messages = {
     "Generate runtime package with an unique suffix": "创建包含唯一后缀的运行辅助包，解决导入其他用户的加密包冲突问题",
 
     // src/pages/ProjectInputMisc.vue 35
-    "Enable Mix-String": "加密字符串",
-    "Mix all the string values in the scripts": "混淆脚本中所有字符串值（不包括函数/变量名称）",
+    "Mixin Strings": "加密字符串",
+    "Mix all string values in the scripts": "混淆脚本中所有字符串值（不包括函数/变量名称）",
 
     // src/pages/ProjectInputMisc.vue 60
     "DO NOT insert bootstrap code into entry scripts": "不要插入引导代码到主脚本",
