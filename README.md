@@ -29,6 +29,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Change logs
 
+### v0.2.4
+* Add new option `mix-str`
+
 ### v0.2.3
 * Add new obfCode mode 2
 

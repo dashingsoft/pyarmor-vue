@@ -40,6 +40,12 @@
         v-model="projectInfo.enableSuffix">
       </el-switch>
     </el-form-item>
+    <el-form-item :label="$t('Enable Mix-String')">
+      <el-switch
+        :active-text="$t('Mix all the string values in the scripts')"
+        v-model="projectInfo.mixStrings">
+      </el-switch>
+    </el-form-item>
   </div>
 </template>
 

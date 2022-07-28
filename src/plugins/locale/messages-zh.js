@@ -120,7 +120,7 @@ const messages = {
     "Report Issues": "报告问题",
 
     // src/components/HomeTabAbout.vue 60
-    "Concat": "联系方式",
+    "Contact": "联系方式",
 
     // src/components/HomeTabAbout.vue 63
     "Copyright @ 2008 - 2020 Dashingsoft Corp.": "版权所有 @ 2008 - 2020 西安德新软件",
@@ -382,6 +382,10 @@ const messages = {
 
     // src/pages/ProjectInputMisc.vue 38
     "Generate runtime package with an unique suffix": "创建包含唯一后缀的运行辅助包，解决导入其他用户的加密包冲突问题",
+
+    // src/pages/ProjectInputMisc.vue 35
+    "Enable Mix-String": "加密字符串",
+    "Mix all the string values in the scripts": "混淆脚本中所有字符串值（不包括函数/变量名称）",
 
     // src/pages/ProjectInputMisc.vue 60
     "DO NOT insert bootstrap code into entry scripts": "不要插入引导代码到主脚本",

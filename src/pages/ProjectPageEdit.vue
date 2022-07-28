@@ -121,6 +121,7 @@ export default {
                     packageRuntime: true,
                     noRuntime: false,
                     enableSuffix: false,
+                    mixStrings: false,
                     crossProtection: true,
                     bootstrapCode: 1,
                     platforms: [],
