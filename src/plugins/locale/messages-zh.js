@@ -111,7 +111,7 @@ const messages = {
     "Documentation": "文档",
 
     // src/components/HomeTabAbout.vue 46
-    "https://pyarmor.readthedocs.io/en/stable/license.html": "https://pyarmor.readthedocs.io/zh/stable/license.html",
+    "https://pyarmor.readthedocs.io/en/stable/licenses.html": "https://pyarmor.readthedocs.io/zh/stable/licenses.html",
 
     // src/components/HomeTabAbout.vue 46
     "License & Purchase": "许可和购买",

@@ -43,7 +43,7 @@
             :underline="false"
             target="_blank"
             type="primary"
-            :href="$t('https://pyarmor.readthedocs.io/en/stable/license.html')">{{ $t('License &amp; Purchase') }}</el-link>
+            :href="$t('https://pyarmor.readthedocs.io/en/stable/licenses.html')">{{ $t('License &amp; Purchase') }}</el-link>
         </li>
         <li>
           <el-link
@@ -57,7 +57,7 @@
             :underline="false"
             target="_blank"
             type="primary"
-            href="mailto:jondy.zhao@gmail.com">{{ $t('Contact') }}</el-link>
+            href="mailto:pyarmor@163.com">{{ $t('Contact') }}</el-link>
         </li>
       </ul>
       <p>{{ $t('Copyright @ 2008 - 2020 Dashingsoft Corp.') }}</p>
