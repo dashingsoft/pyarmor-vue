@@ -1,11 +1,17 @@
 {
   "name": "pyarmor-vue",
-  "version": "0.2.40",
+  "version": "0.2.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+  },
+  "vueConfig": {
+      "devServer": {
+          "public": "0.0.0.0:8080",
+          "port": 8080
+      }
   },
   "dependencies": {
     "core-js": "^3.4.4",
