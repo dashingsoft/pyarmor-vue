@@ -7,12 +7,6 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "vueConfig": {
-      "devServer": {
-          "public": "0.0.0.0:8080",
-          "port": 8080
-      }
-  },
   "dependencies": {
     "core-js": "^3.4.4",
     "element-ui": "^2.4.5",
