@@ -27,11 +27,6 @@ export default new Vue({
             serverUrl: 'http://localhost:9096/'
         }
     },
-    computed: {
-        serverUrl8() {
-            return this.serverUrl + (this.$root.v8mode ? 'v8/' : '')
-        },
-    },
     methods: {
         showError(err) {
             Vue.prototype.$message({
@@ -107,7 +102,7 @@ export default new Vue({
             }
             let onsuccess = function (resp) {
                 if (resp.err === 0) {
-                    if (this.serverUrl8 !== url)
+                    if (this.serverUrl !== url)
                         this.serverUrl = url
                     favorPath = resp.data.dirs
                     this.connected = true
@@ -126,7 +121,7 @@ export default new Vue({
             this.sendRequest(url, data, 'query-version', success, error)
         },
         registerProduct: function (data, success, error) {
-            let url = this.serverUrl8 + 'register'
+            let url = this.serverUrl + 'register'
             this.sendRequest(url, data, 'register-product', success, error)
         },
         listDirectory: function (data, success, error) {
@@ -142,43 +137,43 @@ export default new Vue({
             this.sendRequest(url, data, 'remove-directory', success, error)
         },
         newProject: function (data, success, error) {
-            let url = this.serverUrl8 + 'project/new'
+            let url = this.serverUrl + 'project/new'
             this.sendRequest(url, data, 'new-project', success, error)
         },
         updateProject: function (data, success, error) {
-            let url = this.serverUrl8 + 'project/update'
+            let url = this.serverUrl + 'project/update'
             this.sendRequest(url, data, 'update-project', success, error)
         },
         buildProject: function (data, success, text) {
-            let url = this.serverUrl8 + 'project/build'
+            let url = this.serverUrl + 'project/build'
             this.loadRequest(url, data, 'build-project', success, text)
         },
         diagnoseProject: function (data, success, text) {
-            let url = this.serverUrl8 + 'project/diagnose'
+            let url = this.serverUrl + 'project/diagnose'
             this.loadRequest(url, data, 'diagnose-project', success, text)
         },
         removeProject: function (data, success, error) {
-            let url = this.serverUrl8 + 'project/remove'
+            let url = this.serverUrl + 'project/remove'
             this.sendRequest(url, data, 'remove-project', success, error)
         },
         listProject: function (data, success, error) {
-            let url = this.serverUrl8 + 'project/list'
+            let url = this.serverUrl + 'project/list'
             this.sendRequest(url, data, 'list-project', success, error)
         },
         newLicense: function (data, success, error) {
-            let url = this.serverUrl8 + 'license/new'
+            let url = this.serverUrl + 'license/new'
             this.sendRequest(url, data, 'new-license', success, error)
         },
         updateLicense: function (data, success, error) {
-            let url = this.serverUrl8 + 'license/update'
+            let url = this.serverUrl + 'license/update'
             this.sendRequest(url, data, 'update-license', success, error)
         },
         removeLicense: function (data, success, error) {
-            let url = this.serverUrl8 + 'license/remove'
+            let url = this.serverUrl + 'license/remove'
             this.sendRequest(url, data, 'remove-license', success, error)
         },
         listLicense: function (data, success, error) {
-            let url = this.serverUrl8 + 'license/list'
+            let url = this.serverUrl + 'license/list'
             this.sendRequest(url, data, 'list-license', success, error)
         },
         getFavorPath( path ) {
