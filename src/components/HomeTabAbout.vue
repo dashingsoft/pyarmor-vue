@@ -6,13 +6,13 @@
       <p>pyarmor-server: {{ versionInfo.server }}</p>
       <p>Python: {{ versionInfo.python }}</p>
       <p v-if="versionInfo.regcode.length">
-        pyarmor ({{ versionInfo.regcode }}): {{ versionInfo.version }}
+        pyarmor ({{ versionInfo.regcode.slice(-6) }}): {{ versionInfo.version }}
       </p>
       <p v-else>pyarmor ({{ versionInfo.tag }}): {{ versionInfo.version }}</p>
       <p v-if="versionInfo.reginfo.length">{{ versionInfo.reginfo }}</p>
     </div>
     <div v-else>
-      <p>{{ $t('PyArmor server is not running on') }} <span>http://localhost:9096/</span>. {{ $t('Make sure the server is running, or click here to') }}
+      <p>{{ $t('Pyarmor server is not running on') }} <span>http://localhost:9096/</span>. {{ $t('Make sure the server is running, or click here to') }}
         <el-button
           type="text"
           @click="$emit('connect-server')">
@@ -20,8 +20,8 @@
         </el-button>
       </P>
     </div>
-    <p>{{ $t('PyArmor is a powerful tool in the field of protecting and distributing python scripts.') }}</p>
-    <p>{{ $t('The goal of PyArmor is to make Python applied to commercial application easily.') }}</p>
+    <p>{{ $t('Pyarmor is a powerful tool in the field of protecting and distributing python scripts.') }}</p>
+    <p>{{ $t('The goal of Pyarmor is to make Python applied to commercial application easily.') }}</p>
     <div class="footer">
       <ul>
         <li>
@@ -29,7 +29,7 @@
             :underline="false"
             target="_blank"
             type="primary"
-            href="https://github.com/dashingsoft/pyarmor">{{ $t('Homepage') }}</el-link>
+            href="https://github.com/dashingsoft/pyarmor">{{ $t('Project Home') }}</el-link>
         </li>
         <li>
           <el-link
@@ -60,7 +60,7 @@
             href="mailto:pyarmor@163.com">{{ $t('Contact') }}</el-link>
         </li>
       </ul>
-      <p>{{ $t('Copyright @ 2008 - 2020 Dashingsoft Corp.') }}</p>
+      <p>{{ $t('Copyright @ 2008 - 2023 Dashingsoft Corp.') }}</p>
     </div>
   </div>
 </template>

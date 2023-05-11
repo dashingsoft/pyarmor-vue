@@ -1,6 +1,6 @@
 <template>
   <div class="project-file">
-    <el-form-item :label="$t('Advanced Mode')">
+    <el-form-item v-show="!$root.v8mode" :label="$t('Advanced Mode')">
       <el-select
         :placeholder="$t('Disable or select advanced mode')"
         class="w-50"
@@ -13,10 +13,22 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item :label="$t('Cross Protection')">
+    <el-form-item v-show="!$root.v8mode" :label="$t('Cross Protection')">
       <el-switch
         :active-text="$t('Inject cross protection code into entry scripts before obfuscating')"
         v-model="projectInfo.crossProtection">
+      </el-switch>
+    </el-form-item>
+    <el-form-item v-show="$root.v8mode" :label="$t('Enable BCC Mode')">
+      <el-switch
+        :active-text="$t('Convert some Python functions to C functions')"
+        v-model="projectInfo.enableBCC">
+      </el-switch>
+    </el-form-item>
+    <el-form-item v-show="$root.v8mode" :label="$t('Enable RFT Mode')">
+      <el-switch
+        :active-text="$t('Rename class/function/variable names')"
+        v-model="projectInfo.enableRFT">
       </el-switch>
     </el-form-item>
     <el-form-item :label="$t('Obfuscate Module')">

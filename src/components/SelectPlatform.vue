@@ -2,7 +2,7 @@
   <div class="el-input-group el-input-group--prepend">
     <div class="el-input-group__prepend">
       <el-select
-        :disabled="advanced"
+        :disabled="advanced || $root.v8mode"
         style="width: 160px"
         v-model="level">
         <el-option
@@ -14,11 +14,24 @@
       </el-select>
     </div>
     <el-cascader
+      v-show="!$root.v8mode"
       class="w-100"
       clearable
       :disabled="disabled"
       :multiple="multiple"
       :options="platforms[level]"
+      :props="{ label: 'value', multiple: true }"
+      :show-all-levels="false"
+      @change="onValueChanged"
+      :placeholder="$t('Cross platform, select one or more platforms to run obfuscated scripts')"
+      v-model="value"></el-cascader>
+    <el-cascader
+      v-show="$root.v8mode"
+      class="w-100"
+      clearable
+      :disabled="disabled"
+      :multiple="multiple"
+      :options="platforms8[level]"
       :props="{ label: 'value', multiple: true }"
       :show-all-levels="false"
       @change="onValueChanged"
@@ -99,6 +112,25 @@ export default {
                       { value: 'musl.mips32.0' },
                       { value: 'linux.mips64.0' },
                       { value: 'linux.mips64el.0' },
+                  ] }
+                ]
+            ],
+            platforms8: [
+                [ { value: _t( 'Common' ), children: [
+                    { value: 'windows.x86_64' },
+                    { value: 'linux.x86_64' },
+                    { value: 'darwin.x86_64' },
+                    { value: 'windows.x86' },
+                    { value: 'linux.x86' },
+                ] },
+                  { value: 'arm', children: [
+                      { value: 'darwin.aarch64' },
+                      { value: 'linux.armv7' },
+                      { value: 'linux.aarch64' },
+                  ] },
+                  { value: _t( 'Themida Protection' ), children: [
+                      { value: 'windows.x86_64' },
+                      { value: 'windows.x86' },
                   ] }
                 ]
             ]

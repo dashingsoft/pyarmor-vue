@@ -86,15 +86,15 @@
             class="btn"
             @click="registerProduct">
             <img src="img/registered.svg" class="icon"/>
-            <p>{{ $t('Register PyArmor') }}</p>
+            <p>{{ $t('Register Pyarmor') }}</p>
           </el-button>
         </el-card>
       </el-col>
     </el-row>
     <el-dialog
-      :title="$t('Register PyArmor')"
+      :title="$t('Register Pyarmor')"
       :visible.sync="dialogVisible">
-      <p>{{ $t('Please type registration code or full path filename') }}</p>
+      <p v-if="!$root.v8mode">{{ $t('Please type registration code or full path filename') }}</p>
       <select-folder
         v-show="false"
         select-pattern="pyarmor-*.zip"
@@ -102,18 +102,36 @@
         v-model="regvalue">
       </select-folder>
       <el-input
-        v-show="true"
+        v-show="!$root.v8mode"
         type="textarea"
         style="margin-top: 16px"
         :rows="3"
         v-model="regvalue">
       </el-input>
-      <p>{{ $t('No registration code or file?') }}
+      <el-upload
+        v-show="$root.v8mode"
+        ref="upload"
+        :limit="1"
+        action="nothing"
+        accept=".txt,.zip"
+        :on-change="selectFile"
+        :auto-upload="false">
+        <el-button slot="trigger" size="small" type="primary">{{ $t('Select activation file or registeration file') }}</el-button>
+        <div class="el-upload__tip" slot="tip">{{ $t('Activation file pyarmor-regcode-xxxx.txt is used for initial registeration, product name is required') }}</div>
+        <div class="el-upload__tip" slot="tip">{{ $t('Registration file pyarmor-regfile-xxxx.zip for subsequent registration, product name is not required') }}</div>
+      </el-upload>
+      <el-input
+        v-show="$root.v8mode"
+        style="margin-top: 16px"
+        :placeholder="$t('Product name')"
+        v-model="reginfo.product">
+      </el-input>
+      <p>{{ $t('No activation file?') }}
         <el-link
           :underline="false"
           target="_blank"
           type="primary"
-          :href="$t('https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1')">
+          :href="$t('https://order.mycommerce.com/product?vendorid=200089125&productid=301044051')">
           {{ $t('Click here to purchase one') }}</el-link>
       </p>
       <span slot="footer" class="dialog-footer">
@@ -133,6 +151,11 @@ export default {
     data() {
         return {
             regvalue: '',
+            reginfo: {
+                filename: '',
+                filedata: '',
+                product: '',
+            },
             dialogVisible: false,
         }
     },
@@ -150,15 +173,42 @@ export default {
         openLicenseWizard(name) {
             this.$emit('change-current-page', 'LicensePageEdit', { feature: name })
         },
+        selectFile(file) {
+            const reader = new FileReader();
+            this.reginfo.filename = file.name
+            this.reginfo.filedata = file.raw
+            reader.onload = (e) => {
+                this.reginfo.filedata = e.target.result;
+            };
+            reader.readAsBinaryString(file.raw);
+            this.$message(file.name + file.raw)
+        },
+        removeFile() {
+            this.reginfo.filename = ''
+            this.reginfo.filedata = ''
+        },
         registerProduct() {
             this.dialogVisible = true
         },
         handleRegister() {
-            connector.registerProduct(this.regvalue, (data) => {
-                connector.$emit('query-version', data)
-                this.dialogVisible = false
-                this.$message(_t('Register PyArmor successfully'))
-            } )
+            if (this.$root.v8mode) {
+                connector.registerProduct(this.reginfo, (data) => {
+                    this.dialogVisible = false
+                    if (data === 'OK') {
+                        this.$message( _t('Register Pyarmor successfully') )
+                    }
+                    else {
+                        this.$confirm( _t('Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration', data) )
+                    }
+                } )
+            }
+            else {
+                connector.registerProduct(this.regvalue, (data) => {
+                    connector.$emit('query-version', data)
+                    this.dialogVisible = false
+                    this.$message(_t('Register Pyarmor successfully'))
+                } )
+            }
         }
     },
 }

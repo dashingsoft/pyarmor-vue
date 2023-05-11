@@ -32,7 +32,7 @@
         :label="$t('Platforms')">
         <select-platform
           class="w-100"
-          :advanced="projectInfo.advancedMode"
+          :advanced="projectInfo.advancedMode > 0"
           v-model="projectInfo.platforms"></select-platform>
       </el-form-item>
     </div>
@@ -44,6 +44,7 @@
       <!--   :placeholder="$t('Select one or more plugin scripts" -->
       <!--   v-model="projectInfo.plugins"></select-path-script> -->
       <el-select
+        v-show="!$root.v8mode"
         multiple
         filterable
         allow-create
@@ -54,6 +55,16 @@
         <el-option value="on"></el-option>
         <el-option value="check_ntp_time"></el-option>
         <el-option value="assert_armored"></el-option>
+      </el-select>
+      <el-select
+        v-show="$root.v8mode"
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        class="w-100"
+        :placeholder="$t('Type plugin name, then press ENTER')"
+        v-model="projectInfo.plugins">
       </el-select>
     </el-form-item>
     <div v-if="isPackProject">

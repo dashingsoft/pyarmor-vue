@@ -10,6 +10,7 @@ const messages = {
     "My Licenses": "我的许可证",
     "Please type pyarmor server url:": "输入 pyarmor 后台服务地址：",
     "Connect": "连接",
+    "Connect Pyarmor Server": "连接 Pyarmor 服务器",
 
     // src/components/SelectLicenseFile.vue 13
     "Select one license file to restrict the obfuscated script": "选择加密脚本的许可证",
@@ -47,17 +48,22 @@ const messages = {
     "Full Features License": "全部特征许可证",
 
     // src/components/HomeTabIndex.vue 89
-    "Register PyArmor": "注册 PyArmor",
+    "Register Pyarmor": "注册 Pyarmor",
 
     // src/components/HomeTabIndex.vue 97
-    "Please click Register if there is pyarmor-regfile-1.zip in current path. Or select one from other path at first": "如果注册文件 pyarmor-regfile-1.zip 在当前路径，直接点击注册即可，否则请首先从其他目录选择一个注册文件",
     "Please type registration code or full path filename": "请输入注册码或者全路径注册文件名称",
+    "Product name": "产品名称",
+
+    "Select activation file or registeration file": "选择激活文件或者注册文件",
+    "Activation file pyarmor-regcode-xxxx.txt is used for initial registeration, product name is required": "激活文件（pyarmor-regcode-xxxx.txt）用于第一次注册登记，需要在下面输入产品名称",
+    "Registration file pyarmor-regfile-xxxx.zip for subsequent registration, product name is not required": "注册文件（pyarmor-regfile-xxxx.zip）用于后续的所有注册，不需要输入产品名称",
+    "Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration": "第一次注册登记已经完成，注册文件 %1 已经生成，以后如需注册，请直接使用这个压缩文件",
 
     // src/components/HomeTabIndex.vue 103
-    "No registration code or file?": "还没有注册码或者注册文件？",
+    "No activation file?": "还没有激活文件？",
 
     // src/components/HomeTabIndex.vue 108
-    "https://order.shareit.com/cart/add?vendorid=200089125&PRODUCT[300871197]=1": "http://pyarmor.dashingsoft.com/cart/order.html",
+    "https://order.mycommerce.com/product?vendorid=200089125&productid=301044051": "http://pyarmor.dashingsoft.com/cart/order.html",
 
     // src/components/HomeTabIndex.vue 109
     "Click here to purchase one": "点击这里购买",
@@ -69,7 +75,7 @@ const messages = {
     "Register": "注册",
 
     // src/components/HomeTabIndex.vue 153
-    "Register PyArmor successfully": "PyArmor 注册成功",
+    "Register Pyarmor successfully": "Pyarmor 注册成功",
 
     // src/components/HomeTabIndex.vue 157
     "regfile is empty": "没有注册文件",
@@ -87,7 +93,7 @@ const messages = {
     "About": "关于",
 
     // src/components/HomeTabAbout.vue 15
-    "PyArmor server is not running on": "PyArmor 后台服务没有启动",
+    "Pyarmor server is not running on": "Pyarmor 后台服务没有启动",
 
     // src/components/HomeTabAbout.vue 15
     "Make sure the server is running, or click here to": "请确认后台服务已经启动，或者点击这里",
@@ -96,13 +102,13 @@ const messages = {
     "connect another server url": "连接其他地址的后台服务",
 
     // src/components/HomeTabAbout.vue 23
-    "PyArmor is a powerful tool in the field of protecting and distributing python scripts.": "PyArmor 是一个用于加密保护和发布 Python 脚本的强大工具。",
+    "Pyarmor is a powerful tool in the field of protecting and distributing python scripts.": "Pyarmor 是一个用于加密保护和发布 Python 脚本的强大工具。",
 
     // src/components/HomeTabAbout.vue 24
-    "The goal of PyArmor is to make Python applied to commercial application easily.": "PyArmor 的目标是让 Python 可以更广泛的应用于商业软件。",
+    "The goal of Pyarmor is to make Python applied to commercial application easily.": "Pyarmor 的目标是让 Python 可以更广泛的应用于商业软件。",
 
     // src/components/HomeTabAbout.vue 32
-    "Homepage": "主页",
+    "Project Home": "项目主页",
 
     // src/components/HomeTabAbout.vue 39
     "https://pyarmor.readthedocs.io/en/stable/": "https://pyarmor.readthedocs.io/zh/stable/",
@@ -123,7 +129,7 @@ const messages = {
     "Contact": "联系方式",
 
     // src/components/HomeTabAbout.vue 63
-    "Copyright @ 2008 - 2020 Dashingsoft Corp.": "版权所有 @ 2008 - 2020 西安德新软件",
+    "Copyright @ 2008 - 2023 Dashingsoft Corp.": "版权所有 @ 2008 - 2023 西安德新软件",
 
     // src/components/SelectPlatform.vue
     "Common": "常用",
@@ -371,6 +377,15 @@ const messages = {
     // src/pages/ProjectInputMisc.vue 11
     "Select restrict mode": "选择约束模式",
 
+    "Assert Call": "启用函数保护",
+    "Assert called functions are obfuscated": "确保被调用的函数是经过加密的，没有被替换",
+    "Assert Import": "启用模块保护",
+    "Assert imported modules are obfuscated": "确保被导入的模块是加密的，没有被替换",
+    "Disable all the restricts for the obfuscated scripts": "禁用所有对加密脚本的约束和限制",
+    "Use default restrictions": "加密脚本使用默认的约束和限制",
+    "Enable private mode for scripts": "使用私有模式加密脚本",
+    "Enable restrict mode for packages": "使用约束模式加密包",
+
     // src/pages/ProjectInputMisc.vue 21
     "Bootstrap Code": "引导模式",
 
@@ -466,6 +481,11 @@ const messages = {
     "Advanced Mode": "高级模式",
     "Disable or select advanced mode": "禁用或者选择一种高级模式",
 
+    "Enable BCC Mode": "启用 BCC 模式",
+    "Convert some Python functions to C functions": "转换模块里面的 Python 函数成为 C 函数",
+    "Enable RFT Mode": "启用 RFT 模式",
+    "Rename class/function/variable names": "重命名模块中类，函数和变量的名称",
+
     // src/pages/ProjectInputMode.vue 5
     "Change code object structure to improve security (only for x86/64 arch)": "修改代码结构以提高安全性（仅 x86/64 可用）",
     "Disable advanced mode": "禁用高级模式",
@@ -560,10 +580,10 @@ const messages = {
     "DO NOT generate runtime files": "不生成运行辅助文件",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module pytransform": "生成运行辅助文件",
+    "Generate runtime files as a module (only for Pyarmor 7)": "生成运行辅助文件（仅适用 Pyarmor 7）",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package pytransform": "生成运行辅助包 pytransform（默认）",
+    "Generate runtime files as a package": "生成运行辅助包（默认）",
 
     // src/pages/ProjectPageEdit.vue 218
     "Please input project title": "新的工程标题",

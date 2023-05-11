@@ -23,7 +23,7 @@
       </div>
       <div class="item-card" v-show="isItemVisible( 'advanced' )">
         <project-input-misc v-bind:project-info="projectInfo"></project-input-misc>
-        <el-form-item :label="$t('Cross Protection')">
+        <el-form-item v-show="!$root.v8mode" :label="$t('Cross Protection')">
           <el-switch
             :active-text="$t('Inject cross protection code into entry scripts before obfuscating')"
             v-model="projectInfo.crossProtection">

@@ -132,7 +132,12 @@ export default {
                     wrapMode: true,
                     advancedMode: 0,
                     licenseFile: 'true',
-                    plugins: []
+                    plugins: [],
+                    // Pyarmor 8
+                    assertCall: false,
+                    assertImport: false,
+                    enableBCC: false,
+                    enableRFT: false,
                 }
             }
         },
@@ -145,11 +150,11 @@ export default {
                     value: -1,
                 },
                 {
-                    label: _t('Generate runtime files as a module pytransform'),
+                    label: _t('Generate runtime files as a module (only for Pyarmor 7)'),
                     value: 0,
                 },
                 {
-                    label: _t('Generate runtime files as a package pytransform'),
+                    label: _t('Generate runtime files as a package'),
                     value: 1,
                 },
             ],

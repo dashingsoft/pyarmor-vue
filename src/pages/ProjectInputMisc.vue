@@ -1,6 +1,6 @@
 <template>
   <div class="project-misc">
-    <el-form-item :label="$t('Restrict Mode')">
+    <el-form-item v-show="!$root.v8mode" :label="$t('Restrict Mode')">
       <span slot="label">{{ $t('Restrict Mode') }}
         <el-link :underline="false"
                  target="_blank"
@@ -19,7 +19,7 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item :label="$t('Bootstrap Code')">
+    <el-form-item v-show="!$root.v8mode" :label="$t('Bootstrap Code')">
       <el-select
         :disabled="isPackProject"
         class="w-50"
@@ -33,11 +33,36 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item :label="$t('Enable Suffix')">
+    <el-form-item v-show="!$root.v8mode" :label="$t('Enable Suffix')">
       <el-switch
         :disabled="isPackProject"
         :active-text="$t('Generate runtime package with an unique suffix')"
         v-model="projectInfo.enableSuffix">
+      </el-switch>
+    </el-form-item>
+    <el-form-item v-show="$root.v8mode" :label="$t('Restrict Mode')">
+      <el-select
+        :placeholder="$t('Select restrict mode')"
+        class="w-50"
+        v-model="projectInfo.restrictMode">
+        <el-option
+          v-for="item in restrictModes8"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item v-show="$root.v8mode" :label="$t('Assert Call')">
+      <el-switch
+        :active-text="$t('Assert called functions are obfuscated')"
+        v-model="projectInfo.assertCall">
+      </el-switch>
+    </el-form-item>
+    <el-form-item v-show="$root.v8mode" :label="$t('Assert Import')">
+      <el-switch
+        :active-text="$t('Assert imported modules are obfuscated')"
+        v-model="projectInfo.assertImport">
       </el-switch>
     </el-form-item>
     <el-form-item :label="$t('Mixin Strings')">
@@ -59,6 +84,29 @@ export default {
         isPackProject() {
             return this.projectInfo.buildTarget > 0
         },
+        assertCall: {
+            get() {
+                return this.projectInfo.restrictMode & 8
+            },
+            set( value ) {
+                if ( value )
+                    this.projectInfo.restrictMode |= 8
+                else
+                    this.projectInfo.restrictMode &= ~8
+                this.$message('change value to' + value)
+            }
+        },
+        assertImport: {
+            get() {
+                return this.projectInfo.restrictMode & 16
+            },
+            set( value ) {
+                if ( value )
+                    this.projectInfo.restrictMode |= 16
+                else
+                    this.projectInfo.restrictMode &= ~16
+            }
+        }
     },
     data() {
         return {
@@ -124,6 +172,24 @@ export default {
                 {
                     label: _t('Mode 105: mode 5 plus module dictionary protection'),
                     value: 105,
+                },
+            ],
+            restrictModes8: [
+                {
+                    label: _t('Disable all the restricts for the obfuscated scripts'),
+                    value: 0,
+                },
+                {
+                    label: _t('Use default restrictions'),
+                    value: 1,
+                },
+                {
+                    label: _t('Enable private mode for scripts'),
+                    value: 2,
+                },
+                {
+                    label: _t('Enable restrict mode for packages'),
+                    value: 4,
                 },
             ],
         }

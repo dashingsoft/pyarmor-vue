@@ -4,7 +4,7 @@
       <el-aside>
         <el-container>
           <img class="brand-logo" src="./assets/logo.png">
-          <el-button type="text" class="brand-text" @click="onConnectServer">PyArmor</el-button>
+          <el-button type="text" class="brand-text" @click="onConnectServer">Pyarmor {{ currentMode }}</el-button>
           <el-badge v-bind:value="versionInfo.tag" type="warning">
           </el-badge>
         </el-container>
@@ -58,7 +58,7 @@
                  v-bind:is="currentPageComponent"></component>
     </el-container>
     <el-dialog
-      title="Connect PyArmor Server"
+      :title="$t('Connect Pyarmor Server')"
       :visible.sync="dialogVisible">
       <p>{{ $t('Please type pyarmor server url:') }}</p>
       <el-input
@@ -108,6 +108,7 @@ export default {
             pageStack: [],
             dialogVisible: false,
             serverUrl: connector.serverUrl,
+            v8mode: true,
             versionInfo: {
                 tag: 'Off',
                 version: '',
@@ -126,6 +127,9 @@ export default {
             this.changeLanguage( 'zh-cn' )
     },
     computed: {
+        currentMode: function () {
+            return parseInt( this.versionInfo.version ) > 7 ? ( this.v8mode ? '8' : '7+' ) : '7'
+        },
         currentTabComponent: function () {
             return this.currentTabName
         },
@@ -162,6 +166,8 @@ export default {
             this.versionInfo.reginfo = data.reginfo
             this.versionInfo.server = data.server
             this.versionInfo.python = data.python
+            this.v8mode = parseInt(data.version) > 7
+            this.$root.v8mode = this.v8mode
         },
         onConnectFailed: function () {
             this.connected = false
