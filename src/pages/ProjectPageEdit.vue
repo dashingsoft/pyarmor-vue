@@ -136,8 +136,8 @@ export default {
                     // Pyarmor 8
                     assertCall: false,
                     assertImport: false,
-                    enableBCC: false,
-                    enableRFT: false,
+                    bccMode: false,
+                    rftMode: false,
                 }
             }
         },

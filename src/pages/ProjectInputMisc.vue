@@ -177,7 +177,7 @@ export default {
             restrictModes8: [
                 {
                     label: _t('Disable all the restricts for the obfuscated scripts'),
-                    value: 0,
+                    value: 8,
                 },
                 {
                     label: _t('Use default restrictions'),

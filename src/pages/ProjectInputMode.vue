@@ -22,13 +22,13 @@
     <el-form-item v-show="$root.v8mode" :label="$t('Enable BCC Mode')">
       <el-switch
         :active-text="$t('Convert some Python functions to C functions')"
-        v-model="projectInfo.enableBCC">
+        v-model="projectInfo.bccMode">
       </el-switch>
     </el-form-item>
     <el-form-item v-show="$root.v8mode" :label="$t('Enable RFT Mode')">
       <el-switch
         :active-text="$t('Rename class/function/variable names')"
-        v-model="projectInfo.enableRFT">
+        v-model="projectInfo.rftMode">
       </el-switch>
     </el-form-item>
     <el-form-item :label="$t('Obfuscate Module')">
