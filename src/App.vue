@@ -166,7 +166,7 @@ export default {
             this.versionInfo.reginfo = data.reginfo
             this.versionInfo.server = data.server
             this.versionInfo.python = data.python
-            this.v8mode = !!this.versionInfo.v8mode
+            this.v8mode = !!data.v8mode
             this.$root.v8mode = this.v8mode
         },
         onConnectFailed: function () {
