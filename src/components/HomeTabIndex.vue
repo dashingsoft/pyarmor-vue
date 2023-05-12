@@ -178,10 +178,9 @@ export default {
             this.reginfo.filename = file.name
             this.reginfo.filedata = file.raw
             reader.onload = (e) => {
-                this.reginfo.filedata = e.target.result;
+                this.reginfo.filedata = e.target.result
             };
-            reader.readAsBinaryString(file.raw);
-            this.$message(file.name + file.raw)
+            reader.readAsDataURL(file.raw)
         },
         removeFile() {
             this.reginfo.filename = ''
