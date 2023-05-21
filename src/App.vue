@@ -37,6 +37,7 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="en">English</el-dropdown-item>
               <el-dropdown-item command="zh-cn">简体中文</el-dropdown-item>
+              <el-dropdown-item command="jp">日本語</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-header>
@@ -125,6 +126,8 @@ export default {
 
         if ( localStorage.getItem( 'language' ) === 'zh-cn' )
             this.changeLanguage( 'zh-cn' )
+        else if ( localStorage.getItem( 'language' ) === 'jp' )
+            this.changeLanguage( 'jp' )
     },
     computed: {
         currentMode: function () {
@@ -191,7 +194,7 @@ export default {
             connector.connectServer()
         },
         changeLanguage: function (lang) {
-            this.lang = lang === 'en' ? 'English' : '简体中文'
+            this.lang = lang === 'en' ? 'English' : lang === 'jp' ? '日本語' : '简体中文'
             setLocale(lang)
             // Force update all the components
             let update = function (obj) {
