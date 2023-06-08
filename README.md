@@ -29,6 +29,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Change logs
 
+### v0.3.1
+* Add language JA
+
+### v0.3.0
+* Support Pyarmor 8
+
 ### v0.2.4
 * Add new option `mix-str`
 
