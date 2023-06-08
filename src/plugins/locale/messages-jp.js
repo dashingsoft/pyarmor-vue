@@ -4,13 +4,13 @@ const messages = {
         "plural-forms": "nplurals=2; plural=n>1;"
     },
     "Server error: please check console output and make sure server is on": "サーバーエラー、pyarmorのバックグラウンドサービスは運転するに確認して、コンソールは入力にチェックしてください",
-    "Could not connect to pyarmor server, make sure it runs on %1": "バックグラウンドサービスに接続できません:%1",
+    "Could not connect to pyarmor server, make sure it runs on %1": "バックグラウンドサービスに接続できません: %1",
 
     "My Projects": "我のプロジェクト",
     "My Licenses": "我のライセンス",
     "Please type pyarmor server url:": "pyarmorのバクグランドサービスアドレスを入力してください：",
     "Connect": "接続",
-    "Connect Pyarmor Server": " Pyarmorサーバーへの接続 ",
+    "Connect Pyarmor Server": "Pyarmorサーバーへの接続",
 
     // src/components/SelectLicenseFile.vue 13
     "Select one license file to restrict the obfuscated script": "暗号化スクリプトライセンスのが選択",
@@ -57,13 +57,13 @@ const messages = {
     "Select activation file or registeration file": "アクティブ化ファイルまたは登録ファイルの選択",
     "Activation file pyarmor-regcode-xxxx.txt is used for initial registeration, product name is required": "アクティブ化ファイル（pyarmor-regcode-xxxx.txt):第1回の登録に使用、以下に製品名を入力する必要があります",
     "Registration file pyarmor-regfile-xxxx.zip for subsequent registration, product name is not required": "登録ファイル（pyarmor-regfile-xxxx.zip）：後続のすべての登録に使用、製品名に入力する必要がありません",
-    "Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration": "第1回の登録はもう完成、登録ファイル%1は生成、後で登録する場合は、この圧縮ファイルをそのまま使用してください",
+    "Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration": "第1回の登録はもう完成、登録ファイル %1 は生成、後で登録する場合は、この圧縮ファイルをそのまま使用してください",
 
     // src/components/HomeTabIndex.vue 103
     "No activation file?": "ファイルはまだアクティブになっていませんか？",
 
     // src/components/HomeTabIndex.vue 108
-    "https://order.mycommerce.com/product?vendorid=200089125&productid=301044051": "http://pyarmor.dashingsoft.com/cart/order.html",
+    "https://order.mycommerce.com/product?vendorid=200089125&productid=301044051": "https://order.mycommerce.com/product?vendorid=200089125&productid=301044051",
 
     // src/components/HomeTabIndex.vue 109
     "Click here to purchase one": "ここにクリックで購入します",
@@ -111,13 +111,13 @@ const messages = {
     "Project Home": "プロジェクトのホームページ",
 
     // src/components/HomeTabAbout.vue 39
-    "https://pyarmor.readthedocs.io/en/stable/": "https://pyarmor.readthedocs.io/zh/stable/",
+    "https://pyarmor.readthedocs.io/en/stable/": "https://pyarmor.readthedocs.io/en/stable/",
 
     // src/components/HomeTabAbout.vue 39
     "Documentation": "ドキュメント",
 
     // src/components/HomeTabAbout.vue 46
-    "https://pyarmor.readthedocs.io/en/stable/licenses.html": "https://pyarmor.readthedocs.io/zh/stable/licenses.html",
+    "https://pyarmor.readthedocs.io/en/stable/licenses.html": "https://pyarmor.readthedocs.io/en/stable/licenses.html",
 
     // src/components/HomeTabAbout.vue 46
     "License & Purchase": "ライセンスと購入",
@@ -129,7 +129,7 @@ const messages = {
     "Contact": "連絡先",
 
     // src/components/HomeTabAbout.vue 63
-    "Copyright @ 2008 - 2023 Dashingsoft Corp.": "著作権所有@2008-2023西安DXソフトウェア",
+    "Copyright @ 2008 - 2023 Dashingsoft Corp.": "著作権所有 @ 2008 - 2023 西安DXソフトウェア",
 
     // src/components/SelectPlatform.vue
     "Common": "よく用いられます",
@@ -259,7 +259,7 @@ const messages = {
     "Build": "構築 ",
 
     // src/pages/ProjectPageEdit.vue 78
-    "Diagnose": "構築（デバッグ） ",
+    "Diagnose": "構築（デバッグ）",
 
     // src/components/HomeTabProject.vue 134
     // src/pages/ProjectPageEdit.vue 199
@@ -330,7 +330,7 @@ const messages = {
     "Apply icon to a Windows executable or the bundle on Mac OS X": "ソースパスに相対するアイコンファイルを入力します(WindowsとMacOS)",
 
     // src/pages/PackPageWizard.vue 109
-    "Any other PyInstaller options to append command line": "ほかのPalnstallerでサポートされているオプションを入力します",
+    "Any other PyInstaller options to append command line": "他のPalnstallerでサポートされているオプションを入力します",
 
     // src/pages/PackPageWizard.vue 118
     // src/pages/ObfuscatePageWizard.vue 37
@@ -372,7 +372,7 @@ const messages = {
     "Restrict Mode": "拘束モード",
 
     // src/pages/ProjectInputMisc.vue 7
-    "https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode": "https://pyarmor.readthedocs.io/zh/stable/mode.html#restrict-mode",
+    "https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode": "https://pyarmor.readthedocs.io/en/stable/",
 
     // src/pages/ProjectInputMisc.vue 11
     "Select restrict mode": "拘束モードを選択します",
@@ -415,36 +415,36 @@ const messages = {
     "Generate bootstrap code with leading dot (relative import)": "ブートコードは、前の点を含むインポート方法を使用します",
 
     // src/pages/ProjectInputMisc.vue 78
-    "Mode 0: disable all the restricts for the obfuscated scripts": "モード0:すべての拘束機能を無効にします",
+    "Mode 0: disable all the restricts for the obfuscated scripts": "モード 0: すべての拘束機能を無効にします",
 
     // src/pages/ProjectInputMisc.vue 82
-    "Mode 1: the obfuscated scripts can not be changed": "モード1:暗号化されたスクリプトは変更できません",
+    "Mode 1: the obfuscated scripts can not be changed": "モード 1: 暗号化されたスクリプトは変更できません",
 
     // src/pages/ProjectInputMisc.vue 86
-    "Mode 2: mode 1 plus can not be imported by plain scripts": "モード2:モード1+暗号化スクリプトは非暗号化スクリプトにインポートすることはできません",
+    "Mode 2: mode 1 plus can not be imported by plain scripts": "モード 2: モード 1 +暗号化スクリプトは非暗号化スクリプトにインポートすることはできません",
 
     // src/pages/ProjectInputMisc.vue 90
-    "Mode 3: mode 2 plus module attributes protection": "モード3:同じモード2でモジュール属性が保護されました",
+    "Mode 3: mode 2 plus module attributes protection": "モード 3 : 同じモード2でモジュール属性が保護されました",
 
     // src/pages/ProjectInputMisc.vue 94
-    "Mode 4: mode 3 but for package": "モード4:同じモード3でパッケージの暗号化には使用できます",
-    "Mode 5: mode 4 plus frame globals protection": "モード5:同じモード4で実行時にグローバル変数が保護されました",
+    "Mode 4: mode 3 but for package": "モード 4: 同じモード 3 でパッケージの暗号化には使用できます",
+    "Mode 5: mode 4 plus frame globals protection": "モード 5: 同じモード 4 で実行時にグローバル変数が保護されました",
 
     // src/pages/ProjectInputMisc.vue
-    "Mode 101: mode 1 plus module dictionary protection": "モード101:同じモード1でモジュール辞書を保護します",
-    "Mode 102: mode 2 plus module dictionary protection": "モード102:同じモード2でモジュール辞書を保護します",
-    "Mode 103: mode 3 plus module dictionary protection": "モード103:同じモード3でモジュール辞書を保護します",
-    "Mode 104: mode 4 plus module dictionary protection": "モード104:同じモード4でモジュール辞書を保護します",
-    "Mode 105: mode 5 plus module dictionary protection": "モード105:同じモード5でモジュール辞書を保護します",
+    "Mode 101: mode 1 plus module dictionary protection": "モード 101: 同じモード 1 でモジュール辞書を保護します",
+    "Mode 102: mode 2 plus module dictionary protection": "モード 102: 同じモード 2 でモジュール辞書を保護します",
+    "Mode 103: mode 3 plus module dictionary protection": "モード 103: 同じモード 3 でモジュール辞書を保護します",
+    "Mode 104: mode 4 plus module dictionary protection": "モード 104: 同じモード 4 でモジュール辞書を保護します",
+    "Mode 105: mode 5 plus module dictionary protection": "モード 105: 同じモード 5 でモジュール辞書を保護します",
 
     // src/pages/LicenseInputMachine.vue 6
     "Bind obfuscated scripts to this serial number of harddisk": "暗号化スクリプトをハードディスクのシリアル番号にバインドします",
 
     // src/pages/LicenseInputMachine.vue 13
-    "Bind obfuscated scripts to this IPv4 address": "暗号化スクリプトをIPv4アドレスにバインドします",
+    "Bind obfuscated scripts to this IPv4 address": "暗号化スクリプトを IPv4 アドレスにバインドします",
 
     // src/pages/LicenseInputMachine.vue 20
-    "Bind obfuscated scripts to this MAC address": "暗号化スクリプトをNICMacアドレスにバインドします",
+    "Bind obfuscated scripts to this MAC address": "暗号化スクリプトをNIC Mac アドレスにバインドします",
 
     // src/pages/ObfuscatePageWizard.vue 12
     "Advanced": "高級",
@@ -482,7 +482,7 @@ const messages = {
     "Disable or select advanced mode": "高級なモードの無効化または選択",
 
     "Enable BCC Mode": "BBCモードを有効にします",
-    "Convert some Python functions to C functions": "変換モジュール内のPython関数がC関数になりました",
+    "Convert some Python functions to C functions": "変換モジュール内の Python 関数が C 関数になりました",
     "Enable RFT Mode": "RFTモードを有効にします",
     "Rename class/function/variable names": "モジュール内のクラス、関数、変数の名前を変更します",
 
@@ -625,7 +625,7 @@ const messages = {
     "New License": "ライセンスの作成",
 
     // src/pages/LicensePageEdit.vue 22
-    "Leave it blank to set default name like reg-xxxxxx": "デフォルト名はreg-xxxxxxです",
+    "Leave it blank to set default name like reg-xxxxxx": "デフォルト名は reg-xxxxxx です",
 
     // src/pages/LicensePageEdit.vue 33
     "Expired the obfuscated scripts": "暗号化スクリプトの有効期間の設定",
@@ -640,38 +640,38 @@ const messages = {
     "Invalid input": "不正な入力",
 
     // src/components/SelectFolder.vue 186
-    "Please type path to create in %1": "%1の下に入力したパスを作成します",
+    "Please type path to create in %1": "%1 の下に入力したパスを作成します",
 
     // src/components/SelectFolder.vue 192
-    "This path has been created: %1": "パス%1は作成されました",
+    "This path has been created: %1": "パス %1 は作成されました",
 
     // src/components/SelectFolder.vue 198
-    "Are you sure to remove this path: %1 ?": "本当にこのパス%1を削除しますか？",
+    "Are you sure to remove this path: %1 ?": "本当にこのパス %1 を削除しますか？",
 
     // src/components/HomeTabLicense.vue 105
-    "Are you sure remove this license: %1 ?": "本当にこのライセンス%1を削除しますか？",
+    "Are you sure remove this license: %1 ?": "本当にこのライセンス %1 を削除しますか？",
 
     // src/components/HomeTabProject.vue 116
     // src/components/HomeTabProject.vue 129
     // src/pages/ProjectPageEdit.vue 181
     // src/pages/ProjectPageEdit.vue 194
-    "Build successfully, the results saved in: %1": "構築に成功しました、出力ディレクトリ:%1",
+    "Build successfully, the results saved in: %1": "構築に成功しました、出力ディレクト: %1",
 
     // src/components/HomeTabProject.vue 142
-    "Are you sure remove this project: %1 ?": "本当にこのプロジェクト%1を削除しますか？",
+    "Are you sure remove this project: %1 ?": "本当にこのプロジェクト %1 を削除しますか？",
 
     // src/pages/PackPageWizard.vue 286
-    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "暗号化パッケージングは成功しました、結果を出力:%1",
+    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "暗号化パッケージングは成功しました、結果を出力: %1",
 
     // src/pages/ObfuscatePageWizard.vue 197
-    "Obfuscate the scripts successfully, the result is saved to %1": "暗号化スクリプトは成功しました、出力ディレクトリ:%1",
+    "Obfuscate the scripts successfully, the result is saved to %1": "暗号化スクリプトは成功しました、出力ディレクトリ: %1",
 
     // src/pages/ProjectPageEdit.vue 212
-    "The project %1 has been created": "ツール%1は成功に作成されました",
-    "The project %1 has been updated": "ツール%1は更新されました",
+    "The project %1 has been created": "ツール %1 は成功に作成されました",
+    "The project %1 has been updated": "ツール %1 は更新されました",
 
     // src/pages/LicensePageEdit.vue 161
-    "The license has been saved to %1": "ライセンスは%1に保存されました",
+    "The license has been saved to %1": "ライセンスは %1 に保存されました",
 }
 
 export default messages
