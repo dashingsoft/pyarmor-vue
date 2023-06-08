@@ -31,6 +31,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### v0.3.1
 * Add language JA
+* Add new platforms for Pyarmor 8
 
 ### v0.3.0
 * Support Pyarmor 8
