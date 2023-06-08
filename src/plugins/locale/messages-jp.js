@@ -3,675 +3,675 @@ const messages = {
         "language": "ja",
         "plural-forms": "nplurals=2; plural=n>1;"
     },
-    "Server error: please check console output and make sure server is on": "服务器错误：请确认 pyarmor-webui 后台服务已经在运行，并检查控制台输出",
-    "Could not connect to pyarmor server, make sure it runs on %1": "无法连接到后台服务：%1",
+    "Server error: please check console output and make sure server is on": "サーバーエラー、pyarmorのバックグラウンドサービスは運転するに確認して、コンソールは入力にチェックしてください",
+    "Could not connect to pyarmor server, make sure it runs on %1": "バックグラウンドサービスに接続できません:%1",
 
-    "My Projects": "我的工程",
-    "My Licenses": "我的许可证",
-    "Please type pyarmor server url:": "输入 pyarmor 后台服务地址：",
-    "Connect": "连接",
-    "Connect Pyarmor Server": "连接 Pyarmor 服务器",
+    "My Projects": "我のプロジェクト",
+    "My Licenses": "我のライセンス",
+    "Please type pyarmor server url:": "pyarmorのバクグランドサービスアドレスを入力してください：",
+    "Connect": "接続",
+    "Connect Pyarmor Server": " Pyarmorサーバーへの接続 ",
 
     // src/components/SelectLicenseFile.vue 13
-    "Select one license file to restrict the obfuscated script": "选择加密脚本的许可证",
+    "Select one license file to restrict the obfuscated script": "暗号化スクリプトライセンスのが選択",
 
     // src/components/SelectLicenseFile.vue 73
-    "Default license, no any restrict": "使用默认许可证",
+    "Default license, no any restrict": "デフォルトライセンスの使用",
 
     // src/components/SelectLicenseFile.vue 77
-    "Do not include license file": "不使用许可证",
+    "Do not include license file": "ライセンスは使用ません",
 
     // src/components/HomeTabIndex.vue 3
-    "Home": "首页",
+    "Home": "ホームページ",
 
     // src/components/HomeTabIndex.vue 12
     // src/pages/ObfuscatePageWizard.vue 5
-    "Obfuscate Script Wizard": "加密脚本向导",
+    "Obfuscate Script Wizard": "暗号化スクリプトウィザード",
 
     // src/components/HomeTabIndex.vue 23
-    "Obfuscate With Project": "使用工程加密",
+    "Obfuscate With Project": "プロジェクト暗号化の使用",
 
     // src/components/HomeTabIndex.vue 34
     // src/pages/PackPageWizard.vue 5
-    "Pack Script Wizard": "加密打包向导",
+    "Pack Script Wizard": "暗号化パッケージウィザード",
 
     // src/components/HomeTabIndex.vue 45
-    "Pack With Project": "使用工程打包",
+    "Pack With Project": "プロジェクトパッケージの使用",
 
     // src/components/HomeTabIndex.vue 56
-    "Generate Expired License": "时间限制许可证",
+    "Generate Expired License": "時間制限ライセンス",
 
     // src/components/HomeTabIndex.vue 67
-    "Fixed Machine License": "指定设备许可证",
+    "Fixed Machine License": "指定マシンライセンス",
 
     // src/components/HomeTabIndex.vue 78
-    "Full Features License": "全部特征许可证",
+    "Full Features License": "全部フィーチャーライセンス",
 
     // src/components/HomeTabIndex.vue 89
-    "Register Pyarmor": "注册 Pyarmor",
+    "Register Pyarmor": "pyarmorの登録",
 
     // src/components/HomeTabIndex.vue 97
-    "Please type registration code or full path filename": "请输入注册码或者全路径注册文件名称",
-    "Product name": "产品名称",
+    "Please type registration code or full path filename": "登録コードまたはフルパス登録ファイル名を入力してください",
+    "Product name": "製品名",
 
-    "Select activation file or registeration file": "选择激活文件或者注册文件",
-    "Activation file pyarmor-regcode-xxxx.txt is used for initial registeration, product name is required": "激活文件（pyarmor-regcode-xxxx.txt）用于第一次注册登记，需要在下面输入产品名称",
-    "Registration file pyarmor-regfile-xxxx.zip for subsequent registration, product name is not required": "注册文件（pyarmor-regfile-xxxx.zip）用于后续的所有注册，不需要输入产品名称",
-    "Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration": "第一次注册登记已经完成，注册文件 %1 已经生成，以后如需注册，请直接使用这个压缩文件",
+    "Select activation file or registeration file": "アクティブ化ファイルまたは登録ファイルの選択",
+    "Activation file pyarmor-regcode-xxxx.txt is used for initial registeration, product name is required": "アクティブ化ファイル（pyarmor-regcode-xxxx.txt):第1回の登録に使用、以下に製品名を入力する必要があります",
+    "Registration file pyarmor-regfile-xxxx.zip for subsequent registration, product name is not required": "登録ファイル（pyarmor-regfile-xxxx.zip）：後続のすべての登録に使用、製品名に入力する必要がありません",
+    "Initial registration is successful, the registration file %1 has been generated, please use this file for subsequent registration": "第1回の登録はもう完成、登録ファイル%1は生成、後で登録する場合は、この圧縮ファイルをそのまま使用してください",
 
     // src/components/HomeTabIndex.vue 103
-    "No activation file?": "还没有激活文件？",
+    "No activation file?": "ファイルはまだアクティブになっていませんか？",
 
     // src/components/HomeTabIndex.vue 108
     "https://order.mycommerce.com/product?vendorid=200089125&productid=301044051": "http://pyarmor.dashingsoft.com/cart/order.html",
 
     // src/components/HomeTabIndex.vue 109
-    "Click here to purchase one": "点击这里购买",
+    "Click here to purchase one": "ここにクリックで購入します",
 
     // src/components/HomeTabIndex.vue 112
-    "Cancel": "取消",
+    "Cancel": "取り消し",
 
     // src/components/HomeTabIndex.vue 113
-    "Register": "注册",
+    "Register": "登録",
 
     // src/components/HomeTabIndex.vue 153
-    "Register Pyarmor successfully": "Pyarmor 注册成功",
+    "Register Pyarmor successfully": "Pyarmor の登録は成功しました",
 
     // src/components/HomeTabIndex.vue 157
-    "regfile is empty": "没有注册文件",
+    "regfile is empty": "登録ファイルはないです",
 
     // src/components/SelectPlatform.vue 9
-    "High Security": "高安全性",
+    "High Security": "高いセキュリティ",
 
     // src/components/SelectPlatform.vue 12
     "High Speed": "高性能",
 
     // src/components/SelectPlatform.vue 25
-    "Cross platform, select one or more platforms to run obfuscated scripts": "用于跨平台发布，选择运行加密脚本的目标平台",
+    "Cross platform, select one or more platforms to run obfuscated scripts": "クロスプラットフォームによる公開に使用、暗号化スクリプトを実行する目標プラットフォームのが選択します",
 
     // src/components/HomeTabAbout.vue 3
-    "About": "关于",
+    "About": "に関して",
 
     // src/components/HomeTabAbout.vue 15
-    "Pyarmor server is not running on": "Pyarmor 后台服务没有启动",
+    "Pyarmor server is not running on": "pyarmorバックグラウンドサービスは起動していません",
 
     // src/components/HomeTabAbout.vue 15
-    "Make sure the server is running, or click here to": "请确认后台服务已经启动，或者点击这里",
+    "Make sure the server is running, or click here to": "バックグラウンドサービスは運転するに確認してください、またはクリックここです",
 
     // src/components/HomeTabAbout.vue 19
-    "connect another server url": "连接其他地址的后台服务",
+    "connect another server url": "ほかのアドレスのバックグラウンドサービスを接続します",
 
     // src/components/HomeTabAbout.vue 23
-    "Pyarmor is a powerful tool in the field of protecting and distributing python scripts.": "Pyarmor 是一个用于加密保护和发布 Python 脚本的强大工具。",
+    "Pyarmor is a powerful tool in the field of protecting and distributing python scripts.": "pyarmorは暗号化保護とPythonスクリプトの発行のための強力なツールです。",
 
     // src/components/HomeTabAbout.vue 24
-    "The goal of Pyarmor is to make Python applied to commercial application easily.": "Pyarmor 的目标是让 Python 可以更广泛的应用于商业软件。",
+    "The goal of Pyarmor is to make Python applied to commercial application easily.": "pyarmorの目標はPythonをビジネスソフトウェアにより広く応用できるようにすることであります。",
 
     // src/components/HomeTabAbout.vue 32
-    "Project Home": "项目主页",
+    "Project Home": "プロジェクトのホームページ",
 
     // src/components/HomeTabAbout.vue 39
     "https://pyarmor.readthedocs.io/en/stable/": "https://pyarmor.readthedocs.io/zh/stable/",
 
     // src/components/HomeTabAbout.vue 39
-    "Documentation": "文档",
+    "Documentation": "ドキュメント",
 
     // src/components/HomeTabAbout.vue 46
     "https://pyarmor.readthedocs.io/en/stable/licenses.html": "https://pyarmor.readthedocs.io/zh/stable/licenses.html",
 
     // src/components/HomeTabAbout.vue 46
-    "License & Purchase": "许可和购买",
+    "License & Purchase": "ライセンスと購入",
 
     // src/components/HomeTabAbout.vue 53
-    "Report Issues": "报告问题",
+    "Report Issues": "問題のレポート作成",
 
     // src/components/HomeTabAbout.vue 60
-    "Contact": "联系方式",
+    "Contact": "連絡先",
 
     // src/components/HomeTabAbout.vue 63
-    "Copyright @ 2008 - 2023 Dashingsoft Corp.": "版权所有 @ 2008 - 2023 西安德新软件",
+    "Copyright @ 2008 - 2023 Dashingsoft Corp.": "著作権所有@2008-2023西安DXソフトウェア",
 
     // src/components/SelectPlatform.vue
-    "Common": "常用",
-    "Others": "其它",
-    "VM Protection": "虚拟模式",
+    "Common": "よく用いられます",
+    "Others": "その他",
+    "VM Protection": "仮想モード",
 
     // src/components/SelectFolder.vue 41
-    "Parent directory": "上一级目录",
+    "Parent directory": "上位レベルのディレクトリ",
 
     // src/components/SelectFolder.vue 45
-    "Restore init value": "恢复初始值",
+    "Restore init value": "初期値の復元",
 
     // src/components/SelectFolder.vue 49
-    "Root path and favorite paths": "根目录和常用目录",
+    "Root path and favorite paths": "ルート目録といつも使った目録",
 
     // src/components/SelectFolder.vue 53
-    "Create new path": "创建新目录",
+    "Create new path": "新しい目録の作成",
 
     // src/components/SelectFolder.vue 57
-    "Delete an empty path": "删除空目录",
+    "Delete an empty path": "空の目録を削除",
 
     // src/components/SelectFolder.vue 61
-    "Accept path": "接受当前选中的目录",
+    "Accept path": "現在選択されている目録を受け入れます",
 
     // src/components/SelectFolder.vue 172
-    "This is top path": "已经是最上层目录",
+    "This is top path": "すでに最上位目録",
 
     // src/components/SelectFolder.vue 186
     // src/pages/ProjectPageEdit.vue 218
-    "Input": "输入对话框",
+    "Input": "ダイアログを入力",
 
     // src/components/SelectFolder.vue 198
     // src/components/HomeTabLicense.vue 105
     // src/components/HomeTabProject.vue 142
-    "Confirm": "确认",
+    "Confirm": "確認",
 
     // src/components/HomeTabLicense.vue 4
     // src/components/HomeTabProject.vue 4
-    "New": "创建",
+    "New": "作成",
 
     // src/components/HomeTabLicense.vue 6
     // src/components/HomeTabProject.vue 6
-    "Refresh": "刷新",
+    "Refresh": "リフレッシュ",
 
     // src/components/HomeTabLicense.vue 17
     // src/pages/LicensePageEdit.vue 27
-    "Expired": "有效期",
+    "Expired": "有効期間",
 
     // src/components/HomeTabLicense.vue 20
     // src/pages/LicenseInputMachine.vue 4
-    "Harddisk": "硬盘序列号",
+    "Harddisk": "HDDのシリアル番号",
 
     // src/components/HomeTabLicense.vue 23
     "IPv4": "IPv4",
 
     // src/components/HomeTabLicense.vue 26
-    "Mac Address": "网卡MAC地址",
+    "Mac Address": "NIC MACアドレス",
 
     // src/components/HomeTabLicense.vue 29
     // src/pages/LicensePageEdit.vue 43
-    "Disable Restrict Mode": "禁用约束模式",
+    "Disable Restrict Mode": "拘束モードの無効化",
 
     // src/components/HomeTabLicense.vue 32
     // src/pages/LicensePageEdit.vue 57
-    "Extra Data": "自定义数据",
+    "Extra Data": "カスタムデータ",
 
     // src/components/HomeTabLicense.vue 35
-    "Filename": "文件名称",
+    "Filename": "ファイル名",
 
     // src/components/HomeTabLicense.vue 44
     // src/components/HomeTabProject.vue 38
     // src/pages/LicensePageEdit.vue 16
-    "Name": "名称",
+    "Name": "名",
 
     // src/components/HomeTabLicense.vue 49
-    "Summary": "说明",
+    "Summary": "説明",
 
     // src/components/HomeTabLicense.vue 56
-    "Edit this license": "编辑许可证",
+    "Edit this license": "ライセンスの編集",
 
     // src/components/HomeTabLicense.vue 66
-    "Remove this license": "删除许可证",
+    "Remove this license": "ライセンスの削除",
 
     // src/components/HomeTabProject.vue 18
     // src/pages/ProjectInputFile.vue 6
-    "Src": "源路径",
+    "Src": "ソースパス",
 
     // src/components/HomeTabProject.vue 21
-    "Entry": "主脚本",
+    "Entry": "マスタースクリプト",
 
     // src/components/HomeTabProject.vue 24
     // src/pages/PackPageWizard.vue 116
     // src/pages/ObfuscatePageWizard.vue 35
     // src/pages/ProjectInputTarget.vue 4
-    "Output": "输出路径",
+    "Output": "出力パス",
 
     // src/pages/ProjectPageEdit.vue 47
-    "Target": "输出",
+    "Target": "出力",
 
     // src/components/HomeTabProject.vue 30
-    "Path": "工程路径",
+    "Path": "プロジェクトパス",
 
     // src/components/HomeTabProject.vue 47
-    "Title": "标题",
+    "Title": "タイトル",
 
     // src/components/HomeTabProject.vue 54
-    "Build this project": "构建这个工程",
+    "Build this project": "このプロジェクトを構築します",
 
     // src/components/HomeTabProject.vue 59
-    "Build with debug information in case something is wrong": "打开调试开关进行构建",
+    "Build with debug information in case something is wrong": "デバッグスイッチをオンにして構築します",
 
     // src/components/HomeTabProject.vue 64
-    "Remove this project": "删除这个工程",
+    "Remove this project": "このプロジェクトを削除します",
 
     // src/components/HomeTabProject.vue 69
-    "Edit this project": "编辑这个工程",
+    "Edit this project": "このプロジェクトを編集します",
 
     // src/components/HomeTabProject.vue 98
     // src/pages/ProjectPageEdit.vue 32
-    "Obfuscate all scripts in project": "加密工程中的所有脚本",
+    "Obfuscate all scripts in project": "暗号化プロジェクトのすべてのスクリプト",
 
     // src/components/HomeTabProject.vue 121
     // src/pages/ProjectPageEdit.vue 186
-    "Building ": "构建工程 ",
+    "Building ": "構築プロジェクト ",
 
     // src/pages/ProjectPageEdit.vue 75
-    "Build": "构建 ",
+    "Build": "構築 ",
 
     // src/pages/ProjectPageEdit.vue 78
-    "Diagnose": "构建（调试） ",
+    "Diagnose": "構築（デバッグ） ",
 
     // src/components/HomeTabProject.vue 134
     // src/pages/ProjectPageEdit.vue 199
-    "Diagnosing project ": "使用调试模式构建工程 ",
+    "Diagnosing project ": "コントロールモードを使用したプロジェクトの構築 ",
 
     // src/pages/PackPageWizard.vue 10
     // src/pages/ObfuscatePageWizard.vue 10
-    "Start": "开始",
+    "Start": "スタート",
 
     // src/pages/PackPageWizard.vue 12
-    "Data Files": "数据文件",
+    "Data Files": "データファイル",
 
     // src/pages/PackPageWizard.vue 54
-    "Hidden Imports": "隐含模块",
+    "Hidden Imports": "暗黙のモジュール",
 
     // src/pages/PackPageWizard.vue 54
-    "Binary Files": "动态库文件",
+    "Binary Files": "ダイナミックライブラリファイル",
 
     // src/pages/PackPageWizard.vue 44
-    "Icon": "图标",
+    "Icon": "アイコン",
 
     // src/pages/PackPageWizard.vue 14
     // src/pages/PackPageWizard.vue 104
-    "Extra Options": "其他选项",
+    "Extra Options": "他のオプション",
 
     // src/pages/PackPageWizard.vue 16
     // src/pages/ObfuscatePageWizard.vue 14
-    "Finish": "结束",
+    "Finish": "終了",
 
     // src/pages/PackPageWizard.vue 28
-    "Base path for entry script, data files, binary files etc.": "所有其他文件名称的相对路径",
+    "Base path for entry script, data files, binary files etc.": "全部他のファイル名の相対パス",
 
     // src/pages/PackPageWizard.vue 34
     // src/pages/ProjectInputFile.vue 27
-    "Script": "主脚本",
+    "Script": "マスタースクリプト",
 
     // src/pages/PackPageWizard.vue 36
-    "The entry script": "选择相对于源路径的脚本文件",
+    "The entry script": "ソースパスに相対するスクリプトを選択します",
 
     // src/pages/PackPageWizard.vue 46
-    "No obfuscated scripts in these paths": "排除不需要加密的路径，例如 venv，test 等",
+    "No obfuscated scripts in these paths": "暗号化不要なパスの除外、例えばvenv、testなど",
 
     // src/pages/PackPageWizard.vue 61
-    "Type module or package name, then press ENTER": "输入模块名称，然后按下回车键",
+    "Type module or package name, then press ENTER": "モジュール名を入力し、Enterを押します",
 
     // src/pages/PackPageWizard.vue 62
-    "Name an import not visible in the code of the script(s)": "输入脚本中隐式导入的模块名称",
+    "Name an import not visible in the code of the script(s)": "スクリプトの中に暗黙にインプットされたモジユール名を入力します",
 
     // src/pages/PackPageWizard.vue 73
-    "Additional data files or folders to be added to the executable": "需要打包的数据文件",
+    "Additional data files or folders to be added to the executable": "パッケージが必要なデータファイル",
 
     // src/pages/PackPageWizard.vue 74
-    "Type file name or path name relative to src, then press ENTER": "输入相对于源路径的文件名称，然后按下回车键",
+    "Type file name or path name relative to src, then press ENTER": "ソースパスに相対するファイル名を入力し、Enterを押します",
 
     // src/pages/PackPageWizard.vue 85
-    "Additional binary files to be added to the executable": "需要打包的二进制动态库",
+    "Additional binary files to be added to the executable": "パッケージングが必要なバイナリダイナミックライブラリ",
 
     // src/pages/PackPageWizard.vue 86
-    "Type binary filename relative to src, then press ENTER": "输入相对于源路径的二进制文件名称，然后按下回车键",
+    "Type binary filename relative to src, then press ENTER": "ソースパスに相対するバイナリファイル名を入力し、Enterを押します",
 
     // src/pages/PackPageWizard.vue 92
-    "No Console": "控制台",
+    "No Console": "コンソール",
 
     // src/pages/PackPageWizard.vue 94
-    "Do not provide a console window for standard I/O": "最终的可执行文件在运行时候是否显示控制台",
+    "Do not provide a console window for standard I/O": "最終な実行可能ファイル実行時にコンソールを表示するかどうか",
 
     // src/pages/PackPageWizard.vue 100
-    "Apply icon to a Windows executable or the bundle on Mac OS X": "输入相对于源路径的图标文件（Windows 和 MacOS）",
+    "Apply icon to a Windows executable or the bundle on Mac OS X": "ソースパスに相対するアイコンファイルを入力します(WindowsとMacOS)",
 
     // src/pages/PackPageWizard.vue 109
-    "Any other PyInstaller options to append command line": "输入其他 PyInstaller 支持的选项",
+    "Any other PyInstaller options to append command line": "ほかのPalnstallerでサポートされているオプションを入力します",
 
     // src/pages/PackPageWizard.vue 118
     // src/pages/ObfuscatePageWizard.vue 37
     // src/pages/ProjectInputTarget.vue 6
-    "The default output path is $src/dist": "默认的输出路径是源路径下面的 dist 目录",
+    "The default output path is $src/dist": "ソースパスの下のdistはデフォルト出力パス",
 
     // src/pages/PackPageWizard.vue 124
-    "Bundle": "打包成",
+    "Bundle": "パッケージ化",
 
     // src/pages/PackPageWizard.vue 126
     // src/pages/ProjectInputTarget.vue 86
-    "Name to the bundled app (default: basename of entry script)": "输入最终打包好的文件名称，默认是主脚本的名称",
+    "Name to the bundled app (default: basename of entry script)": "最終にパッケージ化されたファイル名を入力します。デフォルトはマスタースクリプトの名前です",
 
     // src/pages/PackPageWizard.vue 132
-    "all to one folder": "一个目录",
+    "all to one folder": "ディレクトリ",
 
     // src/pages/PackPageWizard.vue 133
-    "all to one file": "一个文件",
+    "all to one file": "ファイル",
 
     // src/pages/PackPageWizard.vue 134
-    "all to one file with outer license": "一个文件（无许可证）",
+    "all to one file with outer license": "ファイル（ライセンスなし）",
 
     // src/pages/PackPageWizard.vue 153
-    "Pack": "打包",
+    "Pack": "パッケージ",
 
     // src/pages/PackPageWizard.vue 161
-    "Close": "关闭",
+    "Close": "閉じます",
 
     // src/pages/PackPageWizard.vue 168
-    "Prev": "上一步",
+    "Prev": "前のステップ",
 
     // src/pages/PackPageWizard.vue 174
-    "Next": "下一步",
+    "Next": "次のステップ",
 
     // src/pages/PackPageWizard.vue 282
-    "Packing script ": "正在打包脚本 ",
+    "Packing script ": "スクリプトをパケージンています ",
 
     // src/pages/ProjectInputMisc.vue 4
-    "Restrict Mode": "约束模式",
+    "Restrict Mode": "拘束モード",
 
     // src/pages/ProjectInputMisc.vue 7
     "https://pyarmor.readthedocs.io/en/latest/mode.html#restrict-mode": "https://pyarmor.readthedocs.io/zh/stable/mode.html#restrict-mode",
 
     // src/pages/ProjectInputMisc.vue 11
-    "Select restrict mode": "选择约束模式",
+    "Select restrict mode": "拘束モードを選択します",
 
-    "Assert Call": "启用函数保护",
-    "Assert called functions are obfuscated": "确保被调用的函数是经过加密的，没有被替换",
-    "Assert Import": "启用模块保护",
-    "Assert imported modules are obfuscated": "确保被导入的模块是加密的，没有被替换",
-    "Disable all the restricts for the obfuscated scripts": "禁用所有对加密脚本的约束和限制",
-    "Use default restrictions": "加密脚本使用默认的约束和限制",
-    "Enable private mode for scripts": "使用私有模式加密脚本",
-    "Enable restrict mode for packages": "使用约束模式加密包",
+    "Assert Call": "関数保護の有効化",
+    "Assert called functions are obfuscated": "呼び出された関数が暗号化されていることを確認します",
+    "Assert Import": "モジュール保護の有効化",
+    "Assert imported modules are obfuscated": "インポートされたモジュールが暗号化されていることを確認します",
+    "Disable all the restricts for the obfuscated scripts": "暗号化スクリプトに対するすべての制約と制限を無効にします",
+    "Use default restrictions": "暗号化スクリプトはデフォルトの制約と制限を使用します",
+    "Enable private mode for scripts": "プライベートモードに暗号化スクリプトを使用します",
+    "Enable restrict mode for packages": "拘束モードに暗号化パケッージを使用します",
 
     // src/pages/ProjectInputMisc.vue 21
-    "Bootstrap Code": "引导模式",
+    "Bootstrap Code": "ブートモード",
 
     // src/pages/ProjectInputMisc.vue 25
-    "Select entry mode": "选择引导代码插入模式",
+    "Select entry mode": "ブートコード挿入モードを選択します",
 
     // src/pages/ProjectInputMisc.vue 35
-    "Enable Suffix": "后缀模式",
+    "Enable Suffix": "接尾辞モード",
 
     // src/pages/ProjectInputMisc.vue 38
-    "Generate runtime package with an unique suffix": "创建包含唯一后缀的运行辅助包，解决导入其他用户的加密包冲突问题",
+    "Generate runtime package with an unique suffix": "一意の接尾辞を含む実行支援パッケージを作成し、他のユーザーをインポートする暗号化パッケージの競合問題を解決します",
 
     // src/pages/ProjectInputMisc.vue 35
-    "Mixin Strings": "加密字符串",
-    "Mix all string values in the scripts": "混淆脚本中所有字符串值（不包括函数/变量名称）",
+    "Mixin Strings": "暗号化文字列",
+    "Mix all string values in the scripts": "スクリプト内のすべての文字列値を混同（関数、変数名を除く）",
 
     // src/pages/ProjectInputMisc.vue 60
-    "DO NOT insert bootstrap code into entry scripts": "不要插入引导代码到主脚本",
+    "DO NOT insert bootstrap code into entry scripts": "マスタースクリプトにブートコードを挿入しないです",
 
     // src/pages/ProjectInputMisc.vue 64
-    "Insert bootstrap code into entry scripts": "自动插入引导代码到主脚本（默认）",
+    "Insert bootstrap code into entry scripts": "マスタースクリプトにブートコードを自動挿入します（デフォルト）",
 
     // src/pages/ProjectInputMisc.vue 68
-    "Generate bootstrap code without leading dot (absolute import)": "引导代码使用绝对导入方式（没有前置的点）",
+    "Generate bootstrap code without leading dot (absolute import)": "ブートコードは絶対インポート方式を使用します（前の点はありません）",
 
     // src/pages/ProjectInputMisc.vue 72
-    "Generate bootstrap code with leading dot (relative import)": "引导代码使用包含前置点的相对导入方式",
+    "Generate bootstrap code with leading dot (relative import)": "ブートコードは、前の点を含むインポート方法を使用します",
 
     // src/pages/ProjectInputMisc.vue 78
-    "Mode 0: disable all the restricts for the obfuscated scripts": "模式 0：禁用所有约束功能",
+    "Mode 0: disable all the restricts for the obfuscated scripts": "モード0:すべての拘束機能を無効にします",
 
     // src/pages/ProjectInputMisc.vue 82
-    "Mode 1: the obfuscated scripts can not be changed": "模式 1：加密后的脚本不可以被修改",
+    "Mode 1: the obfuscated scripts can not be changed": "モード1:暗号化されたスクリプトは変更できません",
 
     // src/pages/ProjectInputMisc.vue 86
-    "Mode 2: mode 1 plus can not be imported by plain scripts": "模式 2：模式 1 + 加密脚本不可以被非加密脚本导入",
+    "Mode 2: mode 1 plus can not be imported by plain scripts": "モード2:モード1+暗号化スクリプトは非暗号化スクリプトにインポートすることはできません",
 
     // src/pages/ProjectInputMisc.vue 90
-    "Mode 3: mode 2 plus module attributes protection": "模式 3：同模式 2 并且模块属性得到保护",
+    "Mode 3: mode 2 plus module attributes protection": "モード3:同じモード2でモジュール属性が保護されました",
 
     // src/pages/ProjectInputMisc.vue 94
-    "Mode 4: mode 3 but for package": "模式 4：同模式 3 但可用于加密包",
-    "Mode 5: mode 4 plus frame globals protection": "模式 5：同模式 4 并且运行时全局变量得到保护",
+    "Mode 4: mode 3 but for package": "モード4:同じモード3でパッケージの暗号化には使用できます",
+    "Mode 5: mode 4 plus frame globals protection": "モード5:同じモード4で実行時にグローバル変数が保護されました",
 
     // src/pages/ProjectInputMisc.vue
-    "Mode 101: mode 1 plus module dictionary protection": "模式 101: 同模式 1 并且保护模字典",
-    "Mode 102: mode 2 plus module dictionary protection": "模式 102: 同模式 2 并且保护模字典",
-    "Mode 103: mode 3 plus module dictionary protection": "模式 103: 同模式 3 并且保护模字典",
-    "Mode 104: mode 4 plus module dictionary protection": "模式 104: 同模式 4 并且保护模字典",
-    "Mode 105: mode 5 plus module dictionary protection": "模式 105: 同模式 5 并且保护模字典",
+    "Mode 101: mode 1 plus module dictionary protection": "モード101:同じモード1でモジュール辞書を保護します",
+    "Mode 102: mode 2 plus module dictionary protection": "モード102:同じモード2でモジュール辞書を保護します",
+    "Mode 103: mode 3 plus module dictionary protection": "モード103:同じモード3でモジュール辞書を保護します",
+    "Mode 104: mode 4 plus module dictionary protection": "モード104:同じモード4でモジュール辞書を保護します",
+    "Mode 105: mode 5 plus module dictionary protection": "モード105:同じモード5でモジュール辞書を保護します",
 
     // src/pages/LicenseInputMachine.vue 6
-    "Bind obfuscated scripts to this serial number of harddisk": "绑定加密脚本到硬盘序列号",
+    "Bind obfuscated scripts to this serial number of harddisk": "暗号化スクリプトをハードディスクのシリアル番号にバインドします",
 
     // src/pages/LicenseInputMachine.vue 13
-    "Bind obfuscated scripts to this IPv4 address": "绑定加密脚本到 IPv4 地址",
+    "Bind obfuscated scripts to this IPv4 address": "暗号化スクリプトをIPv4アドレスにバインドします",
 
     // src/pages/LicenseInputMachine.vue 20
-    "Bind obfuscated scripts to this MAC address": "绑定加密脚本到网卡 Mac 地址",
+    "Bind obfuscated scripts to this MAC address": "暗号化スクリプトをNICMacアドレスにバインドします",
 
     // src/pages/ObfuscatePageWizard.vue 12
-    "Advanced": "高级",
+    "Advanced": "高級",
 
     // src/pages/ObfuscatePageWizard.vue 26
     // src/pages/ProjectInputMode.vue 9
-    "Cross Protection": "交叉保护",
+    "Cross Protection": "クロスプロテクション",
 
     // src/pages/ObfuscatePageWizard.vue 28
     // src/pages/ProjectInputMode.vue 11
-    "Inject cross protection code into entry scripts before obfuscating": "加密时注入交叉保护代码到主脚本以提高安全性",
+    "Inject cross protection code into entry scripts before obfuscating": "暗号化時にクロスプロテクションコードをマスタースクリプトに注入してセキュリティを向上します",
 
     // src/pages/ObfuscatePageWizard.vue 44
-    "Package Name": "包名称",
+    "Package Name": "パッケージ名",
 
     // src/pages/ObfuscatePageWizard.vue 48
-    "Append this name to output path": "输出目录中包含包的名称",
+    "Append this name to output path": "ディレクトリに含まれるパッケージの名前を入力します",
 
     // src/pages/ObfuscatePageWizard.vue 57
     // src/pages/ProjectInputTarget.vue 32
-    "Platforms": "运行平台",
+    "Platforms": "プラットフォーム",
 
     // src/pages/ObfuscatePageWizard.vue 63
     // src/pages/ProjectInputTarget.vue 25
-    "License": "许可证",
+    "License": "ライセンス",
 
     // src/pages/ObfuscatePageWizard.vue 75
-    "Obfuscate": "加密",
+    "Obfuscate": "暗号化",
 
     // src/pages/ObfuscatePageWizard.vue 193
-    "Obfuscate scripts: ": "加密脚本",
+    "Obfuscate scripts: ": "暗号化スクリプト",
 
     // src/pages/ProjectInputMode.vue 3
-    "Advanced Mode": "高级模式",
-    "Disable or select advanced mode": "禁用或者选择一种高级模式",
+    "Advanced Mode": "高級なモード",
+    "Disable or select advanced mode": "高級なモードの無効化または選択",
 
-    "Enable BCC Mode": "启用 BCC 模式",
-    "Convert some Python functions to C functions": "转换模块里面的 Python 函数成为 C 函数",
-    "Enable RFT Mode": "启用 RFT 模式",
-    "Rename class/function/variable names": "重命名模块中类，函数和变量的名称",
+    "Enable BCC Mode": "BBCモードを有効にします",
+    "Convert some Python functions to C functions": "変換モジュール内のPython関数がC関数になりました",
+    "Enable RFT Mode": "RFTモードを有効にします",
+    "Rename class/function/variable names": "モジュール内のクラス、関数、変数の名前を変更します",
 
     // src/pages/ProjectInputMode.vue 5
-    "Change code object structure to improve security (only for x86/64 arch)": "修改代码结构以提高安全性（仅 x86/64 可用）",
-    "Disable advanced mode": "禁用高级模式",
-    "Enable advanced mode (only for x86/64 arch)": "启用高级模式（仅 x86/64 平台可用）",
-    "Enable super mode (only for Python 27, 37, 38, 39)": "启用超级模式（仅 Python 27，37，38，39 支持）",
-    "Enable advanced mode plus vm protection (only for Windows)": "同时启用高级模式和虚拟模式（仅 Windows 平台可用）",
-    "Enable super mode plus vm protection (only for Python 27, 37, 38, 39 in Windows)": "同时启用超级模式和超级模式（仅 Windows 平台的 Python 27，37，38，39 支持）",
-    "Enable super plus mode (only for Python 37, 38, 39 and x86_64)": "启用终极模式（仅 x86_64 架构的 Python 37, 38, 39 可用）",
+    "Change code object structure to improve security (only for x86/64 arch)": "セキュリティを向上させるためのコード構造の変更（x 86/64のみで使用可能）",
+    "Disable advanced mode": "高級なモードを無効にします",
+    "Enable advanced mode (only for x86/64 arch)": "高級なモードを有効にします（x 86/64のみで使用可能）",
+    "Enable super mode (only for Python 27, 37, 38, 39)": "スーパーモードを有効にします（Python 27、37、38、39のみサポート）",
+    "Enable advanced mode plus vm protection (only for Windows)": "高級なモードと仮想モードの両方を有効にします（Windowsプラットフォームのみで使用可能）",
+    "Enable super mode plus vm protection (only for Python 27, 37, 38, 39 in Windows)": "スーパーモードとスーパーモードの両方を有効にします（WindowsプラットフォームのPython 27、37、38、39のみサポート）",
+    "Enable super plus mode (only for Python 37, 38, 39 and x86_64)": "究極モードを有効にします（x 86 _64のPython 37、38、39を使用可能）",
 
     // src/pages/ProjectInputMode.vue 15
-    "Obfuscate Module": "模块加密模式",
+    "Obfuscate Module": "モジュール暗号化モード",
 
     // src/pages/ProjectInputMode.vue 17
-    "Obfuscate the whole module": "加密整个模块对象",
+    "Obfuscate the whole module": "モジュールオブジェクト全体を暗号化します",
 
     // src/pages/ProjectInputMode.vue 21
-    "Obfuscate Code Object": "函数加密模式",
+    "Obfuscate Code Object": "関数暗号化モード",
 
     // src/pages/ProjectInputMode.vue 23
-    "Obfuscate each function (code object) in the module": "对模块中的每一个函数分别进行加密",
-    "Do not obfuscate functions": "不对函数进行单独加密",
-    "Obfuscate each function with quick algorithm": "使用快速加密算法加密模块中的每一个函数",
-    "Obfuscate each function with complex algorithm": "使用复杂加密算法加密模块中的每一个函数",
+    "Obfuscate each function (code object) in the module": "モジュール内の各関数を個別に暗号化します",
+    "Do not obfuscate functions": "関数を個別に暗号化しないです",
+    "Obfuscate each function with quick algorithm": "高速暗号化アルゴリズムを使用したモジュール内の各関数の暗号化",
+    "Obfuscate each function with complex algorithm": "複雑な暗号化アルゴリズムを使用したモジュール内の各関数の暗号化",
 
     // src/pages/ProjectInputMode.vue 27
-    "Wrap Code Object": "动态加密模式",
+    "Wrap Code Object": "動的暗号化モード",
 
     // src/pages/ProjectInputMode.vue 29
-    "Obfuscate each function (code object) in runtime": "函数运行结束之后再次加密",
+    "Obfuscate each function (code object) in runtime": "関数の実行終了後に暗号化を再開します",
 
     // src/pages/ProjectInputTarget.vue 13
-    "Bundle Name": "输出包名称",
+    "Bundle Name": "出力パッケージ名",
 
     // src/pages/ProjectInputTarget.vue 39
-    "Plugins": "插件",
+    "Plugins": "プラグイン",
 
     // src/pages/ProjectInputTarget.vue 52
-    "Type plugin name, then press ENTER": "输入插件名称，然后按下回车键",
+    "Type plugin name, then press ENTER": "プラグイン名を入力し、Enterを押します",
 
     // src/pages/ProjectInputTarget.vue 61
-    "Pack Options": "打包选项",
+    "Pack Options": "パッケージオプション",
 
     // src/pages/ProjectInputTarget.vue 66
-    "Please input any pyinstaller option": "输入 PyInstaller 支持的其他选项",
+    "Please input any pyinstaller option": "Pylnstallerでサポートされている他のオプションを入力してください",
 
     // src/pages/ProjectInputTarget.vue 87
-    "Append this name to output path for package": "在输出目录中包含这里输入的名称",
+    "Append this name to output path for package": "ここに入力した名前を出力ディレクトリに含める",
 
     // src/pages/ProjectPageEdit.vue 6
     // src/pages/ProjectPageEdit.vue 8
-    "Edit Project": "编辑工程",
+    "Edit Project": "プロジェクトの編集",
 
     // src/pages/ProjectPageEdit.vue 6
     // src/pages/ProjectPageEdit.vue 9
-    "New Project": "新增工程",
+    "New Project": "プロジェクトの新規",
 
     // src/pages/ProjectPageEdit.vue 26
     "Basic": "基本",
 
     // src/components/HomeTabProject.vue 27
     // src/pages/ProjectPageEdit.vue 27
-    "Type": "类型",
+    "Type": "タイプ",
 
     // src/components/HomeTabProject.vue 98
     // src/pages/ProjectPageEdit.vue 35
-    "Pack all to one folder": "打包成为一个目录",
+    "Pack all to one folder": "カタログにパッケージ化",
 
     // src/components/HomeTabProject.vue 99
     // src/pages/ProjectPageEdit.vue 38
-    "Pack all to one file": "打包成为单文件",
+    "Pack all to one file": "単一ファイルにパッケージ化",
 
     // src/components/HomeTabProject.vue 99
     // src/pages/ProjectPageEdit.vue 41
-    "Pack all to one file with outer license": "打包成为单文件（不包含许可证）",
+    "Pack all to one file with outer license": "単一ファイルにパッケージ化（ライセンスなし）",
 
     // src/pages/ProjectPageEdit.vue 50
-    "Obfuscate Mode": "加密模式",
+    "Obfuscate Mode": "暗号化モード",
 
     // src/pages/ProjectPageEdit.vue 53
-    "Advanced Options": "高级选项",
+    "Advanced Options": "高級なオプション",
 
     // src/pages/ProjectPageEdit.vue 56
-    "Runtime Files": "运行辅助文件",
+    "Runtime Files": "実行支援ファイル",
 
     // src/pages/ProjectPageEdit.vue 72
-    "Create": "创建",
+    "Create": "作成",
 
     // src/pages/ProjectPageEdit.vue 72
     "Update": "更新",
 
     // src/pages/ProjectPageEdit.vue 143
-    "DO NOT generate runtime files": "不生成运行辅助文件",
+    "DO NOT generate runtime files": "実行支援ファイルを生成しないです",
 
     // src/pages/ProjectPageEdit.vue 147
-    "Generate runtime files as a module (only for Pyarmor 7)": "生成运行辅助文件（仅适用 Pyarmor 7）",
+    "Generate runtime files as a module (only for Pyarmor 7)": "実行支援ファイルの生成（Pyarmor 7のみ）",
 
     // src/pages/ProjectPageEdit.vue 151
-    "Generate runtime files as a package": "生成运行辅助包（默认）",
+    "Generate runtime files as a package": "実行支援パッケージの生成（デフォルト）",
 
     // src/pages/ProjectPageEdit.vue 218
-    "Please input project title": "新的工程标题",
+    "Please input project title": "新しいプロジェクトタイトル",
 
     // src/pages/ProjectInputFile.vue 8
-    "Base path for scripts, include and exclude": "源路径是其他文件和目录的相对路径",
+    "Base path for scripts, include and exclude": "ソースパスは、他のファイルとディレクトリの相対パスです",
 
     // src/pages/ProjectInputFile.vue 14
-    "Scripts": "脚本",
+    "Scripts": "スクリプト",
 
     // src/pages/ProjectInputFile.vue 16
-    "Select one or more entry scripts": "选择一个或者多个入口脚本",
+    "Select one or more entry scripts": "1つ以上のポータルスクリプトを選択します",
 
     // src/pages/ProjectInputFile.vue 29
-    "Select one entry script": "选择一个入口脚本",
+    "Select one entry script": "ポータルスクリプトを選択します",
 
     // src/pages/ProjectInputFile.vue 38
-    "Include": "搜索模式",
+    "Include": "検索モード",
 
     // src/pages/ProjectInputFile.vue 51
-    "Exclude": "排除路径",
+    "Exclude": "パスを除外します",
 
     // src/pages/ProjectInputFile.vue 53
-    "Ignore the path and the .py files list here": "这些路径下面的所有脚本不会被加密",
+    "Ignore the path and the .py files list here": "これらのパスの下にあるすべてのスクリプトは暗号化されません",
 
     // src/pages/ProjectInputFile.vue 71
-    "Only the scripts list above": "仅仅加密列出的这些脚本文件",
+    "Only the scripts list above": "リストされたスクリプトファイルのみを暗号化します",
 
     // src/pages/ProjectInputFile.vue 75
-    "Only the .py files in the src path": "仅仅加密源路径下面的脚本文件",
+    "Only the .py files in the src path": "ソースパスの下にあるスクリプトファイルのみを暗号化します",
 
     // src/pages/ProjectInputFile.vue 79
-    "All the scripts in the src path recursively": "递归加密源路径下面的所有脚本文件",
+    "All the scripts in the src path recursively": "ソースパスの下にあるすべてのスクリプトファイルを再帰に暗号化します",
 
     // src/pages/LicensePageEdit.vue 5
-    "Edit License": "编辑许可证",
+    "Edit License": "ライセンスの編集",
 
     // src/pages/LicensePageEdit.vue 5
-    "New License": "创建许可证",
+    "New License": "ライセンスの作成",
 
     // src/pages/LicensePageEdit.vue 22
-    "Leave it blank to set default name like reg-xxxxxx": "默认名称是 reg-xxxxxx",
+    "Leave it blank to set default name like reg-xxxxxx": "デフォルト名はreg-xxxxxxです",
 
     // src/pages/LicensePageEdit.vue 33
-    "Expired the obfuscated scripts": "设置加密脚本有效期",
+    "Expired the obfuscated scripts": "暗号化スクリプトの有効期間の設定",
 
     // src/pages/LicensePageEdit.vue 50
-    "Enable Period Mode": "启用周期模式",
+    "Enable Period Mode": "サイクルモードを有効にします",
 
     // src/pages/LicensePageEdit.vue 59
-    "Any ascii string data to store in the license file": "自定义的任何字符串数据",
+    "Any ascii string data to store in the license file": "カスタム文字列データ",
 
     // src/pages/LicensePageEdit.vue 115
-    "Invalid input": "非法输入",
+    "Invalid input": "不正な入力",
 
     // src/components/SelectFolder.vue 186
-    "Please type path to create in %1": "在 %1 下面创建下面输入的路径：",
+    "Please type path to create in %1": "%1の下に入力したパスを作成します",
 
     // src/components/SelectFolder.vue 192
-    "This path has been created: %1": "路径 %1 已经被创建",
+    "This path has been created: %1": "パス%1は作成されました",
 
     // src/components/SelectFolder.vue 198
-    "Are you sure to remove this path: %1 ?": "你确认要删除这个路径 %1 吗？",
+    "Are you sure to remove this path: %1 ?": "本当にこのパス%1を削除しますか？",
 
     // src/components/HomeTabLicense.vue 105
-    "Are you sure remove this license: %1 ?": "你确认要删除这个许可证 %1 吗？",
+    "Are you sure remove this license: %1 ?": "本当にこのライセンス%1を削除しますか？",
 
     // src/components/HomeTabProject.vue 116
     // src/components/HomeTabProject.vue 129
     // src/pages/ProjectPageEdit.vue 181
     // src/pages/ProjectPageEdit.vue 194
-    "Build successfully, the results saved in: %1": "构建成功，输出目录：%1",
+    "Build successfully, the results saved in: %1": "構築に成功しました、出力ディレクトリ:%1",
 
     // src/components/HomeTabProject.vue 142
-    "Are you sure remove this project: %1 ?": "你确认要删除这个工程 %1 吗？",
+    "Are you sure remove this project: %1 ?": "本当にこのプロジェクト%1を削除しますか？",
 
     // src/pages/PackPageWizard.vue 286
-    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "加密打包成功，输出结果：%1",
+    "Pack obfuscated scripts successfully, the final bundle is saved: %1": "暗号化パッケージングは成功しました、結果を出力:%1",
 
     // src/pages/ObfuscatePageWizard.vue 197
-    "Obfuscate the scripts successfully, the result is saved to %1": "加密脚本成功，输出目录：%1",
+    "Obfuscate the scripts successfully, the result is saved to %1": "暗号化スクリプトは成功しました、出力ディレクトリ:%1",
 
     // src/pages/ProjectPageEdit.vue 212
-    "The project %1 has been created": "工程 %1 已经被成功创建",
-    "The project %1 has been updated": "工程 %1 已经被更新",
+    "The project %1 has been created": "ツール%1は成功に作成されました",
+    "The project %1 has been updated": "ツール%1は更新されました",
 
     // src/pages/LicensePageEdit.vue 161
-    "The license has been saved to %1": "许可证已经被保存在 %1",
+    "The license has been saved to %1": "ライセンスは%1に保存されました",
 }
 
 export default messages
