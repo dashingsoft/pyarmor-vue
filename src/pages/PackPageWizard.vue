@@ -253,6 +253,7 @@ export default {
                 wrapMode: true,
                 advancedMode: false,
                 licenseFile: this.formData.target === 3 ? 'false' : this.formData.licenseFile,
+                cleanOutput: this.formData.cleanOutput,
                 plugins: []
             }
         },
