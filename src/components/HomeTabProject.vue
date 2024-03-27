@@ -53,12 +53,17 @@
                      type="text"
                      :title="$t('Build this project')"
                      icon="el-icon-s-tools"
-                     size="medium"></el-button>
+                     size="large"></el-button>
+          <el-button v-on:click="buildProject(scope.row, true)"
+                     type="text"
+                     :title="$t('Build this project with clean output')"
+                     icon="el-icon-setting"
+                     size="large"></el-button>
           <el-button v-on:click="diagnoseProject(scope.row)"
                      type="text"
                      :title="$t('Build with debug information in case something is wrong')"
                      icon="el-icon-first-aid-kit"
-                     size="medium"></el-button>
+                     size="large"></el-button>
           <el-button v-on:click="removeProject(scope.row)"
                      type="text"
                      :title="$t('Remove this project')"
@@ -68,7 +73,7 @@
                      type="text"
                      :title="$t('Edit this project')"
                      icon="el-icon-edit"
-                     size="medium"></el-button>
+                     size="large"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -110,7 +115,8 @@ export default {
         newProject: function () {
             this.$emit('change-current-page', 'ProjectPageEdit')
         },
-        buildProject: function (data) {
+        buildProject: function (data, clean) {
+            data['cleanOutput'] = typeof clean === 'boolean' && clean
             connector.buildProject(
                 data,
                 (output) => {

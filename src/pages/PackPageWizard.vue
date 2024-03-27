@@ -120,6 +120,9 @@
               :allow-create="true"
               v-model="formData.output">
             </select-folder>
+            <el-switch
+              :active-text="$t('Remove whole ouptput path before build')"
+              v-model="formData.cleanOutput" />
           </el-form-item>
           <el-form-item :label="$t('Bundle')">
             <el-input
@@ -207,6 +210,7 @@ export default {
                 extraOptions: '',
                 target: 1,
                 output: '',
+                cleanOutput: false
             },
             rules: {
                 src: [ { required: true } ],

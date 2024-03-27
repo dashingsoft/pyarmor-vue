@@ -239,6 +239,9 @@ const messages = {
     "Build this project": "构建这个工程",
 
     // src/components/HomeTabProject.vue 59
+    "Build this project with clean output": "删除输出目录之后在构建工程",
+
+    // src/components/HomeTabProject.vue 59
     "Build with debug information in case something is wrong": "打开调试开关进行构建",
 
     // src/components/HomeTabProject.vue 64
@@ -336,6 +339,9 @@ const messages = {
     // src/pages/ObfuscatePageWizard.vue 37
     // src/pages/ProjectInputTarget.vue 6
     "The default output path is $src/dist": "默认的输出路径是源路径下面的 dist 目录",
+
+    // src/pages/PackPageWizard.vue 124
+    "Remove whole ouptput path before build": "打包之前清空整个输出目录",
 
     // src/pages/PackPageWizard.vue 124
     "Bundle": "打包成",

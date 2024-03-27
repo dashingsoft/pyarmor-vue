@@ -239,6 +239,9 @@ const messages = {
     "Build this project": "このプロジェクトを構築します",
 
     // src/components/HomeTabProject.vue 59
+    "Build this project with clean output": "出力ディレクトリを削除した後にプロジェクトを構築する",
+
+    // src/components/HomeTabProject.vue 59
     "Build with debug information in case something is wrong": "デバッグスイッチをオンにして構築します",
 
     // src/components/HomeTabProject.vue 64
@@ -336,6 +339,9 @@ const messages = {
     // src/pages/ObfuscatePageWizard.vue 37
     // src/pages/ProjectInputTarget.vue 6
     "The default output path is $src/dist": "ソースパスの下のdistはデフォルト出力パス",
+
+    // src/pages/PackPageWizard.vue 124
+    "Remove whole ouptput path before build": "生成する前に出力パス全体を削除する",
 
     // src/pages/PackPageWizard.vue 124
     "Bundle": "パッケージ化",
