@@ -121,8 +121,8 @@ export default {
         }
     },
     mounted: function () {
-        if (document.location.href.indexOf('index.html') > 0)
-            this.serverUrl = connector.serverUrl = document.location.pathname
+        this.serverUrl = `http://${document.location.host}/`
+
         connector.$on('connect-changed', this.onServerChanged)
         this.connectServer()
 
